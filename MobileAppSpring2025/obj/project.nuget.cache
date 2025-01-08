@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "h53ucwihkYg=",
+  "dgSpecHash": "mWeJLMo8f0E=",
   "success": true,
-  "projectFilePath": "C:\\Users\\quint\\source\\repos\\MobileAppSpring2025\\MobileAppSpring2025\\MobileAppSpring2025.csproj",
+  "projectFilePath": "C:\\Users\\quint\\OneDrive\\Documents\\GitHub\\Spring-2025-Mobile-App\\MobileAppSpring2025\\MobileAppSpring2025.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\quint\\.nuget\\packages\\communitytoolkit.maui\\9.1.0\\communitytoolkit.maui.9.1.0.nupkg.sha512",
     "C:\\Users\\quint\\.nuget\\packages\\communitytoolkit.maui.core\\9.1.0\\communitytoolkit.maui.core.9.1.0.nupkg.sha512",

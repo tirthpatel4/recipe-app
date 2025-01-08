@@ -18,7 +18,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MobileAppSpring2025")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0+d53f7f6a2daa37cf51b73a3b8f8a4d68e6702498")]
 [assembly: System.Reflection.AssemblyProductAttribute("MobileAppSpring2025")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MobileAppSpring2025")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

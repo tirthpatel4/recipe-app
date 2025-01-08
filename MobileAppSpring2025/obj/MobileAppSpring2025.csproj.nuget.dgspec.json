@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\quint\\source\\repos\\MobileAppSpring2025\\MobileAppSpring2025\\MobileAppSpring2025.csproj": {}
+    "C:\\Users\\quint\\OneDrive\\Documents\\GitHub\\Spring-2025-Mobile-App\\MobileAppSpring2025\\MobileAppSpring2025.csproj": {}
   },
   "projects": {
-    "C:\\Users\\quint\\source\\repos\\MobileAppSpring2025\\MobileAppSpring2025\\MobileAppSpring2025.csproj": {
+    "C:\\Users\\quint\\OneDrive\\Documents\\GitHub\\Spring-2025-Mobile-App\\MobileAppSpring2025\\MobileAppSpring2025.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\quint\\source\\repos\\MobileAppSpring2025\\MobileAppSpring2025\\MobileAppSpring2025.csproj",
+        "projectUniqueName": "C:\\Users\\quint\\OneDrive\\Documents\\GitHub\\Spring-2025-Mobile-App\\MobileAppSpring2025\\MobileAppSpring2025.csproj",
         "projectName": "MobileAppSpring2025",
-        "projectPath": "C:\\Users\\quint\\source\\repos\\MobileAppSpring2025\\MobileAppSpring2025\\MobileAppSpring2025.csproj",
+        "projectPath": "C:\\Users\\quint\\OneDrive\\Documents\\GitHub\\Spring-2025-Mobile-App\\MobileAppSpring2025\\MobileAppSpring2025.csproj",
         "packagesPath": "C:\\Users\\quint\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\quint\\source\\repos\\MobileAppSpring2025\\MobileAppSpring2025\\obj\\",
+        "outputPath": "C:\\Users\\quint\\OneDrive\\Documents\\GitHub\\Spring-2025-Mobile-App\\MobileAppSpring2025\\obj\\",
         "projectStyle": "PackageReference",
         "crossTargeting": true,
         "fallbackFolders": [
