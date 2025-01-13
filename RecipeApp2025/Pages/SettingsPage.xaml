@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="RecipeApp2025.Pages.SettingsPage">
+
+    <VerticalStackLayout Padding ="20">
+        <Grid ColumnDefinitions=".9*, .2*"
+              RowDefinitions="auto, auto, auto"
+               RowSpacing="20"
+              Padding="20">
+            <Label Text="This is a possible setting"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   />
+            <CheckBox Grid.Column="1"
+                         Grid.Row="0"
+                         />
+
+            <Label Text="This is a possible setting"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   />
+            <CheckBox Grid.Column="1"
+                 Grid.Row="1"
+                 />
+        </Grid>
+
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="RecipeApp2025.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
+    xmlns:pages="clr-namespace:RecipeApp2025.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="RecipeApp2025">
+
+    <FlyoutItem Title="Home">
+        <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate pages:MainPage}"
+            Route="MainPage"/>
+    </FlyoutItem>
+
+
+    <FlyoutItem Title="Settings">
+        <ShellContent
+        Title="Settings"
+        ContentTemplate="{DataTemplate pages:SettingsPage}"
+        Route="SettingsPage" 
+       />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Account">
+        <ShellContent
+        Title="Account"
+        ContentTemplate="{DataTemplate pages:AccountPage}"
+        Route="AccountPage" />
+    </FlyoutItem>
+
+
+
+
+    <Shell.FlyoutFooter>
+        <Grid Padding="15">
+            <Label Text="No Theme Control" HorizontalOptions="Center" VerticalOptions="Center" />
+        </Grid>
+    </Shell.FlyoutFooter>
+
+</Shell>

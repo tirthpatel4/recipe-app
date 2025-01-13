@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="RecipeApp2025.Pages.MainPage">
+
+
+
+
+    <Grid RowDefinitions="50, auto, auto, auto, *"
+          ColumnDefinitions=".85*, .15*"
+          Padding="21"
+          RowSpacing="40"
+          ColumnSpacing="10">
+
+        <Label Text="Recipe App"
+               FontSize="40"
+               FontAttributes="Bold"
+               HorizontalTextAlignment="Center"
+               Grid.ColumnSpan="2"
+               />
+        <Border
+            Grid.Row="1"
+            Grid.Column="0"
+            StrokeThickness="5"
+            Padding="5"
+ >
+            <Entry Placeholder="Search for Recipes"
+                   PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
+                FontAttributes="Italic" 
+                   
+             
+            />
+        </Border>
+
+        <Button
+                Text="Go"
+                BackgroundColor="#708090"
+                Grid.Row="1"
+                Grid.Column="1"
+                CornerRadius="10"
+                
+            />
+
+        <Button
+            Text="Discover"
+            FontSize="50"
+            BackgroundColor="#708090"
+            HeightRequest="150"
+            Grid.Row="2"
+            Grid.ColumnSpan="2"
+            FontAttributes="Bold"
+            CornerRadius="30"
+            Clicked="OnDiscoverButtonClicked">
+        </Button>
+
+        <Button
+            Text="Saved Recipes"
+            FontAttributes="Bold"
+            BackgroundColor="#708090"
+            HeightRequest="100"
+            Grid.Row="3"
+            Grid.ColumnSpan="2"
+            TextColor="white"
+            CornerRadius="30"
+            FontSize="{OnIdiom 32,Desktop=18}"
+            Clicked="OnSavedRecipesButtonClicked">
+        </Button>
+    </Grid>
+</ContentPage>
