@@ -7,6 +7,5 @@
 
     <VerticalStackLayout Padding ="20">
         <Label Text="this will be the account page"/>
-
     </VerticalStackLayout>
 </ContentPage>

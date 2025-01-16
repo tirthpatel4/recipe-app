@@ -8,6 +8,5 @@
     <VerticalStackLayout Padding ="20">
         <Label Text="Discover Page w/ Recipe Feed"
                FontSize="Header"/>
-
     </VerticalStackLayout>
 </ContentPage>
