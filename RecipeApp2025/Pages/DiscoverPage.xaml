@@ -61,18 +61,7 @@
                                        Grid.Row="1"
                                        Grid.Column="4"/>
 
-                                <Button x:Name="SaveButton"
-                                        BackgroundColor="Transparent"
-                                        Clicked="OnSaveButtonClicked"
-                                        ImageSource="saveempty.png"
-                                        Grid.Row="1"
-                                        Grid.Column="5"
-                                        
-                                        Padding="5"
-                                        WidthRequest="30"
-                                        HeightRequest="30"
-                                        CornerRadius="5"
-                                        />
+                                
 
                             </Grid>
                         </Border>

@@ -18,22 +18,10 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 	public List<Recipe> Recipes;
 
 	/* variables for handing the save button */
-	private bool _isSaved;
-	private string _saveIcon;
-	public event PropertyChangedEventHandler PropertyChanged;
+	
 
 
 
-
-	public string SaveIcon
-	{
-		get => _saveIcon;
-		set
-		{
-			_saveIcon = value;
-			OnPropertyChanged(nameof(SaveIcon));
-		}
-	}
 	public DiscoverPage()
 	{
 		Recipes = new List<Recipe>();
@@ -50,21 +38,12 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 		//DiscoverRecipeItem	\
 
 
-		_isSaved = false;
-		SaveIcon = "saveempty.png";
-
+		
 		
     }
 	
 	
-	private void OnSaveButtonClicked(object sender, EventArgs e)
-	{
-		_isSaved = !_isSaved;
-        SaveIcon = _isSaved ? "savefull.png" : "saveempty.png";
-    }
-
-    protected void OnPropertyChanged(string propertyName) => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
+	
 
 }
 
