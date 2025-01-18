@@ -7,7 +7,7 @@ namespace RecipeApp2025.Pages;
 public partial class DiscoverPage : ContentPage
 {
     private readonly HttpClient _httpClient = new HttpClient();
-	private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
+	private const string ApiKey = "DM QUINTON";
 	private const string BaseUrl = "https://api.spoonacular.com/";
     public DiscoverPage()
 	{
