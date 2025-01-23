@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Firebase.Database;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
 
@@ -23,6 +24,7 @@ namespace RecipeApp2025
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton(new FirebaseClient("https://recipeapp2025-default-rtdb.firebaseio.com/"));
 
             return builder.Build();
         }
