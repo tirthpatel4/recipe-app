@@ -18,6 +18,7 @@ namespace RecipeApp2025
             // Register routes for pages
             Routing.RegisterRoute(nameof(DiscoverPage), typeof(DiscoverPage));
             Routing.RegisterRoute(nameof(SavedRecipesPage), typeof(SavedRecipesPage));
+            Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
         }
 
         public static async Task DisplaySnackbarAsync(string message)

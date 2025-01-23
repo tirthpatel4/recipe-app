@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="RecipeApp2025.Pages.DetailPage">
+             x:Class="RecipeApp2025.Pages.AccountPage">
 
     <VerticalStackLayout Padding ="20">
-        <Label Text="this will be the detail page"/>
+        <Label Text="this will be the account page"/>
 
     </VerticalStackLayout>
 </ContentPage>

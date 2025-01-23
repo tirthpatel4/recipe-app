@@ -4,15 +4,7 @@ namespace RecipeApp2025
 {
     public partial class App : Application
     {
-        public Recipe CurrentRecipe
-        {
-            get
-            {
-                return CurrentRecipe;
-            }
-            set;
-            
-        }
+        public static Recipe CurrentRecipe { get; set; }
         public App()
         {
             InitializeComponent();
