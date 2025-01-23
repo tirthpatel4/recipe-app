@@ -2,6 +2,10 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using RecipeApp2025.Resources.Classes;
+using RecipeApp2025;
+using System.Windows.Input;
+using System.Diagnostics;
+
 namespace RecipeApp2025.Pages;
 public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 {
@@ -15,36 +19,54 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 							"Teriyaki Chicken",
 							"Eggplant Parmesan",
 							"Lemon Herb Roasted Chicken",};
-	public List<Recipe> Recipes;
-
-	/* variables for handing the save button */
-	
+    public ObservableCollection<Recipe> Recipes { get; set; }
+    public ICommand GoToRecipeDetailPageCommand { get; }
 
 
 
-	public DiscoverPage()
+
+
+    public DiscoverPage()
 	{
-		Recipes = new List<Recipe>();
-		InitializeComponent();
+        InitializeComponent();
 
-        /* temporary hard coded data */
-        for (int i = 1; i < 10; i++)
+        Recipes = new ObservableCollection<Recipe>();
+
+		/* temporary hard coded data */
+		for (int i = 1; i < 10; i++)
 		{
 			Recipes.Add(new Recipe(Names[i]));
 
-        }
+		}
 
-		DiscoverFeed.ItemsSource = Recipes;
-		//DiscoverRecipeItem	\
+		BindingContext = this;
+        DiscoverFeed.ItemsSource = Recipes;
+        GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
 
 
-		
-		
     }
-	
-	
-	
+
+    public async void GoToRecipeDetailPage(Recipe r)
+    {
+		Debug.WriteLine("uh oh\n");
+		//var customEventArgs = new CustomEventArgs(r);
+		//OnRecipesItemClicked(this, customEventArgs);
+		App.ChangeCurrentRecipe(r);
+        await Shell.Current.GoToAsync("/DetailPage");
+
+    }
+
 
 }
 
+public class CustomEventArgs : EventArgs
+{
+	public Recipe SelectedRecipe { get; set; }
+
+	public CustomEventArgs(Recipe sr)
+	{
+		SelectedRecipe = sr;
+	}
+
+}
 

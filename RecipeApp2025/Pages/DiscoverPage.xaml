@@ -8,10 +8,8 @@
 
     <ScrollView>
         <ListView x:Name="DiscoverFeed"
-                  BindingContext=""
                   SeparatorColor="Transparent"
                   HasUnevenRows="True"
-                 
                   SelectionMode="None">
 
 
@@ -19,6 +17,13 @@
                 <DataTemplate>
                     <ViewCell>
                         <Border Padding="10">
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding BindingContext.GoToRecipeDetailPageCommand, Source={x:Reference DiscoverFeed}}"
+                                    CommandParameter="{Binding .}"
+                                    />
+
+                            </Border.GestureRecognizers>
                             <Grid Padding="5"
                                   ColumnSpacing="15"
                                   RowSpacing="10"
@@ -62,7 +67,7 @@
                                        Grid.Column="4"/>
 
                                 
-
+                                    
                             </Grid>
                         </Border>
                     </ViewCell>

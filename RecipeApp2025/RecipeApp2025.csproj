@@ -53,8 +53,8 @@
 		<MauiImage Update="Resources\Images\person.png" Resize="True" BaseSize="300,185" />
 		<MauiImage Update="Resources\Images\tine.png" Resize="True" BaseSize="300,185" />
 		<MauiImage Update="Resources\Images\person.png" Resize="True" BaseSize="300,185" />
-		<MauiImage Update="Resources\Images\saveempty.png" Resize="True" BaseSize="300,185"/>
-		<MauiImage Update="Resources\Images\savefull.png" Resize="True" BaseSize="300,185"/>
+		<MauiImage Update="Resources\Images\saveempty.png" Resize="True" BaseSize="300,185" />
+		<MauiImage Update="Resources\Images\savefull.png" Resize="True" BaseSize="300,185" />
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -72,6 +72,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Pages\DetailPage.xaml.cs">
+	    <DependentUpon>DetailPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Pages\AccountPage.xaml.cs">
 	    <DependentUpon>AccountPage.xaml</DependentUpon>
 	  </Compile>
@@ -87,6 +90,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Pages\DetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Pages\AccountPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
