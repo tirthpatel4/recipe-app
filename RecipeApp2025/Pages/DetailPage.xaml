@@ -3,7 +3,58 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="RecipeApp2025.Pages.DetailPage">
+             x:Class="RecipeApp2025.Pages.DetailPage"
+             Padding="0"
+             
+             >
 
-    <Label Text="THIS WILL BE THE DETAIL PAGE"/>            
+
+    <ScrollView Padding="0">
+        <VerticalStackLayout
+            Spacing="10"
+             Padding="0"
+            VerticalOptions="Start">
+            
+            <Image Source="{Binding Large_img_url}"
+                   HorizontalOptions="CenterAndExpand"
+                   MaximumWidthRequest="530"
+                   
+                    
+                   /> 
+            <Label
+                   Text="{Binding Name}"
+                   HorizontalOptions="Center"
+                   FontSize="Title"/>
+            <Grid 
+                ColumnDefinitions=".33*, .33*, .33*"
+                Padding="10"
+                    >
+                <Label Grid.Column="0"
+                       Text="{Binding Total_time, StringFormat='Ready in {0}m'}"
+                       FontSize="Default"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+                
+                <Label  Grid.Column="1"
+                    Text="{Binding Num_people_served, StringFormat='Serves {0}'}"
+                    FontSize="Default"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"/>
+                <Button Text="Save"
+                        Grid.Column="2"
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+
+
+            </Grid>
+            <Label
+                   Text="{Binding Prep_time, StringFormat='Prep Time {0}m'}"
+                   FontSize="Subtitle"/>
+
+            <Label
+                   Text="{Binding Cook_time, StringFormat='Cook Time {0}m'}"
+                   FontSize="Subtitle"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
