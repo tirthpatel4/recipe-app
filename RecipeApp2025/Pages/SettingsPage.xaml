@@ -7,9 +7,9 @@
 
     <VerticalStackLayout Padding ="20">
         <Grid ColumnDefinitions=".9*, .2*"
-              RowDefinitions="auto, auto, auto"
+              RowDefinitions="auto, auto, auto, auto"
                RowSpacing="20"
-              Padding="20">
+               Padding="20">
             <Label Text="This is a possible setting"
                    Grid.Row="0"
                    Grid.Column="0"
@@ -25,6 +25,22 @@
             <CheckBox Grid.Column="1"
                  Grid.Row="1"
                  />
+            <Label Text="This is a possible setting"
+        Grid.Row="2"
+        Grid.Column="0"
+        />
+            <CheckBox Grid.Column="1"
+              Grid.Row="2"
+              />
+            <Label Text="This is a possible setting"
+                Grid.Row="3"
+                Grid.Column="0"
+             />
+            <CheckBox Grid.Column="1"
+     Grid.Row="3"
+      />
+
+
         </Grid>
 
     </VerticalStackLayout>
