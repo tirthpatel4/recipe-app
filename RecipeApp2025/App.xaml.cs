@@ -1,6 +1,11 @@
-﻿using RecipeApp2025.Resources.Classes;
+﻿using Newtonsoft.Json.Linq;
+using System.Reflection;
+using RecipeApp2025.Resources.Classes;
+using System;
+using System.IO;
 namespace RecipeApp2025
   
+
 {
     public partial class App : Application
     {
@@ -10,19 +15,6 @@ namespace RecipeApp2025
         {
             InitializeComponent();
             SavedRecipes = new List<Recipe>();
-            SavedRecipes.Add(new Recipe("Saved Rec 1"));
-            SavedRecipes.Add(new Recipe("Saved Rec 2"));
-            SavedRecipes.Add(new Recipe("Saved Rec 3"));
-            SavedRecipes.Add(new Recipe("Saved Rec 4"));
-            SavedRecipes.Add(new Recipe("Saved Rec 5"));
-            SavedRecipes.Add(new Recipe("Saved Rec 6")); 
-            SavedRecipes.Add(new Recipe("Saved Rec 7"));
-            SavedRecipes.Add(new Recipe("Saved Rec 8"));
-            SavedRecipes.Add(new Recipe("Saved Rec 9"));
-            SavedRecipes.Add(new Recipe("Saved Rec 10"));
-            SavedRecipes.Add(new Recipe("Saved Rec 11"));
-            SavedRecipes.Add(new Recipe("Saved Rec 3"));
-
         }
 
         public static void ChangeCurrentRecipe(Recipe r)
@@ -39,6 +31,22 @@ namespace RecipeApp2025
         {
             SavedRecipes.Remove(r);
         }    
+
+        public static void WriteSavesToFile()
+        {
+            string path = @"C:\Users\samba\source\repos\Collaborative-Software-Development-Club\Spring-2025-Mobile-App\RecipeApp2025\Resources\Raw\Saves.txt";
+            if (!File.Exists(path))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    for (int i = 0; i < SavedRecipes.Count; i++)
+                    {
+                        sw.WriteLine(SavedRecipes[i].Name);
+                    }
+                }
+            }
+        }
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell());

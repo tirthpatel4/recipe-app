@@ -6,15 +6,31 @@ namespace RecipeApp2025.Pages;
 
 public partial class DetailPage : ContentPage
 {
-   
+    private bool isSaved = App.CurrentRecipe.isSaved;
+
     public DetailPage()
     {
 
         InitializeComponent();
         //Set Binding context to global variable
         BindingContext = App.CurrentRecipe;
+        ToggleButton.Text = isSaved ? "Unsave" : "Save";
     }
 
-    
-    
+    private void OnToggleButtonClicked(object sender, EventArgs e)
+    {
+        isSaved = !isSaved;
+        ToggleButton.Text = isSaved ? "Unsave" : "Save";
+        if (isSaved) {
+            App.AddSavedRecipe(App.CurrentRecipe);
+        }
+        else
+        {
+            App.RemoveSavedRecipe(App.CurrentRecipe);
+        }
+
+
+        App.CurrentRecipe.isSaved = isSaved;    
+    }
+
 }
