@@ -10,11 +10,22 @@ namespace RecipeApp2025
     public partial class App : Application
     {
         public static Recipe CurrentRecipe { get; set; }
-        public static List<Recipe> SavedRecipes {  get; set; }
+        public static List<Recipe> SavedRecipes { get; set; }
+
+        private static DatabaseHelper db; 
+
         public App()
         {
             InitializeComponent();
-            SavedRecipes = new List<Recipe>();
+            db = new DatabaseHelper();
+            LoadData();
+
+
+        }
+
+        async void LoadData()
+        {
+            SavedRecipes = await db.GetObjectsAsync();
         }
 
         public static void ChangeCurrentRecipe(Recipe r)
@@ -22,31 +33,21 @@ namespace RecipeApp2025
             CurrentRecipe = r;
         }
 
-        public static void AddSavedRecipe(Recipe r)
+        public static async void AddSavedRecipe(Recipe r)
         {
             SavedRecipes.Add(r);
+            await db.SaveObjectAsync(r);
         }
 
-        public static void RemoveSavedRecipe(Recipe r)
+        public static async void RemoveSavedRecipe(Recipe r)
         {
             SavedRecipes.Remove(r);
+            await db.DeleteObjectAsync(r);
         }    
 
-        public static void WriteSavesToFile()
-        {
-            string path = @"C:\Users\samba\source\repos\Collaborative-Software-Development-Club\Spring-2025-Mobile-App\RecipeApp2025\Resources\Raw\Saves.txt";
-            if (!File.Exists(path))
-            {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    for (int i = 0; i < SavedRecipes.Count; i++)
-                    {
-                        sw.WriteLine(SavedRecipes[i].Name);
-                    }
-                }
-            }
-        }
+        
+
+        
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell());

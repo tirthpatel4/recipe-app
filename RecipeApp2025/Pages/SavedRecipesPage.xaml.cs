@@ -49,8 +49,8 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
-            var json = JObject.Parse(content);
-            var titles = json["results"].Select(r => r["title"].ToString()).ToList();
+                var json = JObject.Parse(content);
+                var titles = json["results"].Select(r => r["title"].ToString()).ToList();
 
             // DEBUG ONLY!
             //foreach (string t in titles)
