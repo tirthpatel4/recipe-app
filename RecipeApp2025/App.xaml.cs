@@ -11,10 +11,13 @@ namespace RecipeApp2025
     {
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes {  get; set; }
+        private static FirebaseService firebaseService = new FirebaseService();
+       
+
         public App()
         {
             InitializeComponent();
-            SavedRecipes = new List<Recipe>();
+            RestoreList();
         }
 
         public static void ChangeCurrentRecipe(Recipe r)
@@ -22,31 +25,22 @@ namespace RecipeApp2025
             CurrentRecipe = r;
         }
 
-        public static void AddSavedRecipe(Recipe r)
+        public static async void AddSavedRecipe(Recipe r)
         {
             SavedRecipes.Add(r);
+            await firebaseService.AddRecipe(r);
         }
 
-        public static void RemoveSavedRecipe(Recipe r)
+        public static async void RemoveSavedRecipe(Recipe r)
         {
             SavedRecipes.Remove(r);
+            await firebaseService.RemoveRecipe(r);
         }    
-
-        public static void WriteSavesToFile()
-        {
-            string path = @"C:\Users\samba\source\repos\Collaborative-Software-Development-Club\Spring-2025-Mobile-App\RecipeApp2025\Resources\Raw\Saves.txt";
-            if (!File.Exists(path))
-            {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    for (int i = 0; i < SavedRecipes.Count; i++)
-                    {
-                        sw.WriteLine(SavedRecipes[i].Name);
-                    }
-                }
-            }
-        }
+            
+       public static async void RestoreList()
+       {
+            SavedRecipes = await firebaseService.GetRecipes();
+       }
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell());
