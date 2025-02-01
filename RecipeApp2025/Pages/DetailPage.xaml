@@ -4,9 +4,7 @@
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RecipeApp2025.Pages.DetailPage"
-             Padding="0"
-             
-             >
+             Padding="0">
 
 
     <ScrollView Padding="0">
@@ -17,18 +15,14 @@
             
             <Image Source="{Binding Large_img_url}"
                    HorizontalOptions="CenterAndExpand"
-                   MaximumWidthRequest="530"
-                   
-                    
-                   /> 
+                   MaximumWidthRequest="530"/> 
             <Label
                    Text="{Binding Name}"
                    HorizontalOptions="Center"
                    FontSize="Title"/>
             <Grid 
                 ColumnDefinitions=".33*, .33*, .33*"
-                Padding="10"
-                    >
+                Padding="10">
                 <Label Grid.Column="0"
                        Text="{Binding Total_time, StringFormat='Ready in {0}m'}"
                        FontSize="Default"
@@ -40,18 +34,24 @@
                     FontSize="Default"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"/>
-                <Button Text="Save"
+                <Button 
+                        x:Name="ToggleButton"
+                        Text="Save"
+                        Clicked="OnToggleButtonClicked"
                         Grid.Column="2"
                         HorizontalOptions="Center"
                         VerticalOptions="Center"/>
+                
 
 
             </Grid>
             <Label
+                   Padding="10,0,10,0"
                    Text="{Binding Prep_time, StringFormat='Prep Time {0}m'}"
                    FontSize="Subtitle"/>
 
             <Label
+                   Padding="10,0,10,0"
                    Text="{Binding Cook_time, StringFormat='Cook Time {0}m'}"
                    FontSize="Subtitle"/>
 

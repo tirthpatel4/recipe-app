@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Maui;
+﻿    using CommunityToolkit.Maui;
 using Firebase.Database;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
