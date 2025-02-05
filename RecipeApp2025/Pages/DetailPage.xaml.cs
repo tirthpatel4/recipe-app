@@ -14,7 +14,14 @@ public partial class DetailPage : ContentPage
         InitializeComponent();
         //Set Binding context to global variable
         BindingContext = App.CurrentRecipe;
-        ToggleButton.Text = isSaved ? "Unsave" : "Save";
+        if (App.CurrentRecipe.isSaved)
+        {
+            ToggleButton.Text = "Unsave";
+        }
+        else
+        {
+            ToggleButton.Text = "Save";
+        }
     }
 
     private void OnToggleButtonClicked(object sender, EventArgs e)

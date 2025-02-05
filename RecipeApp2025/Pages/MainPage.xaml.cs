@@ -6,6 +6,7 @@
         public MainPage()
         {
             InitializeComponent();
+            
         }
         private async void OnDiscoverButtonClicked(object sender, EventArgs e)
         {
