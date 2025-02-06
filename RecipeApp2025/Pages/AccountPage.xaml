@@ -6,9 +6,6 @@
              x:Class="RecipeApp2025.Pages.AccountPage">
 
     <VerticalStackLayout Padding="20">
-        <Label Text="This will be the account page"
-                />
-
         <Entry x:Name="UsernameEntry"
                Placeholder="Username"
                Keyboard="Email"
