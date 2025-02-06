@@ -24,10 +24,12 @@
         <Button Text="Sign In"
                 BackgroundColor="#708090"
                 TextColor="White"
+                Clicked="OnLoginClicked"
                 Margin="0,0,0,10" />
 
         <Button Text="Register"
                 BackgroundColor="#708090"
+                Clicked="OnRegisterClicked"
                 TextColor="White" />
     </VerticalStackLayout>
 </ContentPage>

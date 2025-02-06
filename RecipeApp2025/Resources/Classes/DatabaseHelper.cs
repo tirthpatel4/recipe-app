@@ -18,11 +18,12 @@ namespace RecipeApp2025.Resources.Classes
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "recipeapp.db");
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Recipe>().Wait();
+            _database.CreateTableAsync<User>().Wait();
         }
 
 
         /* This method allows us to insert or update an object in the database I guess */
-        public Task<int> SaveObjectAsync(Recipe obj)
+        public Task<int> SaveObjectAsync<T>(T obj) where T : new()
         {
             return _database.InsertOrReplaceAsync(obj);
         }
@@ -43,6 +44,10 @@ namespace RecipeApp2025.Resources.Classes
         public Task<int> ClearDatabaseAsync()
         {
             return _database.DeleteAllAsync<Recipe>();
+        }
+        public Task<User> GetUserAsync(string username)
+        {
+            return _database.Table<User>().FirstOrDefaultAsync(u => u.Username == username);
         }
 
     }
