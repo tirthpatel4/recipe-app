@@ -12,39 +12,63 @@
             Spacing="10"
              Padding="0"
             VerticalOptions="Start">
-            
-            <Image Source="{Binding Large_img_url}"
-                   HorizontalOptions="CenterAndExpand"
-                   MaximumWidthRequest="530"/> 
-            <Label
-                   Text="{Binding Name}"
-                   HorizontalOptions="Center"
-                   FontSize="Title"/>
-            <Grid 
-                ColumnDefinitions=".33*, .33*, .33*"
-                Padding="10">
-                <Label Grid.Column="0"
-                       Text="{Binding Total_time, StringFormat='Ready in {0}m'}"
-                       FontSize="Default"
+
+            <VerticalStackLayout
+                Spacing="-37">
+
+                <Image Source="{Binding Large_img_url}"
+                        VerticalOptions="Fill"
+                        WidthRequest="400"
+                        />
+
+                <Grid
+                    RowDefinitions="*, *">
+                    <Label
+                       Text="{Binding Name}"
                        HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
-                
-                <Label  Grid.Column="1"
-                    Text="{Binding Num_people_served, StringFormat='Serves {0}'}"
-                    FontSize="Default"
-                    HorizontalOptions="Center"
-                    VerticalOptions="Center"/>
-                <Button 
-                        x:Name="ToggleButton"
-                        Text="Save"
-                        Clicked="OnToggleButtonClicked"
-                        Grid.Column="2"
-                        HorizontalOptions="Center"
-                        VerticalOptions="Center"/>
-                
+                       FontSize="Title"
+                       />
+                    <Grid 
+                            Grid.Row="1"
+                            ColumnDefinitions=".33*, .33*, .33*"
+                            Padding="10">
+                        <Label Grid.Column="0"
+                                   Text="{Binding Total_time, StringFormat='Ready in {0}m'}"
+                                   FontSize="Default"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center"/>
+
+                        <Label  Grid.Column="1"
+                                Text="{Binding Num_people_served, StringFormat='Serves {0}'}"
+                                FontSize="Default"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"/>
+                        <Button 
+                                    x:Name="ToggleButton"
+                                    Text="Save"
+                                    Clicked="OnToggleButtonClicked"
+                                    Grid.Column="2"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"/>
+
+                    </Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint=".5,.2"
+                             StartPoint="0.5,0">
+                            
+                            <GradientStop Color="Transparent"
+                                Offset=".1" />
+                            <GradientStop Color="White"
+                                Offset="1" />
+                        </LinearGradientBrush>
+
+                    </Grid.Background>
+                </Grid>
+
+            </VerticalStackLayout>
 
 
-            </Grid>
+
             <Label
                    Padding="10,0,10,0"
                    Text="{Binding Prep_time, StringFormat='Prep Time {0}m'}"

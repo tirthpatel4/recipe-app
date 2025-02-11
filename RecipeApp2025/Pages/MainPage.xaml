@@ -7,65 +7,61 @@
 
 
     <ScrollView>
-            <Grid RowDefinitions="50, auto, auto, auto, *"
+        <Grid RowDefinitions="auto, auto"
               ColumnDefinitions=".85*, .15*"
               Padding="21"
               RowSpacing="40"
               ColumnSpacing="10">
 
-            <Label Text="Recipe App"
-                   FontSize="40"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   Grid.ColumnSpan="2"
-                   />
             <Border
-                Grid.Row="1"
+                Grid.Row="0"
                 Grid.Column="0"
                 StrokeThickness="5"
                 Padding="5"
      >
                 <Entry Placeholder="Search for Recipes"
                        PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
-                    FontAttributes="Italic" 
-                   
-             
-                />
+                       FontAttributes="Italic"/>
             </Border>
 
             <Button
                     Text="Go"
                     BackgroundColor="#708090"
-                    Grid.Row="1"
+                    Grid.Row="0"
                     Grid.Column="1"
                     CornerRadius="10"
                 
                 />
 
-            <Button
-                Text="Discover"
-                FontSize="50"
-                BackgroundColor="#708090"
-                HeightRequest="150"
-                Grid.Row="2"
+            <StackLayout
+                Grid.Row="1"
                 Grid.ColumnSpan="2"
-                FontAttributes="Bold"
-                CornerRadius="30"
-                Clicked="OnDiscoverButtonClicked">
-            </Button>
+                x:Name="ButtonStackLayout"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Margin="10"
+                Spacing="50">
+                <Button
+                    Text="Discover"
+                    FontSize="50"
+                    BackgroundColor="#708090"
+                    FontAttributes="Bold"
+                    HeightRequest="100"
+                    CornerRadius="20"
+                    Clicked="OnDiscoverButtonClicked">
+                </Button>
 
-            <Button
-                Text="Saved Recipes"
-                FontAttributes="Bold"
-                BackgroundColor="#708090"
-                HeightRequest="100"
-                Grid.Row="3"
-                Grid.ColumnSpan="2"
-                TextColor="white"
-                CornerRadius="30"
-                FontSize="{OnIdiom 32,Desktop=18}"
-                Clicked="OnSavedRecipesButtonClicked">
-            </Button>
+                <Button
+                    Text="Saved Recipes"
+                    FontAttributes="Bold"
+                    BackgroundColor="#708090"
+                    TextColor="white"
+                    CornerRadius="20"
+                    HeightRequest="100"
+                    FontSize="30"
+                    Clicked="OnSavedRecipesButtonClicked">
+                </Button>
+            </StackLayout>
         </Grid>
     </ScrollView>
 </ContentPage>
