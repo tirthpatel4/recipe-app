@@ -10,15 +10,22 @@ namespace RecipeApp2025
     public partial class App : Application
     {
         public static Recipe CurrentRecipe { get; set; }
-        public static List<Recipe> SavedRecipes {  get; set; }
-        private static FirebaseService firebaseService = new FirebaseService();
-        
+        public static List<Recipe> SavedRecipes { get; set; }
+
+        private static DatabaseHelper db; 
 
         public App()
         {
             InitializeComponent();
-            RestoreList();
-            
+            db = new DatabaseHelper();
+            LoadData();
+
+
+        }
+
+        async void LoadData()
+        {
+            SavedRecipes = await db.GetObjectsAsync();
         }
 
         public static void ChangeCurrentRecipe(Recipe r)
@@ -28,26 +35,19 @@ namespace RecipeApp2025
 
         public static async void AddSavedRecipe(Recipe r)
         {
-            r.isSaved = true;
             SavedRecipes.Add(r);
-            await firebaseService.AddRecipe(r);
+            await db.SaveObjectAsync(r);
         }
 
         public static async void RemoveSavedRecipe(Recipe r)
         {
-            r.isSaved = false;
             SavedRecipes.Remove(r);
-            await firebaseService.RemoveRecipe(r);
+            await db.DeleteObjectAsync(r);
         }    
-            
-       public static async void RestoreList()
-       {
-            SavedRecipes = await firebaseService.GetRecipes();
-            for(int i=0;  i < SavedRecipes.Count; i++)
-            {
-                SavedRecipes[i].isSaved = true;
-            }
-       }
+
+        
+
+        
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell());

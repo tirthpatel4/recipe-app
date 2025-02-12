@@ -1,4 +1,6 @@
-﻿namespace RecipeApp2025.Pages
+﻿using RecipeApp2025.Resources.Classes;
+
+namespace RecipeApp2025.Pages
 {
     public partial class MainPage : ContentPage
     {
@@ -17,6 +19,8 @@
         {
             await Shell.Current.GoToAsync("/SavedRecipesPage");
         }
+
+        
     }
 
 }

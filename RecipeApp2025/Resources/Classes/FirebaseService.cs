@@ -21,6 +21,11 @@ public class FirebaseService
         await _firebaseClient.Child("recipes").PostAsync(recipe);
     }
 
+    public async Task AddUser(User u)
+    {
+        await _firebaseClient.Child("users").PostAsync(u);
+    }
+
     public async Task AddUniqueRecipes(List<Recipe> recipes)
     {
         // Fetch existing recipes from Firebase
@@ -44,6 +49,16 @@ public class FirebaseService
             .OnceAsync<Recipe>())
             .Select(item => item.Object)
             .ToList();
+    }
+    public async Task<User> GetUser(string username)
+    {
+        var users = await _firebaseClient
+        .Child("users")
+        .OrderBy("Username")
+        .EqualTo(username)
+        .OnceAsync<User>();
+
+        return users.FirstOrDefault()?.Object;
     }
 
     // Function to remove a recipe by passing a Recipe object
