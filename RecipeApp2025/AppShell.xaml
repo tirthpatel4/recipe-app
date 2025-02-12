@@ -10,11 +10,12 @@
 
     <FlyoutItem Title="Home">
         <ShellContent
-            Title="Home"
+            Title="Recipe App Name"
             ContentTemplate="{DataTemplate pages:MainPage}"
             Route="MainPage"/>
     </FlyoutItem>
 
+    
 
     <FlyoutItem Title="Settings">
         <ShellContent
