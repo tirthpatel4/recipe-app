@@ -63,7 +63,7 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         {
             var content = await response.Content.ReadAsStringAsync();
             var json = JObject.Parse(content);
-            var titles = json["results"].Select(r => r["title"].ToString()).ToList();
+            var titles = json["results"]?.Select(r => r["title"]?.ToString()).Where(t => !string.IsNullOrEmpty(t)).ToList();
 
             // DEBUG ONLY!
             //foreach (string t in titles)
@@ -72,12 +72,12 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
             //}
             //Debug.WriteLine("");
 
-            return titles;
+            return titles ?? new List<string>();
         }
         else
         {
             Debug.WriteLine("Error: " + response.StatusCode);
-            return null;
+            return new List<string>();
         }
     }
 
