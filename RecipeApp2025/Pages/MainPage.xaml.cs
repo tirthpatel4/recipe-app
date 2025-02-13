@@ -5,13 +5,24 @@ namespace RecipeApp2025.Pages
     public partial class MainPage : ContentPage
     {
 
-
+        private string _keyword;
         public MainPage()
         {
             InitializeComponent();
             BindingContext = this;
             this.SizeChanged += OnSizeChanged;
+            _keyword = string.Empty;
         }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            KeywordEntry.TextChanged += OnKeywordChanged;
+        }
+        private void OnKeywordChanged(object sender, TextChangedEventArgs e)
+        {
+            _keyword = e.NewTextValue;
+        }
+
         private void OnSizeChanged(object sender, EventArgs e)
         {
             SetStackLayoutOrientation();
@@ -28,6 +39,10 @@ namespace RecipeApp2025.Pages
                 ButtonStackLayout.Orientation = StackOrientation.Horizontal;
             }
 
+        }
+        private async void OnSearchButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"/DiscoverPage?keyword={_keyword}");
         }
         private async void OnDiscoverButtonClicked(object sender, EventArgs e)
         {

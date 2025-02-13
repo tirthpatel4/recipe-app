@@ -19,9 +19,12 @@
                 StrokeThickness="5"
                 Padding="5"
      >
-                <Entry Placeholder="Search for Recipes"
+                <Entry 
+                       x:Name="KeywordEntry"
+                       Placeholder="Search for Recipes"
                        PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
-                       FontAttributes="Italic"/>
+                       FontAttributes="Italic"
+                       Text="{Binding Keyword}"/>
             </Border>
 
             <Button
@@ -30,7 +33,7 @@
                     Grid.Row="0"
                     Grid.Column="1"
                     CornerRadius="10"
-                
+                    Clicked="OnSearchButtonClicked"
                 />
 
             <StackLayout

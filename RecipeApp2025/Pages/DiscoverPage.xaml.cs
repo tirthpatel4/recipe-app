@@ -10,6 +10,7 @@ using System.Windows.Input;
 
 namespace RecipeApp2025.Pages;
 
+[QueryProperty(nameof(Keyword), "keyword")]
 public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 {
     private readonly HttpClient _httpClient = new HttpClient();
@@ -27,6 +28,20 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
                             "Lemon Herb Roasted Chicken",};
     public ObservableCollection<Recipe> Recipes { get; set; }
     public ICommand GoToRecipeDetailPageCommand { get; }
+    private string _keyword = String.Empty;
+    public string Keyword
+    {
+        get => _keyword;
+        set
+        {
+            if (_keyword != value)
+            {
+                _keyword = value;
+                OnPropertyChanged(nameof(Keyword));
+                UpdateRecipes();
+            }
+        }
+    }
     public DiscoverPage()
     {
         InitializeComponent();
@@ -39,12 +54,25 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
             Recipes.Add(new Recipe(Names[i]));
 
         }
-
         BindingContext = this;
         DiscoverFeed.ItemsSource = Recipes;
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
 
 
+    }
+    private void UpdateRecipes()
+    {
+        if (_keyword != String.Empty)
+        {
+            for (int i = Recipes.Count - 1; i >= 0; i--)
+            {
+                if (!Recipes[i].Name.ToLower().Contains(Keyword.ToLower()))
+                {
+                    Recipes.Remove(Recipes[i]);
+                }
+            }
+        }
+        DiscoverFeed.ItemsSource = Recipes;
     }
     public async void GoToRecipeDetailPage(Recipe r)
     {
