@@ -17,6 +17,8 @@ namespace RecipeApp2025.Resources.Classes
         public string Name { get; set; }
         public string Large_img_url { get; set; }
         public string Img_url { get; set; }
+        public List<string> Ingredients { get; set; }
+        public string Instructions { get; set; }
         public int Total_time { get; set; }
         public int Cook_time { get; set; }
         public int Prep_time { get; set; }
@@ -35,6 +37,7 @@ namespace RecipeApp2025.Resources.Classes
             Cook_time = 25;
             Prep_time = 20;
             isSaved = false;
+            Ingredients = new List<string>();
         }
         public Recipe(string name)
         {
@@ -46,6 +49,7 @@ namespace RecipeApp2025.Resources.Classes
             Cook_time = 25;
             Prep_time = 20;
             isSaved = false;
+            Ingredients = new List<string>();
         }
     }
 
