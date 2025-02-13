@@ -7,12 +7,13 @@
             >
 
     <ScrollView>
+
         <ListView x:Name="DiscoverFeed"
                   SeparatorColor="Transparent"
                   HasUnevenRows="True"
                   SelectionMode="None">
 
-
+        
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

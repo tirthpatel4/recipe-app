@@ -12,12 +12,12 @@ namespace RecipeApp2025
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
 
-        private static DatabaseHelper db; 
+        private static FirebaseService db; 
 
         public App()
         {
             InitializeComponent();
-            db = new DatabaseHelper();
+            db = new FirebaseService();
             LoadData();
 
 
@@ -25,7 +25,7 @@ namespace RecipeApp2025
 
         async void LoadData()
         {
-            SavedRecipes = await db.GetObjectsAsync();
+            SavedRecipes = await db.GetRecipes();
         }
 
         public static void ChangeCurrentRecipe(Recipe r)
@@ -36,13 +36,13 @@ namespace RecipeApp2025
         public static async void AddSavedRecipe(Recipe r)
         {
             SavedRecipes.Add(r);
-            await db.SaveObjectAsync(r);
+            await db.AddRecipe(r);
         }
 
         public static async void RemoveSavedRecipe(Recipe r)
         {
             SavedRecipes.Remove(r);
-            await db.DeleteObjectAsync(r);
+            await db.RemoveRecipe(r);
         }    
 
         
@@ -51,6 +51,26 @@ namespace RecipeApp2025
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell());
+        }
+
+        public static Boolean IsInPortrait()
+        {
+            double width = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Width;
+            double height = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Height;
+            return (width <= height);
+        }
+
+        public static void SetStackLayoutOrientation(StackLayout s)
+        {
+            if (App.IsInPortrait())
+            {
+                s.Orientation = StackOrientation.Vertical;
+            }
+            else
+            {
+                s.Orientation = StackOrientation.Horizontal;
+            }
+
         }
     }
 }

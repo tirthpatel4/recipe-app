@@ -14,21 +14,11 @@ namespace RecipeApp2025.Pages
         }
         private void OnSizeChanged(object sender, EventArgs e)
         {
-            SetStackLayoutOrientation();
+            App.SetStackLayoutOrientation(ButtonStackLayout);
         }
 
-        private void SetStackLayoutOrientation()
-        {
-            if (IsInPortrait())
-            {
-                ButtonStackLayout.Orientation = StackOrientation.Vertical;
-            }
-            else
-            {
-                ButtonStackLayout.Orientation = StackOrientation.Horizontal;
-            }
-
-        }
+        
+        
         private async void OnDiscoverButtonClicked(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync("/DiscoverPage");
@@ -39,12 +29,7 @@ namespace RecipeApp2025.Pages
             await Shell.Current.GoToAsync("/SavedRecipesPage");
         }
 
-        private Boolean IsInPortrait()
-        {
-            double width = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Width;
-            double height = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Height;
-            return (width <= height);
-        }
+        
 
     }
 
