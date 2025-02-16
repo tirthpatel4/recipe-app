@@ -25,7 +25,7 @@ namespace RecipeApp2025
 
         async void LoadData()
         {
-            SavedRecipes = await db.GetObjectsAsync();
+            //SavedRecipes = await db.GetObjectsAsync();
         }
 
         public static void ChangeCurrentRecipe(Recipe r)

@@ -17,7 +17,7 @@ namespace RecipeApp2025.Resources.Classes
         {
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "recipeapp.db");
             _database = new SQLiteAsyncConnection(dbPath);
-            _database.CreateTableAsync<Recipe>().Wait();
+            //_database.CreateTableAsync<Recipe>().Wait();
             _database.CreateTableAsync<User>().Wait();
         }
 
