@@ -7,46 +7,26 @@ using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using RecipeApp2025;
 using System.Windows.Input;
+using RecipeApp2025.Services;
 
 namespace RecipeApp2025.Pages;
 
 public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 {
-    private readonly HttpClient _httpClient = new HttpClient();
-	private const string ApiKey = "DM QUINTON";
-	private const string BaseUrl = "https://api.spoonacular.com/";
-    private string[] Names = {"Spaghetti Carbonara",
-                            "Chicken Alfredo",
-                            "Beef Stroganoff",
-                            "Vegetarian Chili",
-                            "Grilled Salmon",
-                            "Garlic Butter Shrimp",
-                            "Stuffed Bell Peppers",
-                            "Teriyaki Chicken",
-                            "Eggplant Parmesan",
-                            "Lemon Herb Roasted Chicken",};
-    public ObservableCollection<Recipe> Recipes { get; set; }
+
+	RecipeService recipeService = new();
+	public ObservableCollection<Recipe> Recipes { get; } = new();
     public ICommand GoToRecipeDetailPageCommand { get; }
     public DiscoverPage()
     {
         InitializeComponent();
-
-        Recipes = new ObservableCollection<Recipe>();
-
-        /* temporary hard coded data */
-        for (int i = 1; i < 10; i++)
-        {
-            Recipes.Add(new Recipe(Names[i]));
-
-        }
-
         BindingContext = this;
-        DiscoverFeed.ItemsSource = Recipes;
+		DiscoverFeed.ItemsSource = Recipes;
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
+		_ = LoadRecipesAsync();
+	}
 
-
-    }
-    public async void GoToRecipeDetailPage(Recipe r)
+	public async void GoToRecipeDetailPage(Recipe r)
     {
         Debug.WriteLine("uh oh\n");
         //var customEventArgs = new CustomEventArgs(r);
@@ -55,34 +35,30 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         await Shell.Current.GoToAsync("/DetailPage");
 
     }
-    private async Task<List<string>> GetRecipesAsync()
-    {
-        var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}";
-        var response = await _httpClient.GetAsync(url);
-        if (response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            var json = JObject.Parse(content);
-            var titles = json["results"]?.Select(r => r["title"]?.ToString()).Where(t => !string.IsNullOrEmpty(t)).ToList();
-
-            // DEBUG ONLY!
-            //foreach (string t in titles)
-            //{
-            //    Debug.Write(t);
-            //}
-            //Debug.WriteLine("");
-
-            return titles ?? new List<string>();
-        }
-        else
-        {
-            Debug.WriteLine("Error: " + response.StatusCode);
-            return new List<string>();
-        }
-    }
+	private async Task LoadRecipesAsync()
+	{
+		try
+		{
+			var recipes = await recipeService.GetRecipesAsync();
+			if (Recipes.Count != 0)
+			{
+				Recipes.Clear();
+			}
+			foreach (var recipe in recipes)
+			{
+				Recipes.Add(recipe);
+			}
+		}
+		catch (Exception ex)
+		{
+			Debug.WriteLine(ex);
+			await Shell.Current.DisplayAlert("Error!", $"Unable to get recipes: {ex.Message}", "OK");
+		}
 
 
+	}
 }
+
 public class CustomEventArgs : EventArgs
 {
     public Recipe SelectedRecipe { get; set; }
