@@ -58,6 +58,7 @@ public partial class AccountPage : ContentPage
             var user = await _firebaseService.GetUser(_username);
             if (user != null && user.Password == _password)
             {
+                App.CurrentUser = user.Username;
                 await DisplayAlert("Success", "Login successful!", "OK");
             }
             else

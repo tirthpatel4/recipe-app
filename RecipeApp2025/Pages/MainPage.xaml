@@ -55,6 +55,7 @@
                 </Button>
 
                 <Button
+                    x:Name="SavedRecipesButton"
                     Text="Saved Recipes"
                     FontAttributes="Bold"
                     BackgroundColor="#708090"
@@ -62,7 +63,8 @@
                     CornerRadius="20"
                     HeightRequest="100"
                     FontSize="30"
-                    Clicked="OnSavedRecipesButtonClicked">
+                    Clicked="OnSavedRecipesButtonClicked"
+                    IsEnabled="False">
                 </Button>
             </StackLayout>
         </Grid>

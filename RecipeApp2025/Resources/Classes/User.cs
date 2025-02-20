@@ -10,8 +10,9 @@ namespace RecipeApp2025.Resources.Classes
     public class User
     {
         [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
+        public List<Recipe> UserRecipes { get; set; }
     }
 }

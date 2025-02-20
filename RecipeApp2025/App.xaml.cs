@@ -11,13 +11,12 @@ namespace RecipeApp2025
     {
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
-
-        private static DatabaseHelper db; 
+        public static string CurrentUser { get; set; }
 
         public App()
         {
             InitializeComponent();
-            db = new DatabaseHelper();
+            CurrentUser = String.Empty;
             LoadData();
 
 
@@ -36,13 +35,11 @@ namespace RecipeApp2025
         public static async void AddSavedRecipe(Recipe r)
         {
             SavedRecipes.Add(r);
-            await db.SaveObjectAsync(r);
         }
 
         public static async void RemoveSavedRecipe(Recipe r)
         {
             SavedRecipes.Remove(r);
-            await db.DeleteObjectAsync(r);
         }    
 
         

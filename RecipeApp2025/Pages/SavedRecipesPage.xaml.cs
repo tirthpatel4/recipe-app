@@ -21,7 +21,6 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     public SavedRecipesPage()
     {
         InitializeComponent();
-
         Recipes = new ObservableCollection<Recipe>(App.SavedRecipes);
         
         /* temporary hard coded data */
@@ -31,7 +30,21 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
     }
 
-    
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (App.CurrentUser.Length == 0)
+        {
+            ForceGoToMainPage();
+        }
+    }
+
+    public async void ForceGoToMainPage()
+    {
+        await Shell.Current.GoToAsync("/MainPage");
+    }
+
+
     public async void GoToRecipeDetailPage(Recipe r)
     {
         Debug.WriteLine("uh oh\n");

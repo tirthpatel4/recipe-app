@@ -16,6 +16,7 @@ namespace RecipeApp2025.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            SavedRecipesButton.IsEnabled = App.CurrentUser.Length > 0;
             KeywordEntry.TextChanged += OnKeywordChanged;
         }
         private void OnKeywordChanged(object sender, TextChangedEventArgs e)
