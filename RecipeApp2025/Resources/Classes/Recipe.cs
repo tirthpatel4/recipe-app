@@ -23,18 +23,32 @@ namespace RecipeApp2025.Resources.Classes
         public int Num_people_served { get; set; }
         public bool isSaved { get; set; }
 
+<<<<<<< Updated upstream
 
         /* No args constructor */
         public Recipe()
         {
             Name = "No Name";
+=======
+        public List<String> steps { get; set; }
+        public List<String> ingredients { get; set; }
+        public bool IsIngredientListVisible { get; set; }
+        public bool IsStepsListVisible { get; set; }
+
+        public Recipe(string name)
+        {
+            /*For testing. These fields will later be popluated with actual data*/
+            Name = name;
+>>>>>>> Stashed changes
             Img_url = "https://img.spoonacular.com/recipes/716429-90x90.jpg";
+            /*ALL recipes have images in these two sizes. */
             Large_img_url = "https://img.spoonacular.com/recipes/1697885-556x370.jpg";
             Num_people_served = 2;
             Total_time = 45;
             Cook_time = 25;
             Prep_time = 20;
             isSaved = false;
+<<<<<<< Updated upstream
             Ingredients_List = new List<Ingredient>();
         }
 
@@ -59,6 +73,12 @@ namespace RecipeApp2025.Resources.Classes
             steps = new List<String>();
             Ingredients_List = new List<Ingredient>();
             IsIngredientListVisible = true;
+=======
+            steps = new List<String>();
+            ingredients = new List<String>();
+            IsIngredientListVisible = false;
+            IsIngredientListVisible = false;
+>>>>>>> Stashed changes
 
             
             steps.Add("Remove any fat and gristle from chuck roast; cut into strips ½-inch thick by 2-inches long. Season with ½ teaspoon salt and ½ teaspoon pepper.");
@@ -68,6 +88,21 @@ namespace RecipeApp2025.Resources.Classes
             steps.Add("Five minutes before serving, stir in mushrooms, sour cream, and white wine. Cook until heated through; season with salt and pepper.");
 
 
+<<<<<<< Updated upstream
+=======
+            ingredients.Add("2 pounds beef chuck roast");
+            ingredients.Add("½ teaspoon salt");
+            ingredients.Add("½ teaspoon ground black pepper");
+            ingredients.Add("4 ounces butter");
+            ingredients.Add("4 green onions, sliced (white parts only)");
+            ingredients.Add("4 tablespoons all-purpose flour");
+            ingredients.Add("1 (10.5 ounce) can condensed beef broth");
+            ingredients.Add("1 teaspoon prepared mustard");
+            ingredients.Add("1 (6 ounce) can sliced mushrooms, drained");
+            ingredients.Add("⅓ cup sour cream");
+            ingredients.Add("⅓ cup white wine");
+            ingredients.Add("salt and ground black pepper to taste");
+>>>>>>> Stashed changes
         }
     }
 
