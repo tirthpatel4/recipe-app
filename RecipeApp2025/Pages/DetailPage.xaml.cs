@@ -29,10 +29,8 @@ public partial class DetailPage : ContentPage
         if (App.CurrentRecipe.Cook_time == 0)
         {
             CookTimeLabel.IsVisible = false;
-		}
-        else
-        {
-			CookTimeLabel.IsVisible = true;
+			PrepTimeLabel.IsVisible = false;
+			TotalTimeLabel.IsVisible = true;
 		}
 	}
 
