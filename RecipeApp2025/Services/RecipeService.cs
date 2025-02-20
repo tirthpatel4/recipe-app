@@ -6,7 +6,7 @@ namespace RecipeApp2025.Services
 {
 	public class RecipeService
 	{
-		private const string ApiKey = "b58ecd4c96354452b244c80df3e5da60";
+		private const string ApiKey = "ASK QUINTON";
 		private const string BaseUrl = "https://api.spoonacular.com/";
 		HttpClient client;
 
