@@ -84,7 +84,6 @@
             </Grid>
            <!-- <BoxView HeightRequest="2" Color="grey"/>-->
 
-<<<<<<< Updated upstream
             <StackLayout
                 x:Name="StepsIngredientsSL"
                 Margin="10">
@@ -140,83 +139,8 @@
                         SelectionMode="None"
                         Margin="10" 
                         >
-=======
-            <BoxView HeightRequest="2" Color="grey"/>
 
-<<<<<<< Updated upstream
-=======
-            <BoxView HeightRequest="2" Color="grey"/>
 
->>>>>>> Stashed changes
-            <StackLayout
-                x:Name="StepsIngredientsSL"
-                Margin="10">
-
-                <Grid
-                    x:Name="IngredientsGrid"
-                    RowDefinitions=".08*, .8*"
-                    ColumnDefinitions="*"
-                    >
-                    <Label Text="Ingredients"
-                        FontSize="20"
-                        FontAttributes="Bold"
-                        Padding="5"
-                        Margin="20"
-                           
-                        BackgroundColor="LightGray"
-                        HorizontalOptions="FillAndExpand"
-                        VerticalTextAlignment="Center"
-                        Grid.Row="0"
-                        HeightRequest="50">
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer x:Name="IngTap"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-                
-                    <ListView
-                            x:Name="IngredientsList"
-                            SelectionMode="None"
-                            HasUnevenRows="true"
-                            Margin="5"
-                            Grid.Row="1"
-                            >
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Padding="10">
-                                        <Label Text="{Binding}" 
-                                           LineBreakMode="WordWrap" 
-                                           FontSize="16" 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-                                        VerticalOptions="CenterAndExpand" />
-=======
-                                           VerticalOptions="CenterAndExpand" />        
->>>>>>> Stashed changes
-=======
-                                           VerticalOptions="CenterAndExpand" />        
->>>>>>> Stashed changes
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-                </Grid>
-                <ListView
-                    x:Name="StepsList"
-                    HasUnevenRows="true"
-                    SelectionMode="None"
-                    Margin="10" 
-                    >
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
@@ -224,29 +148,15 @@
                                     <Label Text="{Binding}" 
                                            LineBreakMode="WordWrap" 
                                            FontSize="16" 
-                                        VerticalOptions="CenterAndExpand" /> 
+                                           VerticalOptions="CenterAndExpand" />
+
+
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-
                 </ListView>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-                    
             </StackLayout>
         </VerticalStackLayout>
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
-        
->>>>>>> Stashed changes
-=======
-        
->>>>>>> Stashed changes
     </ScrollView>
 </ContentPage>

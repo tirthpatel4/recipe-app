@@ -1,11 +1,5 @@
 using System.ComponentModel;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 using System.Diagnostics;
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Platform;
@@ -24,8 +18,7 @@ public partial class DetailPage : ContentPage
         InitializeComponent();
         BindingContext = App.CurrentRecipe;
         /*Set item sources for both lists: ing and stpes*/
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
        
         List<string> Ingredients_Text_List = new List<string>();
         for (int i = 0; i < App.CurrentRecipe.Ingredients_List.Count; i++)
@@ -35,14 +28,6 @@ public partial class DetailPage : ContentPage
         }
 
         IngredientsList.ItemsSource = Ingredients_Text_List;
-=======
-        IngredientsList.ItemsSource = App.CurrentRecipe.ingredients;
-        IngredientsList.IsVisible = App.CurrentRecipe.IsIngredientListVisible;
->>>>>>> Stashed changes
-=======
-        IngredientsList.ItemsSource = App.CurrentRecipe.ingredients;
-        IngredientsList.IsVisible = App.CurrentRecipe.IsIngredientListVisible;
->>>>>>> Stashed changes
         StepsList.ItemsSource = App.CurrentRecipe.steps;
 
         /* Set width of Steps/Ingredients grids based on width of screen */
@@ -50,34 +35,13 @@ public partial class DetailPage : ContentPage
         /*behavior for rotating */
         this.SizeChanged += OnSizeChanged;
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
         //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
         //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
         StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.steps.Count;
 
 
-       
-        
 
-=======
-=======
->>>>>>> Stashed changes
-        StepsIngredientsSL.HeightRequest = 100 * App.CurrentRecipe.ingredients.Count;
-
-        
-
-        /* Command for collapsing ing list */
-        ToggleIngListCommand = new Command(() =>
-        {
-            App.CurrentRecipe.IsIngredientListVisible = !App.CurrentRecipe.IsIngredientListVisible;
-            IngredientsList.IsVisible = App.CurrentRecipe.IsIngredientListVisible;
-        });
-
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
         //Set Binding context to global variable
         if (App.CurrentRecipe.isSaved)
@@ -88,10 +52,7 @@ public partial class DetailPage : ContentPage
         {
             ToggleButton.Text = "Save";
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
-     
 
     }
 
@@ -141,25 +102,9 @@ public partial class DetailPage : ContentPage
         
     }
    
-=======
 
-=======
-
->>>>>>> Stashed changes
-        IngTap.SetBinding(TapGestureRecognizer.CommandProperty, new Binding
-        {
-            Source = ToggleIngListCommand
-        });
-
-
-        SetGridWidths(IngredientsGrid);
-
-    }
-    private void OnSizeChanged(object sender, EventArgs e)
-    {
-        App.SetStackLayoutOrientation(StepsIngredientsSL);
-        SetGridWidths(IngredientsGrid);
-    }
+    
+    
     private void SetGridWidths(Grid g)
     {
         if (App.IsInPortrait())
@@ -174,10 +119,7 @@ public partial class DetailPage : ContentPage
 
         }
     }
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
     private void OnToggleButtonClicked(object sender, EventArgs e)
     {
         isSaved = !isSaved;
