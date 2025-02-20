@@ -5,7 +5,7 @@ using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
-
+using RecipeApp2025.Resources.Classes;
 
 namespace RecipeApp2025.Resources.Classes 
 {
@@ -35,10 +35,11 @@ namespace RecipeApp2025.Resources.Classes
             Cook_time = 25;
             Prep_time = 20;
             isSaved = false;
+            Ingredients_List = new List<Ingredient>();
         }
 
-        public List<String> steps { get; set; }
-        public List<String> ingredients { get; set; }
+        public List<String> steps { get; set; } = new List<string>() {"step 1", "step2", "step3"};
+        public List<Ingredient> Ingredients_List { get; set; }
         public bool IsIngredientListVisible { get; set; }
         public bool IsStepsListVisible { get; set; }
 
@@ -56,7 +57,7 @@ namespace RecipeApp2025.Resources.Classes
             Prep_time = 20;
             isSaved = false;
             steps = new List<String>();
-            ingredients = new List<String>();
+            Ingredients_List = new List<Ingredient>();
             IsIngredientListVisible = true;
 
             
@@ -67,35 +68,24 @@ namespace RecipeApp2025.Resources.Classes
             steps.Add("Five minutes before serving, stir in mushrooms, sour cream, and white wine. Cook until heated through; season with salt and pepper.");
 
 
-            ingredients.Add("2 pounds beef chuck roast");
-            ingredients.Add("½ teaspoon salt");
-            ingredients.Add("½ teaspoon ground black pepper");
-            ingredients.Add("4 ounces butter");
-            ingredients.Add("4 green onions, sliced (white parts only)");
-            ingredients.Add("4 tablespoons all-purpose flour");
-            ingredients.Add("1 (10.5 ounce) can condensed beef broth");
-            ingredients.Add("1 teaspoon prepared mustard");
-            ingredients.Add("1 (6 ounce) can sliced mushrooms, drained");
-            ingredients.Add("⅓ cup sour cream");
-            ingredients.Add("⅓ cup white wine");
-            ingredients.Add("salt and ground black pepper to taste");
-           
         }
     }
 
     public class Ingredient
     {
-        public string I_Name { get; set; }
-        public int I_Count { get; set; }
-        public int I_Amount { get; set; }
-        public string I_Unit { get; set; }
+        public string Name { get; set; }
+        public double Amount { get; set; }
+        public string Unit { get; set; }
+        public string Image { get; set; }
+        public string Full { get; set; }
 
-        public Ingredient(string name, int count, int amount, string unit)
+        public Ingredient(string n, double a, string u, string im, string full)
         {
-            I_Name = name;
-            I_Count = count;
-            I_Amount = amount;
-            I_Unit = unit;
+            Name = n;
+            Amount = a;
+            Unit = u;
+            Image = im;
+            Full = full;
         }
     }
 }

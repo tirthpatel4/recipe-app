@@ -3,6 +3,8 @@ using System.Reflection;
 using RecipeApp2025.Resources.Classes;
 using System;
 using System.IO;
+using RecipeApp2025.Services;
+
 namespace RecipeApp2025
   
 
@@ -12,7 +14,11 @@ namespace RecipeApp2025
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
 
-        private static FirebaseService db; 
+        private static FirebaseService db;
+        
+        
+        private static RecipeService recipeService = new();
+
 
         public App()
         {
@@ -28,9 +34,13 @@ namespace RecipeApp2025
             SavedRecipes = await db.GetRecipes();
         }
 
-        public static void ChangeCurrentRecipe(Recipe r)
+        public static async void ChangeCurrentRecipe(Recipe r)
         {
             CurrentRecipe = r;
+            if(CurrentRecipe.Ingredients_List.Count == 0)
+            {
+                Boolean result = await recipeService.GetIngredientsAsync(CurrentRecipe);
+            }
         }
 
         public static async void AddSavedRecipe(Recipe r)

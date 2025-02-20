@@ -25,6 +25,7 @@
                        Text="{Binding Name}"
                        HorizontalOptions="Center"
                        FontSize="Title"
+                       HorizontalTextAlignment="Center"
                        />
                     <Grid 
                             Grid.Row="1"
@@ -81,12 +82,13 @@
                     Grid.Column="1"
                     HorizontalOptions="Center"/>
             </Grid>
-            <BoxView HeightRequest="2" Color="grey"/>
+           <!-- <BoxView HeightRequest="2" Color="grey"/>-->
 
             <StackLayout
                 x:Name="StepsIngredientsSL"
                 Margin="10">
-                <Border Padding="2"
+                <Border Padding="0"
+                        Margin="0"
                         BackgroundColor="#FAF9F6"
                         >
                     <Border.StrokeShape>
@@ -99,10 +101,13 @@
                                 <Label Text="Ingredients"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
-                                   Margin="30, 10, 10, 10"
-                                   WidthRequest="200"
-                                   HorizontalOptions="StartAndExpand"/>
+                                   Margin="40, 10, 10, 10"
+                                   WidthRequest="410"
+                                   HorizontalOptions="StartAndExpand"
+                                   />
+                                
                             </Border>
+                            
                         </toolkit:Expander.Header>
                         <toolkit:Expander.Content>
                             <ListView
@@ -110,7 +115,8 @@
                              HasUnevenRows="true"
                              SelectionMode="None"
                              Margin="10"
-                             VerticalScrollBarVisibility="Never">
+                             VerticalScrollBarVisibility="Never"
+                             >
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>

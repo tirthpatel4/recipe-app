@@ -2,6 +2,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Maui.Platform;
 using RecipeApp2025.Resources.Classes;
 using Syncfusion.Maui.Toolkit.PullToRefresh;
 
@@ -17,7 +18,15 @@ public partial class DetailPage : ContentPage
         InitializeComponent();
         BindingContext = App.CurrentRecipe;
         /*Set item sources for both lists: ing and stpes*/
-        IngredientsList.ItemsSource = App.CurrentRecipe.ingredients;
+       
+        List<string> Ingredients_Text_List = new List<string>();
+        for (int i = 0; i < App.CurrentRecipe.Ingredients_List.Count; i++)
+        {
+            Debug.WriteLine(i);
+            Ingredients_Text_List.Add(App.CurrentRecipe.Ingredients_List[i].Full);
+        }
+
+        IngredientsList.ItemsSource = Ingredients_Text_List;
         StepsList.ItemsSource = App.CurrentRecipe.steps;
 
         /* Set width of Steps/Ingredients grids based on width of screen */
@@ -27,13 +36,10 @@ public partial class DetailPage : ContentPage
 
         //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
         //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
-        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count + 150 * App.CurrentRecipe.steps.Count;
+        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.steps.Count;
 
 
-        for(int i = 0; i < 12; i++)
-        {
-            Debug.WriteLine(App.CurrentRecipe.ingredients[i] + "\n");
-        }
+       
         
 
 
@@ -47,11 +53,49 @@ public partial class DetailPage : ContentPage
             ToggleButton.Text = "Save";
         }
 
-        
-
-
+     
 
     }
+
+    /*
+    private String GenerateIngredientText(Ingredient ing)
+    {
+        string result = "";
+        string a = "";
+        string n = "";
+        string u = "";
+
+        // if whole number
+        if (((double)((int)ing.Amount)) == ing.Amount)
+        {
+            a = ((double)((int)ing.Amount)).ToString();
+        }
+        else
+        {
+            a = ing.Amount.ToString();
+        }
+
+
+        result += a;
+        n = ing.Name;
+        if (ing.Amount > 1.0)
+        {
+            n += "s";
+        }
+        //if no units ie "15 apples" 
+        if(ing.Unit != null && ing.Unit.Length > 0){
+            result = result + " " + n;
+        }
+        else
+        {
+            //units ie "3 tbs of sugar"
+            result = result + " " + u + " of " + n;
+        }
+
+        return result;
+
+
+    } */
     private void OnSizeChanged(object sender, EventArgs e)
     {
         App.SetStackLayoutOrientation(StepsIngredientsSL);
