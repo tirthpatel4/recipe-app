@@ -143,6 +143,11 @@
 =======
             <BoxView HeightRequest="2" Color="grey"/>
 
+<<<<<<< Updated upstream
+=======
+            <BoxView HeightRequest="2" Color="grey"/>
+
+>>>>>>> Stashed changes
             <StackLayout
                 x:Name="StepsIngredientsSL"
                 Margin="10">
@@ -175,6 +180,9 @@
                             Margin="5"
                             Grid.Row="1"
                             >
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                         <ListView.ItemTemplate>
                             <DataTemplate>
@@ -184,7 +192,11 @@
                                            LineBreakMode="WordWrap" 
                                            FontSize="16" 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
                                         VerticalOptions="CenterAndExpand" />
+=======
+                                           VerticalOptions="CenterAndExpand" />        
+>>>>>>> Stashed changes
 =======
                                            VerticalOptions="CenterAndExpand" />        
 >>>>>>> Stashed changes
@@ -194,7 +206,10 @@
                         </ListView.ItemTemplate>
                     </ListView>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
                 </Grid>
                 <ListView
                     x:Name="StepsList"
@@ -216,13 +231,20 @@
                     </ListView.ItemTemplate>
 
                 </ListView>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
                     
             </StackLayout>
         </VerticalStackLayout>
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
+=======
+        
+>>>>>>> Stashed changes
 =======
         
 >>>>>>> Stashed changes

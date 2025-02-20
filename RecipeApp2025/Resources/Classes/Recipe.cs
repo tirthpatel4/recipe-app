@@ -24,12 +24,15 @@ namespace RecipeApp2025.Resources.Classes
         public bool isSaved { get; set; }
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
         /* No args constructor */
         public Recipe()
         {
             Name = "No Name";
 =======
+=======
+>>>>>>> Stashed changes
         public List<String> steps { get; set; }
         public List<String> ingredients { get; set; }
         public bool IsIngredientListVisible { get; set; }
@@ -48,6 +51,7 @@ namespace RecipeApp2025.Resources.Classes
             Cook_time = 25;
             Prep_time = 20;
             isSaved = false;
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
             Ingredients_List = new List<Ingredient>();
         }
@@ -74,10 +78,15 @@ namespace RecipeApp2025.Resources.Classes
             Ingredients_List = new List<Ingredient>();
             IsIngredientListVisible = true;
 =======
+=======
+>>>>>>> Stashed changes
             steps = new List<String>();
             ingredients = new List<String>();
             IsIngredientListVisible = false;
             IsIngredientListVisible = false;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
             
@@ -89,7 +98,10 @@ namespace RecipeApp2025.Resources.Classes
 
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
             ingredients.Add("2 pounds beef chuck roast");
             ingredients.Add("½ teaspoon salt");
             ingredients.Add("½ teaspoon ground black pepper");
@@ -102,6 +114,9 @@ namespace RecipeApp2025.Resources.Classes
             ingredients.Add("⅓ cup sour cream");
             ingredients.Add("⅓ cup white wine");
             ingredients.Add("salt and ground black pepper to taste");
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
         }
     }

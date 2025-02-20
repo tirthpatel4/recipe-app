@@ -1,6 +1,9 @@
 using System.ComponentModel;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 using System.Diagnostics;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 using System.Windows.Input;
@@ -22,6 +25,7 @@ public partial class DetailPage : ContentPage
         BindingContext = App.CurrentRecipe;
         /*Set item sources for both lists: ing and stpes*/
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
        
         List<string> Ingredients_Text_List = new List<string>();
         for (int i = 0; i < App.CurrentRecipe.Ingredients_List.Count; i++)
@@ -35,6 +39,10 @@ public partial class DetailPage : ContentPage
         IngredientsList.ItemsSource = App.CurrentRecipe.ingredients;
         IngredientsList.IsVisible = App.CurrentRecipe.IsIngredientListVisible;
 >>>>>>> Stashed changes
+=======
+        IngredientsList.ItemsSource = App.CurrentRecipe.ingredients;
+        IngredientsList.IsVisible = App.CurrentRecipe.IsIngredientListVisible;
+>>>>>>> Stashed changes
         StepsList.ItemsSource = App.CurrentRecipe.steps;
 
         /* Set width of Steps/Ingredients grids based on width of screen */
@@ -42,6 +50,7 @@ public partial class DetailPage : ContentPage
         /*behavior for rotating */
         this.SizeChanged += OnSizeChanged;
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
         //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
         //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
@@ -52,6 +61,8 @@ public partial class DetailPage : ContentPage
         
 
 =======
+=======
+>>>>>>> Stashed changes
         StepsIngredientsSL.HeightRequest = 100 * App.CurrentRecipe.ingredients.Count;
 
         
@@ -63,6 +74,9 @@ public partial class DetailPage : ContentPage
             IngredientsList.IsVisible = App.CurrentRecipe.IsIngredientListVisible;
         });
 
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
         //Set Binding context to global variable
@@ -74,6 +88,7 @@ public partial class DetailPage : ContentPage
         {
             ToggleButton.Text = "Save";
         }
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
 
      
@@ -128,6 +143,9 @@ public partial class DetailPage : ContentPage
    
 =======
 
+=======
+
+>>>>>>> Stashed changes
         IngTap.SetBinding(TapGestureRecognizer.CommandProperty, new Binding
         {
             Source = ToggleIngListCommand
@@ -156,6 +174,9 @@ public partial class DetailPage : ContentPage
 
         }
     }
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     private void OnToggleButtonClicked(object sender, EventArgs e)
     {
