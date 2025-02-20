@@ -6,21 +6,33 @@ namespace RecipeApp2025.Pages;
 
 public partial class DetailPage : ContentPage
 {
-    private bool isSaved = App.CurrentRecipe.isSaved;
+    private bool isSaved = false;
 
     public DetailPage()
     {
-
         InitializeComponent();
-        //Set Binding context to global variable
-        BindingContext = App.CurrentRecipe;
-        if (App.CurrentRecipe.isSaved)
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (App.CurrentUser.Length > 0)
         {
-            ToggleButton.Text = "Unsave";
+            FirebaseService fs = new FirebaseService();
+            Task<User> u = fs.GetUser(App.CurrentUser);
+            ToggleButton.IsEnabled = true;
+            if (App.CurrentRecipe.isSaved)
+            {
+                ToggleButton.Text = "Unsave";
+            }
+            else
+            {
+                ToggleButton.Text = "Save";
+            }
         }
         else
         {
-            ToggleButton.Text = "Save";
+            ToggleButton.IsEnabled = false;
         }
     }
 
