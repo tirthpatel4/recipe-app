@@ -70,14 +70,23 @@
 
 
             <Label
+                   x:Name="PrepTimeLabel"
                    Padding="10,0,10,0"
                    Text="{Binding Prep_time, StringFormat='Prep Time {0}m'}"
                    FontSize="Subtitle"/>
 
             <Label
+                    x:Name="CookTimeLabel"
                    Padding="10,0,10,0"
                    Text="{Binding Cook_time, StringFormat='Cook Time {0}m'}"
-                   FontSize="Subtitle"/>
+                   FontSize="Subtitle"
+                   IsVisible="True"/>
+            <Label
+                    x:Name="TotalTimeLabel"
+                    Padding="10,0,10,0"
+                    Text="{Binding Total_Time, StringFormat='Cook Time {0}m'}"
+                    FontSize="Subtitle"
+                    IsVisible="False"/>
 
         </VerticalStackLayout>
     </ScrollView>

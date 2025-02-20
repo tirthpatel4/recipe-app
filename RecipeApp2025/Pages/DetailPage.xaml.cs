@@ -23,8 +23,20 @@ public partial class DetailPage : ContentPage
             ToggleButton.Text = "Save";
         }
     }
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+        if (App.CurrentRecipe.Cook_time == 0)
+        {
+            CookTimeLabel.IsVisible = false;
+		}
+        else
+        {
+			CookTimeLabel.IsVisible = true;
+		}
+	}
 
-    private void OnToggleButtonClicked(object sender, EventArgs e)
+	private void OnToggleButtonClicked(object sender, EventArgs e)
     {
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";

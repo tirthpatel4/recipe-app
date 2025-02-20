@@ -15,9 +15,9 @@ namespace RecipeApp2025.Services
 			client = new HttpClient();
 		}
 
-		public async Task<List<Recipe>> GetRecipesAsync()
+		public async Task<List<Recipe>> GetRecipesAsync(int pageNumber)
 		{
-			var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&number=5";
+			var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&page={pageNumber}";
 			var response = await client.GetAsync(url);
 
 			if (response.IsSuccessStatusCode)
@@ -37,11 +37,6 @@ namespace RecipeApp2025.Services
 					Num_people_served = r["servings"]?.ToObject<int?>() ?? 1, // Nullable int with fallback
 					isSaved = false
 				}).ToList();
-
-				foreach (var recipe in recipes)
-				{
-					Debug.WriteLine($"Recipe: {recipe.Name}, Time: {recipe.Total_time} min, Serves: {recipe.Num_people_served}");
-				}
 
 				return recipes;
 			}

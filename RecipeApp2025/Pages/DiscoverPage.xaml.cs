@@ -13,59 +13,101 @@ namespace RecipeApp2025.Pages;
 
 public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 {
-
 	RecipeService recipeService = new();
 	public ObservableCollection<Recipe> Recipes { get; } = new();
-    public ICommand GoToRecipeDetailPageCommand { get; }
-    public DiscoverPage()
-    {
-        InitializeComponent();
-        BindingContext = this;
+
+	private bool IsLoading;
+
+	public ICommand GoToRecipeDetailPageCommand { get; }
+	private int pageNumber = 1;
+
+	public DiscoverPage()
+	{
+		InitializeComponent();
+		BindingContext = this;
 		DiscoverFeed.ItemsSource = Recipes;
-        GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
-		_ = LoadRecipesAsync();
+		GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
+	}
+
+	protected override async void OnAppearing()
+	{
+		base.OnAppearing();
+
+		// Reset the page number and load the first page
+		pageNumber = 1;
+		await LoadRecipesAsync();
 	}
 
 	public async void GoToRecipeDetailPage(Recipe r)
-    {
-        Debug.WriteLine("uh oh\n");
-        //var customEventArgs = new CustomEventArgs(r);
-        //OnRecipesItemClicked(this, customEventArgs);
-        App.ChangeCurrentRecipe(r);
-        await Shell.Current.GoToAsync("/DetailPage");
+	{
+		App.ChangeCurrentRecipe(r);
+		await Shell.Current.GoToAsync("/DetailPage");
+	}
 
-    }
 	private async Task LoadRecipesAsync()
 	{
+		if (IsLoading) return;
+		IsLoading = true;
+
 		try
 		{
-			var recipes = await recipeService.GetRecipesAsync();
-			if (Recipes.Count != 0)
+			var recipes = await recipeService.GetRecipesAsync(pageNumber);
+
+			// Clear the list only on the first load
+			if (pageNumber == 1)
 			{
 				Recipes.Clear();
 			}
+
 			foreach (var recipe in recipes)
 			{
 				Recipes.Add(recipe);
 			}
+
+			pageNumber++;
 		}
 		catch (Exception ex)
 		{
 			Debug.WriteLine(ex);
 			await Shell.Current.DisplayAlert("Error!", $"Unable to get recipes: {ex.Message}", "OK");
 		}
-
-
+		finally
+		{
+			IsLoading = false;
+		}
 	}
-}
 
-public class CustomEventArgs : EventArgs
-{
-    public Recipe SelectedRecipe { get; set; }
+	private async void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+	{
+		var lastItem = Recipes.LastOrDefault(); // Use Recipes directly
+		if (e.Item == lastItem && !IsLoading)
+		{
+			await LoadMoreRecipes();
+		}
+	}
 
-    public CustomEventArgs(Recipe sr)
-    {
-        SelectedRecipe = sr;
-    }
+	private async Task LoadMoreRecipes()
+	{
+		if (IsLoading) return;
+		IsLoading = true;
 
+		try
+		{
+			var newRecipes = await recipeService.GetRecipesAsync(pageNumber);
+
+			if (newRecipes.Any())
+			{
+				foreach (var recipe in newRecipes)
+				{
+					Recipes.Add(recipe); // Use the Recipes property directly
+				}
+
+				pageNumber++;
+			}
+		}
+		finally
+		{
+			IsLoading = false;
+		}
+	}
 }
