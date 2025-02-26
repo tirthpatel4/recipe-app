@@ -119,8 +119,18 @@ public partial class DetailPage : ContentPage
 
         }
     }
+	protected override void OnAppearing()
+	{
+		base.OnAppearing();
+        if (App.CurrentRecipe.Cook_time == 0)
+        {
+            CookTimeLabel.IsVisible = false;
+			PrepTimeLabel.IsVisible = false;
+			TotalTimeLabel.IsVisible = true;
+		}
+	}
 
-    private void OnToggleButtonClicked(object sender, EventArgs e)
+	private void OnToggleButtonClicked(object sender, EventArgs e)
     {
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";
