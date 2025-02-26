@@ -38,6 +38,19 @@ public class FirebaseService
         
     }
 
+    public async Task<List<Recipe>> ReturnUserSavedRecipes(string username)
+    {
+        var verify = await GetUser(username);
+        if (verify != null)
+        {
+            return (await _firebaseClient.Child("users").Child(verify.Id.ToString()).Child("savedrecipes")
+            .OnceAsync<Recipe>())
+            .Select(item => item.Object)
+            .ToList();
+        }
+        else return [];
+    }
+
     public async Task AddUniqueRecipes(List<Recipe> recipes)
     {
         // Fetch existing recipes from Firebase

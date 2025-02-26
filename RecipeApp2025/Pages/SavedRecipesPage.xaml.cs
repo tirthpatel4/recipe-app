@@ -21,12 +21,12 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     public SavedRecipesPage()
     {
         InitializeComponent();
-        Recipes = new ObservableCollection<Recipe>(App.SavedRecipes);
+        //Recipes = new ObservableCollection<Recipe>(App.SavedRecipes);
         
         /* temporary hard coded data */
         
         BindingContext = this;
-        SavedFeed.ItemsSource = Recipes;
+        //SavedFeed.ItemsSource = Recipes;
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
     }
 
@@ -37,6 +37,12 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
         {
             ForceGoToMainPage();
         }
+        SetSavedRecipes();
+    }
+    public async void SetSavedRecipes()
+    {
+        FirebaseService fs = new FirebaseService();
+        SavedFeed.ItemsSource = await fs.ReturnUserSavedRecipes(App.CurrentUser);
     }
 
     public async void ForceGoToMainPage()
