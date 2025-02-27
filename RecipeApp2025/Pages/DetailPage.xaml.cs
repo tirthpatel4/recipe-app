@@ -124,9 +124,9 @@ public partial class DetailPage : ContentPage
 		base.OnAppearing();
         if (App.CurrentRecipe.Cook_time == 0)
         {
-            CookTimeLabel.IsVisible = false;
-			PrepTimeLabel.IsVisible = false;
-			TotalTimeLabel.IsVisible = true;
+            //CookTimeLabel.IsVisible = false;
+			//PrepTimeLabel.IsVisible = false;
+			//TotalTimeLabel.IsVisible = true;
 		}
 	}
 
