@@ -53,7 +53,6 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
 
     public async void GoToRecipeDetailPage(Recipe r)
     {
-        Debug.WriteLine("uh oh\n");
         //var customEventArgs = new CustomEventArgs(r);
         //OnRecipesItemClicked(this, customEventArgs);
         App.ChangeCurrentRecipe(r);

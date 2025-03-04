@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Diagnostics;
 using CommunityToolkit.Mvvm.ComponentModel;
 using RecipeApp2025.Resources.Classes;
 
@@ -16,6 +17,7 @@ public partial class DetailPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        Debug.WriteLine(App.CurrentRecipe.Name);
         if (App.CurrentUser.Length > 0)
         {
             FirebaseService fs = new FirebaseService();
