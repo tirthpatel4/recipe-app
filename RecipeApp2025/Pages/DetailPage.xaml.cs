@@ -23,6 +23,7 @@ public partial class DetailPage : ContentPage
             FirebaseService fs = new FirebaseService();
             Task<User> u = fs.GetUser(App.CurrentUser);
             ToggleButton.IsEnabled = true;
+            isSaved = App.CurrentRecipe.isSaved;
             if (App.CurrentRecipe.isSaved)
             {
                 ToggleButton.Text = "Unsave";
@@ -44,14 +45,14 @@ public partial class DetailPage : ContentPage
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";
         if (isSaved) {
+            Debug.WriteLine("Adding Recipe");
             fs.AddSavedRecipe(App.CurrentRecipe, App.CurrentUser);
         }
         else
         {
+            Debug.WriteLine("Removing Recipe");
             fs.RemoveRecipe(App.CurrentRecipe, App.CurrentUser);
         }
-
-
         App.CurrentRecipe.isSaved = isSaved;    
     }
 
