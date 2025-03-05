@@ -17,6 +17,10 @@ namespace RecipeApp2025.Pages
         {
             base.OnAppearing();
             SavedRecipesButton.IsEnabled = App.CurrentUser.Length > 0;
+            if (App.CurrentUser != String.Empty)
+            {
+                LoginWelcome.Text = "Welcome back, " + App.CurrentUser + "!";
+            }
             KeywordEntry.TextChanged += OnKeywordChanged;
         }
         private void OnKeywordChanged(object sender, TextChangedEventArgs e)

@@ -19,6 +19,7 @@ namespace RecipeApp2025
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("SegoeUI-Semibold.ttf", "SegoeSemibold");
                     fonts.AddFont("FluentSystemIcons-Regular.ttf", Fonts.FluentUI.FontFamily);
+                    fonts.AddFont("Poppins-Regular.ttf", "Poppins");
                 });
 
 #if DEBUG
