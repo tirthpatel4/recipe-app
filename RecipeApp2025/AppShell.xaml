@@ -12,9 +12,9 @@
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions="*,Auto" Padding="10">
-                <Border Stroke="DimGray"
+                <Border Stroke="#708090"
                     StrokeThickness="2"
-                    Background="DimGray"
+                    Background="#708090"
                     Padding="16,8"
                     HorizontalOptions="FillAndExpand"
                     WidthRequest="250">

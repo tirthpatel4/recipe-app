@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
 using RecipeApp2025.Resources.Classes;
 
@@ -7,11 +8,49 @@ namespace RecipeApp2025.Pages;
 
 public partial class DetailPage : ContentPage
 {
-    private bool isSaved = false;
 
+    private bool isSaved = App.CurrentRecipe.isSaved;
+    public ICommand ToggleIngListCommand { get; }
     public DetailPage()
     {
+
         InitializeComponent();
+        BindingContext = App.CurrentRecipe;
+        /*Set item sources for both lists: ing and stpes*/
+
+
+        List<string> Ingredients_Text_List = new List<string>();
+        for (int i = 0; i < App.CurrentRecipe.Ingredients_List.Count; i++)
+        {
+            Debug.WriteLine(i);
+            Ingredients_Text_List.Add(App.CurrentRecipe.Ingredients_List[i].Full);
+        }
+
+        IngredientsList.ItemsSource = Ingredients_Text_List;
+        StepsList.ItemsSource = App.CurrentRecipe.steps;
+
+        /* Set width of Steps/Ingredients grids based on width of screen */
+
+        /*behavior for rotating */
+        //this.SizeChanged += OnSizeChanged;
+
+
+        //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
+        //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
+        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.steps.Count;
+
+
+
+
+        //Set Binding context to global variable
+        if (App.CurrentRecipe.isSaved)
+        {
+            ToggleButton.Text = "Unsave";
+        }
+        else
+        {
+            ToggleButton.Text = "Save";
+        }
     }
 
     protected override void OnAppearing()

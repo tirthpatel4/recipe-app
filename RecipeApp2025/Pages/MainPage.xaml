@@ -6,56 +6,31 @@
              x:Class="RecipeApp2025.Pages.MainPage"
              Title="">
 
-    <Grid RowDefinitions="*, auto"
+    <Grid RowDefinitions="*, auto, auto, auto"
           ColumnDefinitions="7*, 1*"
           Padding="21"
           RowSpacing="40"
           ColumnSpacing="10">
-
-        <Border Grid.Row="0"
-                Grid.Column="0"
-                StrokeThickness="2"
-                Padding="5"
-                Stroke="Black">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="40" />
-            </Border.StrokeShape>
-
-            <Entry x:Name="KeywordEntry"
-                   Placeholder="Search for Recipes"
-                   PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
-                   FontAttributes="Italic"
-                   Text="{Binding Keyword}"
-                   ClearButtonVisibility="WhileEditing"
-                   BackgroundColor="Transparent"
-                   IsTextPredictionEnabled="False"
-                   HorizontalOptions="FillAndExpand"
-                   HeightRequest="40"/>
-        </Border>
-
-        <Button Text="Go"
-                BackgroundColor="#708090"
-                Grid.Row="0"
-                Grid.Column="1"
-                CornerRadius="10"
-                Clicked="OnSearchButtonClicked"
-                HorizontalOptions="FillAndExpand"/>
-
-        <StackLayout Grid.Row="1"
+        <Label Text="Your recipes await!" 
+               HorizontalTextAlignment="Center"
+               Grid.Row="0"
+               Grid.Column="0"
+               FontSize="60"
+               />
+        <StackLayout Grid.Row="3"
                      Grid.ColumnSpan="2"
                      HorizontalOptions="FillAndExpand"
-                     VerticalOptions="End"
+                     VerticalOptions="Start"
                      Margin="10"
                      Spacing="20">
             <Button Text="Discover"
-                    FontSize="30"
-                    BackgroundColor="#708090"
-                    FontAttributes="Bold"
-                    HeightRequest="80"
-                    CornerRadius="20"
-                    Clicked="OnDiscoverButtonClicked"
-                    HorizontalOptions="FillAndExpand"/>
-
+        FontSize="30"
+        BackgroundColor="#708090"
+        FontAttributes="Bold"
+        HeightRequest="80"
+        CornerRadius="20"
+        Clicked="OnDiscoverButtonClicked"
+        HorizontalOptions="FillAndExpand"/>
             <Button x:Name="SavedRecipesButton"
                     Text="Saved Recipes"
                     FontAttributes="Bold"
@@ -67,6 +42,44 @@
                     Clicked="OnSavedRecipesButtonClicked"
                     IsEnabled="False"
                     HorizontalOptions="FillAndExpand"/>
+
+            
         </StackLayout>
+
+        <StackLayout Grid.Row="2"
+                     Grid.ColumnSpan="2"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="End"
+                     Spacing="10"
+                     Orientation="Horizontal">
+            <Border StrokeThickness="2"
+                    Padding="5"
+                    Stroke="Black"
+                    HorizontalOptions="FillAndExpand">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40" />
+                </Border.StrokeShape>
+
+                <Entry x:Name="KeywordEntry"
+                       Placeholder="Search for Recipes"
+                       PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
+                       FontAttributes="Italic"
+                       Text="{Binding Keyword}"
+                       ClearButtonVisibility="WhileEditing"
+                       BackgroundColor="Transparent"
+                       IsTextPredictionEnabled="False"
+                       HorizontalOptions="FillAndExpand"
+                       HeightRequest="40"/>
+            </Border>
+
+            <Button Text="Go"
+                    BackgroundColor="#708090"
+                    CornerRadius="10"
+                    Clicked="OnSearchButtonClicked"
+                    HorizontalOptions="End"
+                    HeightRequest="40"
+                    WidthRequest="50"/>
+        </StackLayout>
+
     </Grid>
 </ContentPage>

@@ -33,11 +33,11 @@ namespace RecipeApp2025.Pages
         {
             if (IsInPortrait())
             {
-                ButtonStackLayout.Orientation = StackOrientation.Vertical;
+                //ButtonStackLayout.Orientation = StackOrientation.Vertical;
             }
             else
             {
-                ButtonStackLayout.Orientation = StackOrientation.Horizontal;
+                //ButtonStackLayout.Orientation = StackOrientation.Horizontal;
             }
 
         }
