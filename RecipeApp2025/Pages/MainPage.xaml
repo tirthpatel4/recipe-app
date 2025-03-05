@@ -3,70 +3,70 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="RecipeApp2025.Pages.MainPage">
+             x:Class="RecipeApp2025.Pages.MainPage"
+             Title="">
 
+    <Grid RowDefinitions="*, auto"
+          ColumnDefinitions="7*, 1*"
+          Padding="21"
+          RowSpacing="40"
+          ColumnSpacing="10">
 
-    <ScrollView>
-        <Grid RowDefinitions="auto, auto"
-              ColumnDefinitions=".85*, .15*"
-              Padding="21"
-              RowSpacing="40"
-              ColumnSpacing="10">
-
-            <Border
-                Grid.Row="0"
+        <Border Grid.Row="0"
                 Grid.Column="0"
-                StrokeThickness="5"
+                StrokeThickness="2"
                 Padding="5"
-     >
-                <Entry 
-                       x:Name="KeywordEntry"
-                       Placeholder="Search for Recipes"
-                       PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
-                       FontAttributes="Italic"
-                       Text="{Binding Keyword}"/>
-            </Border>
+                Stroke="Black">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="40" />
+            </Border.StrokeShape>
 
-            <Button
-                    Text="Go"
-                    BackgroundColor="#708090"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    CornerRadius="10"
-                    Clicked="OnSearchButtonClicked"
-                />
+            <Entry x:Name="KeywordEntry"
+                   Placeholder="Search for Recipes"
+                   PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
+                   FontAttributes="Italic"
+                   Text="{Binding Keyword}"
+                   ClearButtonVisibility="WhileEditing"
+                   BackgroundColor="Transparent"
+                   IsTextPredictionEnabled="False"
+                   HorizontalOptions="FillAndExpand"
+                   HeightRequest="40"/>
+        </Border>
 
-            <StackLayout
-                Grid.Row="1"
-                Grid.ColumnSpan="2"
-                x:Name="ButtonStackLayout"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Margin="10"
-                Spacing="50">
-                <Button
-                    Text="Discover"
-                    FontSize="50"
+        <Button Text="Go"
+                BackgroundColor="#708090"
+                Grid.Row="0"
+                Grid.Column="1"
+                CornerRadius="10"
+                Clicked="OnSearchButtonClicked"
+                HorizontalOptions="FillAndExpand"/>
+
+        <StackLayout Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     HorizontalOptions="FillAndExpand"
+                     VerticalOptions="End"
+                     Margin="10"
+                     Spacing="20">
+            <Button Text="Discover"
+                    FontSize="30"
                     BackgroundColor="#708090"
                     FontAttributes="Bold"
-                    HeightRequest="100"
+                    HeightRequest="80"
                     CornerRadius="20"
-                    Clicked="OnDiscoverButtonClicked">
-                </Button>
+                    Clicked="OnDiscoverButtonClicked"
+                    HorizontalOptions="FillAndExpand"/>
 
-                <Button
-                    x:Name="SavedRecipesButton"
+            <Button x:Name="SavedRecipesButton"
                     Text="Saved Recipes"
                     FontAttributes="Bold"
                     BackgroundColor="#708090"
                     TextColor="white"
                     CornerRadius="20"
-                    HeightRequest="100"
+                    HeightRequest="80"
                     FontSize="30"
                     Clicked="OnSavedRecipesButtonClicked"
-                    IsEnabled="False">
-                </Button>
-            </StackLayout>
-        </Grid>
-    </ScrollView>
+                    IsEnabled="False"
+                    HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </Grid>
 </ContentPage>
