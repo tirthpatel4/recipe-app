@@ -21,20 +21,38 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     public SavedRecipesPage()
     {
         InitializeComponent();
-
-        Recipes = new ObservableCollection<Recipe>(App.SavedRecipes);
+        //Recipes = new ObservableCollection<Recipe>(App.SavedRecipes);
         
         /* temporary hard coded data */
         
         BindingContext = this;
-        SavedFeed.ItemsSource = Recipes;
+        //SavedFeed.ItemsSource = Recipes;
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
     }
 
-    
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        if (App.CurrentUser.Length == 0)
+        {
+            ForceGoToMainPage();
+        }
+        SetSavedRecipes();
+    }
+    public async void SetSavedRecipes()
+    {
+        FirebaseService fs = new FirebaseService();
+        SavedFeed.ItemsSource = await fs.ReturnUserSavedRecipes(App.CurrentUser);
+    }
+
+    public async void ForceGoToMainPage()
+    {
+        await Shell.Current.GoToAsync("/MainPage");
+    }
+
+
     public async void GoToRecipeDetailPage(Recipe r)
     {
-        Debug.WriteLine("uh oh\n");
         //var customEventArgs = new CustomEventArgs(r);
         //OnRecipesItemClicked(this, customEventArgs);
         App.ChangeCurrentRecipe(r);
