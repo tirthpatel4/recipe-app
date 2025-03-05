@@ -7,28 +7,19 @@ using System.ComponentModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using RecipeApp2025;
 using System.Windows.Input;
+using RecipeApp2025.Services;
 
 namespace RecipeApp2025.Pages;
 
 [QueryProperty(nameof(Keyword), "keyword")]
 public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 {
-    private readonly HttpClient _httpClient = new HttpClient();
-	private const string ApiKey = "DM QUINTON";
-	private const string BaseUrl = "https://api.spoonacular.com/";
-    private string[] Names = {"Spaghetti Carbonara",
-                            "Chicken Alfredo",
-                            "Beef Stroganoff",
-                            "Vegetarian Chili",
-                            "Grilled Salmon",
-                            "Garlic Butter Shrimp",
-                            "Stuffed Bell Peppers",
-                            "Teriyaki Chicken",
-                            "Eggplant Parmesan",
-                            "Lemon Herb Roasted Chicken",};
-    public ObservableCollection<Recipe> Recipes { get; set; }
+    RecipeService recipeService = new();
+    public ObservableCollection<Recipe> Recipes { get; } = new();
+    private bool IsLoading;
     public ICommand GoToRecipeDetailPageCommand { get; }
     private string _keyword = String.Empty;
+    private int pageNumber = 1;
     public string Keyword
     {
         get => _keyword;
@@ -45,20 +36,22 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
     public DiscoverPage()
     {
         InitializeComponent();
-
-        Recipes = new ObservableCollection<Recipe>();
-
-        /* temporary hard coded data */
-        for (int i = 1; i < 10; i++)
-        {
-            Recipes.Add(new Recipe(Names[i]));
-
-        }
         BindingContext = this;
         DiscoverFeed.ItemsSource = Recipes;
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
+    }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
 
-
+        // Reset the page number and load the first page
+        pageNumber = 1;
+        await LoadRecipesAsync();
+    }
+    public async void GoToRecipeDetailPage(Recipe r)
+    {
+        App.ChangeCurrentRecipe(r);
+        await Shell.Current.GoToAsync("/DetailPage");
     }
     private void UpdateRecipes()
     {
@@ -74,41 +67,71 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         }
         DiscoverFeed.ItemsSource = Recipes;
     }
-    public async void GoToRecipeDetailPage(Recipe r)
+    private async Task LoadRecipesAsync()
     {
-        Debug.WriteLine("uh oh\n");
-        //var customEventArgs = new CustomEventArgs(r);
-        //OnRecipesItemClicked(this, customEventArgs);
-        App.ChangeCurrentRecipe(r);
-        await Shell.Current.GoToAsync("/DetailPage");
+        if (IsLoading) return;
+        IsLoading = true;
 
-    }
-    private async Task<List<string>> GetRecipesAsync()
-    {
-        var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}";
-        var response = await _httpClient.GetAsync(url);
-        if (response.IsSuccessStatusCode)
+        try
         {
-            var content = await response.Content.ReadAsStringAsync();
-            var json = JObject.Parse(content);
-            var titles = json["results"].Select(r => r["title"].ToString()).ToList();
+            var recipes = await recipeService.GetRecipesAsync(pageNumber);
 
-            // DEBUG ONLY!
-            //foreach (string t in titles)
-            //{
-            //    Debug.Write(t);
-            //}
-            //Debug.WriteLine("");
+            // Clear the list only on the first load
+            if (pageNumber == 1)
+            {
+                Recipes.Clear();
+            }
 
-            return titles;
+            foreach (var recipe in recipes)
+            {
+                Recipes.Add(recipe);
+            }
+
+            pageNumber++;
         }
-        else
+        catch (Exception ex)
         {
-            Debug.WriteLine("Error: " + response.StatusCode);
-            return null;
+            Debug.WriteLine(ex);
+            await Shell.Current.DisplayAlert("Error!", $"Unable to get recipes: {ex.Message}", "OK");
+        }
+        finally
+        {
+            IsLoading = false;
         }
     }
+    private async void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
+    {
+        var lastItem = Recipes.LastOrDefault(); // Use Recipes directly
+        if (e.Item == lastItem && !IsLoading)
+        {
+            await LoadMoreRecipes();
+        }
+    }
 
+    private async Task LoadMoreRecipes()
+    {
+        if (IsLoading) return;
+        IsLoading = true;
+
+        try
+        {
+            var newRecipes = await recipeService.GetRecipesAsync(pageNumber);
+
+            if (newRecipes.Any())
+            {
+                foreach (var recipe in newRecipes)
+                {
+                    Recipes.Add(recipe); // Use the Recipes property directly
+                }
+
+                pageNumber++;
+            }
+        }
+        finally
+        {
+            IsLoading = false;
+        }
+    }
 
 }
 public class CustomEventArgs : EventArgs

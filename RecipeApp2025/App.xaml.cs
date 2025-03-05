@@ -40,11 +40,29 @@ namespace RecipeApp2025
         public static async void RemoveSavedRecipe(Recipe r)
         {
             SavedRecipes.Remove(r);
-        }    
+        }
 
-        
+        public static Boolean IsInPortrait()
+        {
+            double width = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Width;
+            double height = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Height;
+            return (width <= height);
+        }
 
-        
+        public static void SetStackLayoutOrientation(StackLayout s)
+        {
+            if (App.IsInPortrait())
+            {
+                s.Orientation = StackOrientation.Vertical;
+            }
+            else
+            {
+                s.Orientation = StackOrientation.Horizontal;
+            }
+
+        }
+
+
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell());
