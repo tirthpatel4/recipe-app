@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="RecipeApp2025.Pages.DiscoverPage">
+             x:Class="RecipeApp2025.Pages.DiscoverPage"
+             BackgroundColor="#0bdc84">
 
     <ListView x:Name="DiscoverFeed"
                   SeparatorColor="Transparent"
@@ -16,7 +17,7 @@
                 <ViewCell>
                     <Border Padding="5"
                             BackgroundColor="White"
-                            Stroke="Black"
+                            Stroke="White"
                             StrokeThickness="1">
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer

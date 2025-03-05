@@ -3,30 +3,51 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="RecipeApp2025.Pages.AccountPage">
+             x:Class="RecipeApp2025.Pages.AccountPage"
+             BackgroundColor="#0bdc84">
 
-    <VerticalStackLayout Padding="20">
-        <Entry x:Name="UsernameEntry"
+    <VerticalStackLayout Padding="10">
+        <Border StrokeThickness="2"
+        Padding="5"
+        Stroke="White"
+        BackgroundColor="White"
+        HorizontalOptions="FillAndExpand">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="40" />
+            </Border.StrokeShape>
+            <Entry x:Name="UsernameEntry"
                Placeholder="Username"
                Keyboard="Email"
+               BackgroundColor="White"
                Text="{Binding Username}"
-               Margin="0,20,0,10" />
-
-        <Entry x:Name="PasswordEntry"
+               Margin="0,0,0,0" />
+        </Border>
+        <Label Padding="1"/>
+        <Border StrokeThickness="2"
+        Padding="5"
+        Stroke="White"
+        BackgroundColor="White"
+        HorizontalOptions="FillAndExpand">
+            <Border.StrokeShape>
+                <RoundRectangle CornerRadius="40" />
+            </Border.StrokeShape>
+            <Entry x:Name="PasswordEntry"
                Placeholder="Password"
                IsPassword="True"
+               BackgroundColor="White"
                Text="{Binding Password}"
-               Margin="0,0,0,20" />
-
+               Margin="0,0,0,0" />
+        </Border>
+        <Label Padding="1"/>
         <Button Text="Sign In"
-                BackgroundColor="#708090"
-                TextColor="White"
+                BackgroundColor="White"
+                TextColor="#88b2b8"
                 Clicked="OnLoginClicked"
                 Margin="0,0,0,10" />
 
         <Button Text="Register"
-                BackgroundColor="#708090"
+                BackgroundColor="White"
                 Clicked="OnRegisterClicked"
-                TextColor="White" />
+                TextColor="#88b2b8" />
     </VerticalStackLayout>
 </ContentPage>

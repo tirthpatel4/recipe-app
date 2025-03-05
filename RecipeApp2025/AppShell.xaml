@@ -12,9 +12,9 @@
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions="*,Auto" Padding="10">
-                <Border Stroke="#708090"
+                <Border Stroke="White"
                     StrokeThickness="2"
-                    Background="#708090"
+                    Background="White"
                     Padding="16,8"
                     HorizontalOptions="FillAndExpand"
                     WidthRequest="250">
@@ -22,7 +22,7 @@
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <Label Text="{Binding Title}"
-                       TextColor="White"
+                       TextColor="#88b2b8"
                        FontSize="16"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
