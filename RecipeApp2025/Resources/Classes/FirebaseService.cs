@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using RecipeApp2025.Resources.Classes;
 using Firebase.Database;
 using Firebase.Database.Query;
+using System.Diagnostics;
 
 public class FirebaseService
 {
@@ -23,7 +24,31 @@ public class FirebaseService
 
     public async Task AddUser(User u)
     {
-        await _firebaseClient.Child("users").PostAsync(u);
+        u.Id = Guid.NewGuid().ToString();
+
+        await _firebaseClient.Child("users").Child(u.Id).PutAsync(u);
+    }
+    public async Task AddSavedRecipe(Recipe r, string username)
+    {
+        var verify = await GetUser(username);
+        if (verify != null)
+        {
+            await _firebaseClient.Child("users").Child(verify.Id.ToString()).Child("savedrecipes").PostAsync(r);
+        }
+        
+    }
+
+    public async Task<List<Recipe>> ReturnUserSavedRecipes(string username)
+    {
+        var verify = await GetUser(username);
+        if (verify != null)
+        {
+            return (await _firebaseClient.Child("users").Child(verify.Id.ToString()).Child("savedrecipes")
+            .OnceAsync<Recipe>())
+            .Select(item => item.Object)
+            .ToList();
+        }
+        else return [];
     }
 
     public async Task AddUniqueRecipes(List<Recipe> recipes)
@@ -62,18 +87,22 @@ public class FirebaseService
     }
 
     // Function to remove a recipe by passing a Recipe object
-    public async Task RemoveRecipe(Recipe recipe)
+    public async Task RemoveRecipe(Recipe recipe, string username)
     {
-        // Fetch all recipes from Firebase
-        var recipes = await _firebaseClient.Child("recipes").OnceAsync<Recipe>();
-
-        // Find the matching recipe based on the Name (or any other unique identifier)
-        var recipeToRemove = recipes.FirstOrDefault(r => r.Object.Name == recipe.Name);
-
-        if (recipeToRemove != null)
+        var verify = await GetUser(username);
+        if (verify != null)
         {
-            // Delete the found recipe from Firebase
-            await _firebaseClient.Child("recipes").Child(recipeToRemove.Key).DeleteAsync();
+            // Fetch all recipes from Firebase
+            var recipes = await _firebaseClient.Child("users").Child(verify.Id.ToString()).Child("savedrecipes").OnceAsync<Recipe>();
+
+            // Find the matching recipe based on the Name (or any other unique identifier)
+            var recipeToRemove = recipes.FirstOrDefault(r => r.Object.Name == recipe.Name);
+
+            if (recipeToRemove != null)
+            {
+                // Delete the found recipe from Firebase
+                await _firebaseClient.Child("users").Child(verify.Id.ToString()).Child("savedrecipes").Child(recipeToRemove.Key).DeleteAsync();
+            }
         }
     }
 }

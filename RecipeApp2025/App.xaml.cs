@@ -3,8 +3,6 @@ using System.Reflection;
 using RecipeApp2025.Resources.Classes;
 using System;
 using System.IO;
-using RecipeApp2025.Services;
-
 namespace RecipeApp2025
   
 
@@ -13,17 +11,12 @@ namespace RecipeApp2025
     {
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
-
-        private static FirebaseService db;
-        
-        
-        private static RecipeService recipeService = new();
-
+        public static string CurrentUser { get; set; }
 
         public App()
         {
             InitializeComponent();
-            db = new FirebaseService();
+            CurrentUser = String.Empty;
             LoadData();
 
 
@@ -31,36 +24,22 @@ namespace RecipeApp2025
 
         async void LoadData()
         {
-            SavedRecipes = await db.GetRecipes();
+            //SavedRecipes = await db.GetObjectsAsync();
         }
 
-        public static async void ChangeCurrentRecipe(Recipe r)
+        public static void ChangeCurrentRecipe(Recipe r)
         {
             CurrentRecipe = r;
-            if(CurrentRecipe.Ingredients_List.Count == 0)
-            {
-                Boolean result = await recipeService.GetIngredientsAsync(CurrentRecipe);
-            }
         }
 
         public static async void AddSavedRecipe(Recipe r)
         {
             SavedRecipes.Add(r);
-            await db.AddRecipe(r);
         }
 
         public static async void RemoveSavedRecipe(Recipe r)
         {
             SavedRecipes.Remove(r);
-            await db.RemoveRecipe(r);
-        }    
-
-        
-
-        
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
         }
 
         public static Boolean IsInPortrait()
@@ -81,6 +60,12 @@ namespace RecipeApp2025
                 s.Orientation = StackOrientation.Horizontal;
             }
 
+        }
+
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            return new Window(new AppShell());
         }
     }
 }
