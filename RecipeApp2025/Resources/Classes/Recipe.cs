@@ -23,7 +23,7 @@ namespace RecipeApp2025.Resources.Classes
         public int Num_people_served { get; set; }
         public bool isSaved { get; set; }
 
-        public List<String> steps { get; set; } = new List<string>() { "step 1", "step2", "step3" };
+        public List<String> Steps_List { get; set; } = new List<string>() { "step 1", "step2", "step3" };
         public List<Ingredient> Ingredients_List { get; set; }
         public bool IsIngredientListVisible { get; set; }
         public bool IsStepsListVisible { get; set; }
@@ -53,16 +53,10 @@ namespace RecipeApp2025.Resources.Classes
             Cook_time = 25;
             Prep_time = 20;
             isSaved = false;
-            steps = new List<String>();
+            Steps_List = new List<String>();
             Ingredients_List = new List<Ingredient>();
             IsIngredientListVisible = true;
 
-
-            steps.Add("Remove any fat and gristle from chuck roast; cut into strips ½-inch thick by 2-inches long. Season with ½ teaspoon salt and ½ teaspoon pepper.");
-            steps.Add("Melt butter in a large skillet over medium heat. Add beef and brown quickly.");
-            steps.Add("Push beef to one side of the skillet. Add onions; cook and stir for 3 to 5 minutes, then push to the side with beef.");
-            steps.Add("Stir flour into juices on the empty side of the pan. Pour in beef broth and bring to a boil, stirring constantly. Lower the heat and stir in mustard. Cover and simmer for 1 hour or until the beef is tender.");
-            steps.Add("Five minutes before serving, stir in mushrooms, sour cream, and white wine. Cook until heated through; season with salt and pepper.");
 
 
         }
@@ -87,4 +81,14 @@ namespace RecipeApp2025.Resources.Classes
             Full = full;
         }
     }
+
+    public class Step
+    {
+        public string Text { get; set; }
+        public List<String> Needed_Ingredients { get; set; }
+        public Step(String text)
+        {
+            Text = text;
+            Needed_Ingredients = new List<String>();
+        }
 }
