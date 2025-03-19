@@ -42,7 +42,14 @@ namespace RecipeApp2025
                 Boolean temp = await recipeService.GetIngredientsAsync(r);
                 Debug.WriteLine("LOADED INGREDIENTS" + temp);
             }
+
+            if (CurrentRecipe.Steps_List.Count == 0)
+            {
+                Boolean temp = await recipeService.GetStepsAsync(r);
+                Debug.WriteLine("LOADED STEPS");
+            }
             return true;
+
         }
 
         public static async void AddSavedRecipe(Recipe r)

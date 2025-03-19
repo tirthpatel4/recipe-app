@@ -23,7 +23,7 @@ namespace RecipeApp2025.Resources.Classes
         public int Num_people_served { get; set; }
         public bool isSaved { get; set; }
 
-        public List<String> Steps_List { get; set; } = new List<string>() { "step 1", "step2", "step3" };
+        public List<String> Steps_List { get; set; } = new List<String>();
         public List<Ingredient> Ingredients_List { get; set; }
         public bool IsIngredientListVisible { get; set; }
         public bool IsStepsListVisible { get; set; }
