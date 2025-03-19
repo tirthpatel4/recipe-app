@@ -57,6 +57,7 @@ namespace RecipeApp2025.Services
             var url = $"{BaseUrl}recipes/{id}/information?apiKey={ApiKey}";
             System.Diagnostics.Debug.WriteLine($"{url}");
 
+            Debug.Write("HELLO WORLD\n");
             var response = await client.GetAsync(url);
             Debug.WriteLine($"TEST API Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
 
@@ -93,6 +94,7 @@ namespace RecipeApp2025.Services
 				Debug.WriteLine("INGREDIENTS COUNT "+rec.Ingredients_List.Count.ToString());
 				return true;
             }
+            App.ingLoading.Release();
 			return false;
         }
 

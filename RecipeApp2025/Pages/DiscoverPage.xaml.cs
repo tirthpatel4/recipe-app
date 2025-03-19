@@ -50,7 +50,7 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
     }
     public async void GoToRecipeDetailPage(Recipe r)
     {
-        App.ChangeCurrentRecipe(r);
+        await App.ChangeCurrentRecipe(r);
         await Shell.Current.GoToAsync("/DetailPage");
     }
     private void UpdateRecipes()

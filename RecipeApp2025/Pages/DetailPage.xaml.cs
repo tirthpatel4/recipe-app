@@ -5,6 +5,8 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Platform;
 using RecipeApp2025.Resources.Classes;
 using Syncfusion.Maui.Toolkit.PullToRefresh;
+using System.Threading; 
+
 
 namespace RecipeApp2025.Pages;
 
@@ -19,14 +21,15 @@ public partial class DetailPage : ContentPage
         BindingContext = App.CurrentRecipe;
         /*Set item sources for both lists: ing and stpes*/
 
-       
+        Debug.WriteLine("IN DETAIL PAGE BEFORE ING LOOP");
+        Debug.WriteLine("IN DETAIL PAGE: " + Process.GetCurrentProcess().Id);
         List<string> Ingredients_Text_List = new List<string>();
         for (int i = 0; i < App.CurrentRecipe.Ingredients_List.Count; i++)
         {
             Debug.WriteLine(i);
             Ingredients_Text_List.Add(App.CurrentRecipe.Ingredients_List[i].Full);
         }
-
+        Debug.WriteLine("LOOP DONE !!");
         IngredientsList.ItemsSource = Ingredients_Text_List;
         StepsList.ItemsSource = App.CurrentRecipe.Steps_List;
 
