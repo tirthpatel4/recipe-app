@@ -68,7 +68,8 @@
 
 
             <Grid
-                ColumnDefinitions=".5*, .5*">
+                ColumnDefinitions=".5*, .5*"
+                x:Name="PrepCookTimeGrid">
                 <Label
                        Padding="10,0,10,0"
                        Text="{Binding Prep_time, StringFormat='Prep Time {0}m'}"
@@ -94,7 +95,8 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="40,40,40,40" />
                     </Border.StrokeShape>
-                    <toolkit:Expander WidthRequest="350">
+                    <toolkit:Expander WidthRequest="350"
+                                      x:Name="ingExpander">
                         <toolkit:Expander.Header>
                             <Border
                                 StrokeThickness="0">

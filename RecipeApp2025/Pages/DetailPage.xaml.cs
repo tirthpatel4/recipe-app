@@ -56,7 +56,11 @@ public partial class DetailPage : ContentPage
             ToggleButton.Text = "Save";
         }
 
-
+        /* check that there are valid numbers in the prep time estimates if not, don't display the values */
+        if(App.CurrentRecipe.Prep_time == 0 && App.CurrentRecipe.Cook_time == 0)
+        {
+            PrepCookTimeGrid.IsVisible = false; 
+        }
     }
 
     /*
@@ -101,10 +105,24 @@ public partial class DetailPage : ContentPage
     private void OnSizeChanged(object sender, EventArgs e)
     {
         App.SetStackLayoutOrientation(StepsIngredientsSL);
-
+        SetExpanderProperties();
         
     }
    
+    private void SetExpanderProperties()
+    {
+        if (App.IsInPortrait())
+        {
+            /*THIS MIGHT NEED TO BE CHANGED: WIILL ALWAYS CLOSE INGREDIENTS WHEN FLIPPING TO VERTICAL*/
+            ingExpander.IsExpanded = false;
+            ingExpander.IsEnabled = true;
+        }
+        else
+        {
+            ingExpander.IsExpanded = true;
+            ingExpander.IsEnabled = false;
+        }
+    }
 
     
     
