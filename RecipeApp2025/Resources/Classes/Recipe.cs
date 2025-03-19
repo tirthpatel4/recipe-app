@@ -91,4 +91,5 @@ namespace RecipeApp2025.Resources.Classes
             Text = text;
             Needed_Ingredients = new List<String>();
         }
-}
+    }
+}   

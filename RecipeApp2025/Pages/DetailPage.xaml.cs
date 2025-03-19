@@ -28,7 +28,7 @@ public partial class DetailPage : ContentPage
         }
 
         IngredientsList.ItemsSource = Ingredients_Text_List;
-        StepsList.ItemsSource = App.CurrentRecipe.steps;
+        StepsList.ItemsSource = App.CurrentRecipe.Steps_List;
 
         /* Set width of Steps/Ingredients grids based on width of screen */
         
@@ -38,7 +38,7 @@ public partial class DetailPage : ContentPage
 
         //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
         //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
-        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.steps.Count;
+        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.Steps_List.Count;
 
 
 
