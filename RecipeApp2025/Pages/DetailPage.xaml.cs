@@ -5,9 +5,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Platform;
 using RecipeApp2025.Resources.Classes;
 using Syncfusion.Maui.Toolkit.PullToRefresh;
-using System.Threading; 
-
-
+using System.Threading;
 namespace RecipeApp2025.Pages;
 
 public partial class DetailPage : ContentPage
@@ -60,6 +58,31 @@ public partial class DetailPage : ContentPage
         if(App.CurrentRecipe.Prep_time == 0 && App.CurrentRecipe.Cook_time == 0)
         {
             PrepCookTimeGrid.IsVisible = false; 
+        }
+    }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        Debug.WriteLine(App.CurrentRecipe.Name);
+        if (App.CurrentUser.Length > 0)
+        {
+            FirebaseService fs = new FirebaseService();
+            Task<User> u = fs.GetUser(App.CurrentUser);
+            ToggleButton.IsEnabled = true;
+            isSaved = App.CurrentRecipe.isSaved;
+            if (App.CurrentRecipe.isSaved)
+            {
+                ToggleButton.Text = "Unsave";
+            }
+            else
+            {
+                ToggleButton.Text = "Save";
+            }
+        }
+        else
+        {
+            ToggleButton.IsEnabled = false;
         }
     }
 
