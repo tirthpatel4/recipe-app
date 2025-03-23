@@ -68,7 +68,8 @@
 
 
             <Grid
-                ColumnDefinitions=".5*, .5*">
+                ColumnDefinitions=".5*, .5*"
+                x:Name="PrepCookTimeGrid">
                 <Label
                        Padding="10,0,10,0"
                        Text="{Binding Prep_time, StringFormat='Prep Time {0}m'}"
@@ -94,16 +95,18 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="40,40,40,40" />
                     </Border.StrokeShape>
-                    <toolkit:Expander WidthRequest="350">
+                    <toolkit:Expander WidthRequest="350"
+                                      x:Name="ingExpander">
                         <toolkit:Expander.Header>
                             <Border
                                 StrokeThickness="0">
                                 <Label Text="Ingredients"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
-                                   Margin="40, 10, 10, 10"
-                                   WidthRequest="410"
-                                   HorizontalOptions="StartAndExpand"
+                                   Padding="40, 20, 10, 20"
+                                  
+                                   VerticalTextAlignment="Center"
+                                   HorizontalOptions="Start"
                                    />
                                 
                             </Border>
@@ -122,9 +125,9 @@
                                         <ViewCell>
                                             <StackLayout Padding="10">
                                                 <Label Text="{Binding}" 
-                                        LineBreakMode="WordWrap" 
-                                        FontSize="16" 
-                                     VerticalOptions="CenterAndExpand" />
+                                                    LineBreakMode="WordWrap" 
+                                                    FontSize="16" 
+                                                    VerticalOptions="CenterAndExpand" />   
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>

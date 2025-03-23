@@ -7,8 +7,10 @@ using Syncfusion.Maui.Toolkit.PullToRefresh;
 namespace RecipeApp2025.Services
 {
 	public class RecipeService
-	{
-		private const string ApiKey = "ASK QUINTON";
+    {
+        //private const string ApiKey = "60bd29f7cfc54795868a9a053cb447a3";
+        private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
+
 
         private const string BaseUrl = "https://api.spoonacular.com/";
 		private const string STANDARD_UNITS = "us";
@@ -29,7 +31,7 @@ namespace RecipeApp2025.Services
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var json = JObject.Parse(content);
-
+                Debug.WriteLine(json);
                 var recipes = json["results"]?.Select(r => new Recipe
                 {
                     Id = (int)r["id"],
@@ -57,6 +59,7 @@ namespace RecipeApp2025.Services
             var url = $"{BaseUrl}recipes/{id}/information?apiKey={ApiKey}";
             System.Diagnostics.Debug.WriteLine($"{url}");
 
+            Debug.Write("HELLO WORLD\n");
             var response = await client.GetAsync(url);
             Debug.WriteLine($"TEST API Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
 
@@ -96,5 +99,57 @@ namespace RecipeApp2025.Services
 			return false;
         }
 
+    
+        /* pulls in steps data from api */
+    public async Task<Boolean> GetStepsAsync(Recipe rec)
+        {
+            int id = rec.Id;
+            //System.Diagnostics.Debug.WriteLine($"before call {id}");
+            var url = $"{BaseUrl}recipes/{id}/analyzedInstructions?apiKey={ApiKey}";
+            //System.Diagnostics.Debug.WriteLine($"{url}");
+
+            //Debug.Write("HELLO WORLD\n");
+            var response = await client.GetAsync(url);
+            /*prints out result of api access */ 
+            Debug.WriteLine($"TEST API Error: {response.StatusCode} - {await response.Content.ReadAsStringAsync()}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                System.Diagnostics.Debug.WriteLine($"success");
+
+                var content = await response.Content.ReadAsStringAsync();
+                var json = JToken.Parse(content);
+
+                Debug.WriteLine(json.GetType());
+                Debug.WriteLine(json[0].GetType());
+                Debug.WriteLine(json[0]["steps"].GetType());
+                List<String> steps = new List<String>();
+
+                /* json is a Jarray of Jobjects, each containing a Jarray. THis is because recipes might need to make multiple components, like a sauce */ 
+                foreach (JObject o in json)
+                {
+                    string name = (String)o["name"];
+                    if(!(name == null || name.Length == 0))
+                    {
+                        name = "- " + name + " -";
+                        steps.Add(name);
+                    }
+
+                    foreach (JObject s in o["steps"])
+                    {
+                        steps.Add(s["number"] + ")   " + s["step"]);
+                    }
+
+
+                }
+                rec.Steps_List.AddRange(steps);
+                Debug.WriteLine("STEPS COUNT " + rec.Steps_List.Count.ToString());
+                return true;
+            }
+            return false;
+        }
+
     }
+
+
 }

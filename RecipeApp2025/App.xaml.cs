@@ -3,12 +3,17 @@ using System.Reflection;
 using RecipeApp2025.Resources.Classes;
 using System;
 using System.IO;
+using RecipeApp2025.Services;
+using System.Diagnostics;
+using System.Threading;
+using System.ComponentModel;
 namespace RecipeApp2025
   
 
 {
     public partial class App : Application
     {
+        private static RecipeService recipeService = new();
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
         public static string CurrentUser { get; set; }
@@ -27,9 +32,24 @@ namespace RecipeApp2025
             //SavedRecipes = await db.GetObjectsAsync();
         }
 
-        public static void ChangeCurrentRecipe(Recipe r)
+        public static async Task<Boolean> ChangeCurrentRecipe(Recipe r)
         {
+            Debug.WriteLine("IN CURRENT RECIPE");
             CurrentRecipe = r;
+            Debug.WriteLine("IN app: " + Process.GetCurrentProcess().Id);
+            if(CurrentRecipe.Ingredients_List.Count == 0)
+            {
+                Boolean temp = await recipeService.GetIngredientsAsync(r);
+                Debug.WriteLine("LOADED INGREDIENTS" + temp);
+            }
+
+            if (CurrentRecipe.Steps_List.Count == 0)
+            {
+                Boolean temp = await recipeService.GetStepsAsync(r);
+                Debug.WriteLine("LOADED STEPS");
+            }
+            return true;
+
         }
 
         public static async void AddSavedRecipe(Recipe r)

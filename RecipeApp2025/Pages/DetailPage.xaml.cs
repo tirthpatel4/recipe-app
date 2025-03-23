@@ -2,13 +2,16 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows.Input;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Maui.Platform;
 using RecipeApp2025.Resources.Classes;
+using Syncfusion.Maui.Toolkit.PullToRefresh;
+using System.Threading; 
+
 
 namespace RecipeApp2025.Pages;
 
 public partial class DetailPage : ContentPage
 {
-
     private bool isSaved = App.CurrentRecipe.isSaved;
     public ICommand ToggleIngListCommand { get; }
     public DetailPage()
@@ -18,26 +21,27 @@ public partial class DetailPage : ContentPage
         BindingContext = App.CurrentRecipe;
         /*Set item sources for both lists: ing and stpes*/
 
-
+        Debug.WriteLine("IN DETAIL PAGE BEFORE ING LOOP");
+        Debug.WriteLine("IN DETAIL PAGE: " + Process.GetCurrentProcess().Id);
         List<string> Ingredients_Text_List = new List<string>();
         for (int i = 0; i < App.CurrentRecipe.Ingredients_List.Count; i++)
         {
             Debug.WriteLine(i);
             Ingredients_Text_List.Add(App.CurrentRecipe.Ingredients_List[i].Full);
         }
-
+        Debug.WriteLine("LOOP DONE !!");
         IngredientsList.ItemsSource = Ingredients_Text_List;
-        StepsList.ItemsSource = App.CurrentRecipe.steps;
+        StepsList.ItemsSource = App.CurrentRecipe.Steps_List;
 
         /* Set width of Steps/Ingredients grids based on width of screen */
-
+        
         /*behavior for rotating */
-        //this.SizeChanged += OnSizeChanged;
+        this.SizeChanged += OnSizeChanged;
 
 
         //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
         //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
-        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.steps.Count;
+        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.Steps_List.Count;
 
 
 
@@ -51,48 +55,112 @@ public partial class DetailPage : ContentPage
         {
             ToggleButton.Text = "Save";
         }
+
+        /* check that there are valid numbers in the prep time estimates if not, don't display the values */
+        if(App.CurrentRecipe.Prep_time == 0 && App.CurrentRecipe.Cook_time == 0)
+        {
+            PrepCookTimeGrid.IsVisible = false; 
+        }
     }
 
-    protected override void OnAppearing()
+    /*
+    private String GenerateIngredientText(Ingredient ing)
     {
-        base.OnAppearing();
-        Debug.WriteLine(App.CurrentRecipe.Name);
-        if (App.CurrentUser.Length > 0)
+        string result = "";
+        string a = "";
+        string n = "";
+        string u = "";
+
+        // if whole number
+        if (((double)((int)ing.Amount)) == ing.Amount)
         {
-            FirebaseService fs = new FirebaseService();
-            Task<User> u = fs.GetUser(App.CurrentUser);
-            ToggleButton.IsEnabled = true;
-            isSaved = App.CurrentRecipe.isSaved;
-            if (App.CurrentRecipe.isSaved)
-            {
-                ToggleButton.Text = "Unsave";
-            }
-            else
-            {
-                ToggleButton.Text = "Save";
-            }
+            a = ((double)((int)ing.Amount)).ToString();
         }
         else
         {
-            ToggleButton.IsEnabled = false;
+            a = ing.Amount.ToString();
+        }
+
+
+        result += a;
+        n = ing.Name;
+        if (ing.Amount > 1.0)
+        {
+            n += "s";
+        }
+        //if no units ie "15 apples" 
+        if(ing.Unit != null && ing.Unit.Length > 0){
+            result = result + " " + n;
+        }
+        else
+        {
+            //units ie "3 tbs of sugar"
+            result = result + " " + u + " of " + n;
+        }
+
+        return result;
+
+
+    } */
+    private void OnSizeChanged(object sender, EventArgs e)
+    {
+        App.SetStackLayoutOrientation(StepsIngredientsSL);
+        SetExpanderProperties();
+        
+    }
+   
+    private void SetExpanderProperties()
+    {
+        if (App.IsInPortrait())
+        {
+            /*THIS MIGHT NEED TO BE CHANGED: WIILL ALWAYS CLOSE INGREDIENTS WHEN FLIPPING TO VERTICAL*/
+            ingExpander.IsExpanded = false;
+            ingExpander.IsEnabled = true;
+        }
+        else
+        {
+            ingExpander.IsExpanded = true;
+            ingExpander.IsEnabled = false;
+        }
+    }
+
+    
+    
+    private void SetGridWidths(Grid g)
+    {
+        if (App.IsInPortrait())
+        {
+            //g.WidthRequest = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Width;
+            g.WidthRequest = 350;
+        }
+        else
+        {
+            //g.WidthRequest = Microsoft.Maui.Devices.DeviceDisplay.MainDisplayInfo.Width / 2;
+            g.WidthRequest = 300;
+
         }
     }
 
     private void OnToggleButtonClicked(object sender, EventArgs e)
     {
-        FirebaseService fs = new FirebaseService();
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";
         if (isSaved) {
-            Debug.WriteLine("Adding Recipe");
-            fs.AddSavedRecipe(App.CurrentRecipe, App.CurrentUser);
+            App.AddSavedRecipe(App.CurrentRecipe);
         }
         else
         {
-            Debug.WriteLine("Removing Recipe");
-            fs.RemoveRecipe(App.CurrentRecipe, App.CurrentUser);
+            App.RemoveSavedRecipe(App.CurrentRecipe);
         }
+
+
         App.CurrentRecipe.isSaved = isSaved;    
     }
 
+    private void IngredientsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+
+    }
+
+   
 }
