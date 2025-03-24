@@ -19,6 +19,7 @@ namespace RecipeApp2025
             Routing.RegisterRoute(nameof(DiscoverPage), typeof(DiscoverPage));
             Routing.RegisterRoute(nameof(SavedRecipesPage), typeof(SavedRecipesPage));
             Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
+            Routing.RegisterRoute(nameof(FilterPage), typeof(FilterPage));
         }
 
         public static async Task DisplaySnackbarAsync(string message)

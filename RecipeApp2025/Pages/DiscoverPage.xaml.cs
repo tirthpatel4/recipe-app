@@ -81,10 +81,16 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
             {
                 Recipes.Clear();
             }
-
-            foreach (var recipe in recipes)
+            if (recipes is not null)
             {
-                Recipes.Add(recipe);
+                foreach (var recipe in recipes)
+                {
+                    if (_keyword != String.Empty && recipe.Name.ToLower().Contains(_keyword))
+                    {
+                        Recipes.Add(recipe);
+                    }
+                    else if (_keyword == String.Empty) Recipes.Add(recipe);
+                }
             }
 
             pageNumber++;
@@ -121,7 +127,11 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
             {
                 foreach (var recipe in newRecipes)
                 {
-                    Recipes.Add(recipe); // Use the Recipes property directly
+                    if (_keyword != String.Empty && recipe.Name.ToLower().Contains(_keyword))
+                    {
+                        Recipes.Add(recipe); // Use the Recipes property directly
+                    }
+                    else if (_keyword == String.Empty) Recipes.Add(recipe);
                 }
 
                 pageNumber++;

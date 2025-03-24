@@ -89,7 +89,15 @@
                        HorizontalOptions="FillAndExpand"
                        HeightRequest="40"/>
             </Border>
-
+            <Button Text="FLR"
+        TextColor="#88b2b8"
+        BackgroundColor="White"
+        FontFamily="Poppins"
+        CornerRadius="10"
+        Clicked="OnFilterButtonClicked"
+        HorizontalOptions="End"
+        HeightRequest="40"
+        WidthRequest="50"/>
             <Button Text="Go"
                     TextColor="#88b2b8"
                     BackgroundColor="White"

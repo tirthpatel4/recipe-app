@@ -166,18 +166,20 @@ public partial class DetailPage : ContentPage
 
     private void OnToggleButtonClicked(object sender, EventArgs e)
     {
+        FirebaseService fs = new FirebaseService();
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";
-        if (isSaved) {
-            App.AddSavedRecipe(App.CurrentRecipe);
+        if (isSaved)
+        {
+            Debug.WriteLine("Adding Recipe");
+            fs.AddSavedRecipe(App.CurrentRecipe, App.CurrentUser);
         }
         else
         {
-            App.RemoveSavedRecipe(App.CurrentRecipe);
+            Debug.WriteLine("Removing Recipe");
+            fs.RemoveRecipe(App.CurrentRecipe, App.CurrentUser);
         }
-
-
-        App.CurrentRecipe.isSaved = isSaved;    
+        App.CurrentRecipe.isSaved = isSaved;
     }
 
     private void IngredientsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)
