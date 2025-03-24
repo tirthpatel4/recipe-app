@@ -28,6 +28,8 @@ namespace RecipeApp2025
             builder.Services.AddSingleton(new FirebaseClient("https://recipeapp2025-default-rtdb.firebaseio.com/"));
 
             return builder.Build();
+
+            
         }
     }
 }

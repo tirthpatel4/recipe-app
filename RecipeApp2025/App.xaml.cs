@@ -7,6 +7,7 @@ using RecipeApp2025.Services;
 using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
+using RecipeApp2025.Resources.Styles;
 namespace RecipeApp2025
   
 
@@ -17,19 +18,28 @@ namespace RecipeApp2025
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
         public static string CurrentUser { get; set; }
-
+        public static bool DarkModeIsOn { get; set;  }
         public App()
         {
             InitializeComponent();
             CurrentUser = String.Empty;
             LoadData();
 
+            /* change later */
+            DarkModeIsOn = false;
+            SwitchTheme(DarkModeIsOn);
 
         }
 
         async void LoadData()
         {
             //SavedRecipes = await db.GetObjectsAsync();
+        }
+        private void SwitchTheme(bool isDarkMode)
+        {
+            var theme = isDarkMode ? (ResourceDictionary)new DarkTheme() : (ResourceDictionary)new LightTheme();
+            Application.Current.Resources.MergedDictionaries.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(theme);
         }
 
         public static async Task<Boolean> ChangeCurrentRecipe(Recipe r)

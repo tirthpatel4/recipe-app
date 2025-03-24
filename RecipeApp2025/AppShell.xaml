@@ -6,23 +6,30 @@
     xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
     xmlns:pages="clr-namespace:RecipeApp2025.Pages"
     Shell.FlyoutBehavior="Flyout"
-    FlyoutBackground="White"
+    FlyoutBackground="{DynamicResource BackgroundColor}"
+    Shell.BackgroundColor="{DynamicResource PrimaryColor}"
+    Shell.ForegroundColor="{DynamicResource TextColor}"
+    Shell.TitleColor="{DynamicResource TextColor}"
     Title="">
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid ColumnDefinitions="*,Auto" Padding="10">
-                <Border Stroke="White"
+            <Grid ColumnDefinitions="*,Auto" 
+                  
+                  Padding="15"
+                  >
+                <Border 
                     StrokeThickness="2"
-                    Background="White"
+                    Background="{DynamicResource BackgroundColor}"
                     Padding="16,8"
+                    HeightRequest="50"
                     HorizontalOptions="FillAndExpand"
                     WidthRequest="250">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <Label Text="{Binding Title}"
-                       TextColor="#88b2b8"
+                       TextColor="{DynamicResource TextColor}"
                        FontSize="16"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>

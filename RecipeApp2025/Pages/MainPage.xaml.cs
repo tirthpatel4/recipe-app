@@ -12,6 +12,8 @@ namespace RecipeApp2025.Pages
             BindingContext = this;
             this.SizeChanged += OnSizeChanged;
             _keyword = string.Empty;
+            AdjustSizing();
+           
         }
         protected override void OnAppearing()
         {
@@ -31,17 +33,34 @@ namespace RecipeApp2025.Pages
         private void OnSizeChanged(object sender, EventArgs e)
         {
             SetStackLayoutOrientation();
+            AdjustSizing();
         }
 
+        private void AdjustSizing()
+        {
+            if (App.IsInPortrait())
+            {
+                MainGrid.RowSpacing = 40;
+                DiscoverButton.HeightRequest = 120;
+                SavedRecipesButton.HeightRequest = 120;
+
+            }
+            else
+            {
+                MainGrid.RowSpacing = 15;
+                DiscoverButton.HeightRequest = 100;
+                SavedRecipesButton.HeightRequest = 100;
+            }
+        }
         private void SetStackLayoutOrientation()
         {
             if (IsInPortrait())
             {
-                //ButtonStackLayout.Orientation = StackOrientation.Vertical;
+                ButtonStackLayout.Orientation = StackOrientation.Vertical;
             }
-            else
-            {
-                //ButtonStackLayout.Orientation = StackOrientation.Horizontal;
+            else { 
+           
+               ButtonStackLayout.Orientation = StackOrientation.Horizontal;
             }
 
         }
