@@ -10,8 +10,8 @@
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{DynamicResource PrimaryColor}" StatusBarStyle="LightContent" />
     </ContentPage.Behaviors>
-
-    <Grid RowDefinitions="auto, auto, auto"
+    
+        <Grid RowDefinitions="auto, auto, auto"
           ColumnDefinitions="7*, 3*"
           Padding="17"
           RowSpacing="60"
@@ -69,8 +69,9 @@
                  CornerRadius="10"
                  Clicked="OnSearchButtonClicked"
                  HorizontalOptions="End"
+                 
                  HeightRequest="60"
-                 WidthRequest="100"/>
+                 WidthRequest="80"/>
         </StackLayout>
 
         <StackLayout Grid.Row="2"
@@ -109,4 +110,5 @@
 
 
     </Grid>
+
 </ContentPage>

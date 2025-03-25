@@ -39,7 +39,7 @@ public partial class DetailPage : ContentPage
 
         //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
         //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
-        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.Steps_List.Count;
+        //StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.Steps_List.Count;
 
 
 
