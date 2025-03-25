@@ -8,7 +8,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using RecipeApp2025;
 using System.Windows.Input;
 using RecipeApp2025.Services;
-
 namespace RecipeApp2025.Pages;
 
 [QueryProperty(nameof(Keyword), "keyword")]

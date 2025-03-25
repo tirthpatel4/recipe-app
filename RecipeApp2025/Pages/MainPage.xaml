@@ -12,9 +12,9 @@
     </ContentPage.Behaviors>
 
     <Grid RowDefinitions="auto, auto, auto"
-          ColumnDefinitions="7*, 2*"
+          ColumnDefinitions="7*, 3*"
           Padding="17"
-          RowSpacing="50"
+          RowSpacing="60"
           ColumnSpacing="10"
           x:Name="MainGrid">
 
@@ -70,7 +70,7 @@
                  Clicked="OnSearchButtonClicked"
                  HorizontalOptions="End"
                  HeightRequest="60"
-                 WidthRequest="60"/>
+                 WidthRequest="100"/>
         </StackLayout>
 
         <StackLayout Grid.Row="2"
@@ -87,7 +87,7 @@
                     FontSize="30"
                     FontFamily="Poppins"
                     FontAttributes="Bold"
-                    HeightRequest="120"
+                    HeightRequest="130"
                     CornerRadius="20"
                     Clicked="OnDiscoverButtonClicked"
                     HorizontalOptions="FillAndExpand"/>
@@ -98,7 +98,7 @@
                     FontAttributes="Bold"
                     FontFamily="Poppins"
                     CornerRadius="20"
-                    HeightRequest="120"
+                    HeightRequest="130"
                     FontSize="30"
                     Clicked="OnSavedRecipesButtonClicked"
                     IsEnabled="False"

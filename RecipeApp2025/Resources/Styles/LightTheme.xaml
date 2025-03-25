@@ -7,7 +7,7 @@
 
     <Color x:Key="BackgroundColor">#F1FAF0</Color>
     <Color x:Key="PrimaryColor">#D0E0D0</Color>
-    <Color x:Key="AccentColor">#5CD6D2</Color>
+    <Color x:Key="AccentColor">#4DC9C0</Color>
     <Color x:Key="TextColor">#0F4C4A</Color>
 
 

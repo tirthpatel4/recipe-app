@@ -16,8 +16,7 @@
 
                 <Image Source="{Binding Large_img_url}"
                         VerticalOptions="Fill"
-                        WidthRequest="400"
-                        />
+                        WidthRequest="400"/>
 
                 <Grid
                     RowDefinitions="*, *">
