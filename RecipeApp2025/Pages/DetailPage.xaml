@@ -13,11 +13,12 @@
             VerticalOptions="Start">
 
             <VerticalStackLayout
-                Spacing="-37">
+                Spacing="-50">
 
                 <Image Source="{Binding Large_img_url}"
-                        VerticalOptions="Fill"
-                        WidthRequest="400"/>
+                        VerticalOptions="CenterAndExpand"
+                        WidthRequest="400"
+                        />
 
                 <Grid
                     RowDefinitions="*, *">
@@ -25,6 +26,8 @@
                        Text="{Binding Name}"
                        HorizontalOptions="Center"
                        FontSize="Title"
+                       FontAttributes="Bold"
+                       Padding="0, 30, 0, 0"
                        TextColor="{DynamicResource TextColor}"
                        HorizontalTextAlignment="Center"
                        />
