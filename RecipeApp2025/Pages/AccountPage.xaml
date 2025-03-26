@@ -4,29 +4,33 @@
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RecipeApp2025.Pages.AccountPage"
-             BackgroundColor="#0bdc84">
+             BackgroundColor="{DynamicResource BackgroundColor}">
 
-    <VerticalStackLayout Padding="10">
+    <VerticalStackLayout Padding="10"
+                         Margin="5, 20, 5, 5"
+                         Spacing="0">
         <Border StrokeThickness="2"
         Padding="5"
-        Stroke="White"
-        BackgroundColor="White"
-        HorizontalOptions="FillAndExpand">
+        Stroke="Transparent"
+        BackgroundColor="{DynamicResource PrimaryColor}"
+        HorizontalOptions="FillAndExpand"
+                Margin="0, 0, 0, 10">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="40" />
             </Border.StrokeShape>
             <Entry x:Name="UsernameEntry"
                Placeholder="Username"
                Keyboard="Email"
-               BackgroundColor="White"
+               TextColor="{DynamicResource TextColor}"
+               BackgroundColor="Transparent"
                Text="{Binding Username}"
-               Margin="0,0,0,0" />
+               Margin="10,0,10,0" />
         </Border>
-        <Label Padding="1"/>
         <Border StrokeThickness="2"
         Padding="5"
-        Stroke="White"
-        BackgroundColor="White"
+        Margin="0, 0, 0, 10"
+        Stroke="Transparent"
+        BackgroundColor="{DynamicResource PrimaryColor}"
         HorizontalOptions="FillAndExpand">
             <Border.StrokeShape>
                 <RoundRectangle CornerRadius="40" />
@@ -34,20 +38,25 @@
             <Entry x:Name="PasswordEntry"
                Placeholder="Password"
                IsPassword="True"
-               BackgroundColor="White"
+               TextColor="{DynamicResource TextColor}"
+               BackgroundColor="Transparent"
                Text="{Binding Password}"
-               Margin="0,0,0,0" />
+               Margin="10,0,10,0" />
         </Border>
         <Label Padding="1"/>
         <Button Text="Sign In"
-                BackgroundColor="White"
-                TextColor="#88b2b8"
+                BackgroundColor="{DynamicResource AccentColor}"
+                TextColor="{DynamicResource TextColor}"
                 Clicked="OnLoginClicked"
-                Margin="0,0,0,10" />
+                WidthRequest="300"
+                Margin="0,0,0,10" 
+                CornerRadius="5"/>
 
         <Button Text="Register"
-                BackgroundColor="White"
+                BackgroundColor="{DynamicResource AccentColor}"
+                TextColor="{DynamicResource TextColor}"
                 Clicked="OnRegisterClicked"
-                TextColor="#88b2b8" />
+                WidthRequest="300"
+                CornerRadius="5"/>
     </VerticalStackLayout>
 </ContentPage>

@@ -35,7 +35,6 @@ public class FirebaseService
         {
             await _firebaseClient.Child("users").Child(verify.Id.ToString()).Child("savedrecipes").PostAsync(r);
         }
-        
     }
 
     public async Task<List<Recipe>> ReturnUserSavedRecipes(string username)

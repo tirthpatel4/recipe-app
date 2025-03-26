@@ -35,11 +35,12 @@ namespace RecipeApp2025
         {
             //SavedRecipes = await db.GetObjectsAsync();
         }
-        private void SwitchTheme(bool isDarkMode)
+        public static void SwitchTheme(bool isDarkMode)
         {
             var theme = isDarkMode ? (ResourceDictionary)new DarkTheme() : (ResourceDictionary)new LightTheme();
             Application.Current.Resources.MergedDictionaries.Clear();
             Application.Current.Resources.MergedDictionaries.Add(theme);
+            Application.Current.MainPage.Handler?.UpdateValue(nameof(VisualElement.BackgroundColor));
         }
 
         public static async Task<Boolean> ChangeCurrentRecipe(Recipe r)

@@ -3,44 +3,55 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="RecipeApp2025.Pages.SettingsPage">
+             x:Class="RecipeApp2025.Pages.SettingsPage"
+             BackgroundColor="{DynamicResource BackgroundColor}">
 
-    <VerticalStackLayout Padding ="20">
-        <Grid ColumnDefinitions=".9*, .2*"
+    <VerticalStackLayout Padding ="10">
+        <Grid
               RowDefinitions="auto, auto, auto, auto"
-               RowSpacing="20"
-               Padding="20">
-            <Label Text="This is a possible setting"
-                   Grid.Row="0"
-                   Grid.Column="0"
-                   />
-            <CheckBox Grid.Column="1"
-                         Grid.Row="0"
-                         />
+              RowSpacing="10"
+              Padding="10"
+            Grid.Row="0">
+            <Label
+                Margin="0, 0, 0, 5"
+                TextColor="{DynamicResource TextColor}"
+                FontAttributes="Bold"
+                FontSize="Medium">
+                App Styling
+            </Label>
+            <Picker x:Name="lightdarkpicker"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    Grid.Row="1"
+                    Title="Theme"
+                    TextColor="{DynamicResource TextColor}"
+                    SelectedIndexChanged="OnThemePickerSelectedIndexChanged">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Light</x:String>
+                        <x:String>Dark</x:String>
+                        <x:String>System Default</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
-            <Label Text="This is a possible setting"
-                   Grid.Row="1"
-                   Grid.Column="0"
-                   />
-            <CheckBox Grid.Column="1"
-                 Grid.Row="1"
-                 />
-            <Label Text="This is a possible setting"
-        Grid.Row="2"
-        Grid.Column="0"
-        />
-            <CheckBox Grid.Column="1"
-              Grid.Row="2"
-              />
-            <Label Text="This is a possible setting"
-                Grid.Row="3"
-                Grid.Column="0"
-             />
-            <CheckBox Grid.Column="1"
-     Grid.Row="3"
-      />
+            <Picker x:Name="colorpicker"
+            Grid.Row="2"
+            Title="App Color"
+            
+            TextColor="{DynamicResource TextColor}"
+            TitleColor="{DynamicResource TextColor}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    
+            >
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Blue</x:String>
+                        <x:String>Orange</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
 
-
+      
         </Grid>
 
     </VerticalStackLayout>

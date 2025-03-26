@@ -5,10 +5,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipeApp2025.Resources.Styles.DarkTheme">
 
-    <Color x:Key="BackgroundColor">#F1FAF0</Color>
-    <Color x:Key="PrimaryColor">#D0E0D0</Color>
-    <Color x:Key="AccentColor">#5CD6D2</Color>
-    <Color x:Key="TextColor">#0F4C4A</Color>
+    <Color x:Key="BackgroundColor">#0C1611</Color>
+    <Color x:Key="PrimaryColor">#4E5E4E</Color>
+    <!-- Warm brown-tan, subtle contrast -->
+    <Color x:Key="AccentColor">#3BA79F</Color>
+    <!-- Darkened teal for better contrast -->
+    <Color x:Key="TextColor">#E3D9CF</Color>
+    <!-- Soft beige, clear readability -->
 
 
     <Style x:Key="ButtonStyle" TargetType="Button">

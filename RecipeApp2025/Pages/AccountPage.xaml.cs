@@ -43,6 +43,7 @@ public partial class AccountPage : ContentPage
                 {
                     Username = _username,
                     Password = _password
+              
                 };
                 await _firebaseService.AddUser(user);
                 await DisplayAlert("Success", "User registered successfully!", "OK");
