@@ -62,8 +62,6 @@
     FontAttributes="Bold"
     FontFamily="Poppins"/>
         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <CheckBox VerticalOptions="CenterAndExpand"
-            HorizontalOptions="CenterAndExpand"/>
             <Label Text="Protein "
          VerticalOptions="Center"
          HorizontalOptions="CenterAndExpand"
@@ -79,8 +77,6 @@
             </Picker>
         </StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <CheckBox VerticalOptions="CenterAndExpand"
-HorizontalOptions="CenterAndExpand"/>
             <Label Text="Vegetable "
  VerticalOptions="Center"
  HorizontalOptions="CenterAndExpand"

@@ -8,8 +8,8 @@ namespace RecipeApp2025.Services
 {
 	public class RecipeService
     {
-        private const string ApiKey = "60bd29f7cfc54795868a9a053cb447a3";
-        //private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
+        //private const string ApiKey = "60bd29f7cfc54795868a9a053cb447a3";
+        private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
 
 
         private const string BaseUrl = "https://api.spoonacular.com/";
@@ -22,16 +22,20 @@ namespace RecipeApp2025.Services
 			client = new HttpClient();
 		}
 
-        public async Task<List<Recipe>> GetRecipesAsync(int pageNumber)
+        public async Task<List<Recipe>> GetRecipesAsync(string keyword)
         {
-            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&page={pageNumber}";
+            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=random";
+            if (keyword != String.Empty)
+            {
+                url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity";
+            }
             var response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var json = JObject.Parse(content);
-                Debug.WriteLine(json);
+                //Debug.WriteLine(json);
                 var recipes = json["results"]?.Select(r => new Recipe
                 {
                     Id = (int)r["id"],
