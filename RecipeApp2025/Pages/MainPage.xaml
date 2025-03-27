@@ -6,6 +6,7 @@
              x:Class="RecipeApp2025.Pages.MainPage"
              Title="Home"
              BackgroundColor="{DynamicResource BackgroundColor}"
+            
              >
     <ContentPage.Behaviors>
         <toolkit:StatusBarBehavior StatusBarColor="{DynamicResource PrimaryColor}" StatusBarStyle="LightContent" />
@@ -41,7 +42,6 @@
 
             <Border StrokeThickness="2"
                 Padding="5"
-                
                 BackgroundColor="{DynamicResource PrimaryColor}"
                 HorizontalOptions="FillAndExpand">
                 
@@ -51,20 +51,22 @@
 
                 <Entry x:Name="KeywordEntry"
                     Placeholder="Search for Recipes"
-                    PlaceholderColor="{DynamicResource TextColor}"
+                    BackgroundColor="Transparent"
+                       
                     FontAttributes="Italic"
                     Text="{Binding Keyword}"
                     TextColor="{DynamicResource TextColor}"
                     ClearButtonVisibility="WhileEditing"
                     IsTextPredictionEnabled="False"
-                      
+                    FontFamily="Poppins"
                     HorizontalOptions="FillAndExpand"
                     HeightRequest="40"/>
                 
             </Border>
 
             <Button Text="Go"
-                 Style="{DynamicResource ButtonStyle}"
+                 BackgroundColor="{DynamicResource AccentColor}"
+                 TextColor="{DynamicResource TextColor}"
                  FontFamily="Poppins"
                  CornerRadius="10"
                  Clicked="OnSearchButtonClicked"
@@ -83,7 +85,8 @@
                      x:Name="ButtonStackLayout">
 
             <Button x:Name="DiscoverButton"
-                    Style="{DynamicResource ButtonStyle}"
+                    BackgroundColor="{DynamicResource AccentColor}"
+                    TextColor="{DynamicResource TextColor}"
                     Text="Discover"
                     FontSize="30"
                     FontFamily="Poppins"
@@ -94,7 +97,8 @@
                     HorizontalOptions="FillAndExpand"/>
 
             <Button x:Name="SavedRecipesButton"
-                    Style="{DynamicResource ButtonStyle}"
+                    BackgroundColor="{DynamicResource AccentColor}"
+                    TextColor="{DynamicResource TextColor}"
                     Text="Saved Recipes"
                     FontAttributes="Bold"
                     FontFamily="Poppins"

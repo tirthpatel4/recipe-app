@@ -13,6 +13,7 @@
         Padding="5"
         Stroke="Transparent"
         BackgroundColor="{DynamicResource PrimaryColor}"
+        
         HorizontalOptions="FillAndExpand"
                 Margin="0, 0, 0, 10">
             <Border.StrokeShape>
@@ -22,6 +23,8 @@
                Placeholder="Username"
                Keyboard="Email"
                TextColor="{DynamicResource TextColor}"
+               PlaceholderColor="{DynamicResource TextColor}"
+               
                BackgroundColor="Transparent"
                Text="{Binding Username}"
                Margin="10,0,10,0" />
@@ -41,6 +44,7 @@
                TextColor="{DynamicResource TextColor}"
                BackgroundColor="Transparent"
                Text="{Binding Password}"
+               PlaceholderColor="{DynamicResource TextColor}"
                Margin="10,0,10,0" />
         </Border>
         <Label Padding="1"/>

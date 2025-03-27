@@ -18,29 +18,68 @@ namespace RecipeApp2025
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
         public static string CurrentUser { get; set; }
-        public static bool DarkModeIsOn { get; set;  }
+        //light=0, dark = 1, system theme = 2
+        public static int ThemeIndicator { get; set;  }
         public App()
         {
             InitializeComponent();
             CurrentUser = String.Empty;
             LoadData();
 
-            /* change later */
-            DarkModeIsOn = false;
-            SwitchTheme(DarkModeIsOn);
+            if(CurrentUser != "")
+            {
+                // code to set according to existing preferences
+            }
+            else
+            {
+                Debug.WriteLine("hello");
+                SwitchTheme(0);
+                ThemeIndicator = 0;
+            }
 
+            /* set response to device theme change */
+            Application.Current.RequestedThemeChanged += (s, a) =>
+            {
+                /* if set to use device settings, switch theme */
+                if (ThemeIndicator == 2)
+                {
+                    SwitchTheme(2);
+                }
+                
+            };
         }
 
         async void LoadData()
         {
             //SavedRecipes = await db.GetObjectsAsync();
         }
-        public static void SwitchTheme(bool isDarkMode)
+        public static void SwitchTheme(int i)
         {
-            var theme = isDarkMode ? (ResourceDictionary)new DarkTheme() : (ResourceDictionary)new LightTheme();
-            Application.Current.Resources.MergedDictionaries.Clear();
-            Application.Current.Resources.MergedDictionaries.Add(theme);
-            Application.Current.MainPage.Handler?.UpdateValue(nameof(VisualElement.BackgroundColor));
+            var theme = (ResourceDictionary)(new LightTheme());
+            if (i == 1)
+            {
+                theme = (ResourceDictionary)(new DarkTheme());
+            }else if (i == 2)
+            {
+                AppTheme currentTheme = Application.Current.RequestedTheme;
+                Debug.WriteLine(currentTheme);
+                if(currentTheme == AppTheme.Light)
+                {
+                    SwitchTheme(0);
+                    return;
+                }else if(currentTheme == AppTheme.Dark)
+                {
+                    SwitchTheme(1);
+                    return;
+                }
+            }
+            ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+            if(mergedDictionaries != null)
+            {
+                mergedDictionaries.Clear();
+                mergedDictionaries.Add(theme);
+            }
+            
         }
 
         public static async Task<Boolean> ChangeCurrentRecipe(Recipe r)

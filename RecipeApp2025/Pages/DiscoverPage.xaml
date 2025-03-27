@@ -13,13 +13,14 @@
                   SelectionMode="None"
                   ItemAppearing="OnItemAppearing"
                   Margin="10"
+              
                   >
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
                     <Border Padding="10"
                             BackgroundColor="{DynamicResource PrimaryColor}"
-                            Stroke="White"
+                            Stroke="Transparent"
                             StrokeThickness="1"
                             Margin="5, 10">
                         <Border.GestureRecognizers>
@@ -33,10 +34,10 @@
                         </Border.StrokeShape>
                         
                         <Grid Padding="1"
-                              ColumnSpacing="25"
+                              ColumnSpacing="15"
                               RowSpacing="10"
                               RowDefinitions="Auto, Auto, Auto"
-                              ColumnDefinitions="4*, 7*">
+                              ColumnDefinitions="3*, 7*">
 
                             <Border Grid.RowSpan="3"
                                    Grid.Column="0"
@@ -44,7 +45,7 @@
                                    
                                    BackgroundColor="Transparent"
                                    Padding="0"
-                                  HorizontalOptions="Center"
+                                    HorizontalOptions="Fill"
                                    VerticalOptions="Center">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="20" />
@@ -59,10 +60,11 @@
                                          VerticalOptions="Start"
                                          Spacing="5">
                                 <Label Text="{Binding Name}"
+                                       TextColor="{DynamicResource TextColor}"
                                        FontSize="Title"
+                                       FontFamily="Poppins"
                                        LineBreakMode="TailTruncation"
-                                       MaxLines="1"
-                                      
+                                       MaxLines="2"
                                        HorizontalOptions="FillAndExpand"/>
                             </StackLayout>
 
@@ -72,13 +74,21 @@
                                          VerticalOptions="Center"
                                          Orientation="Horizontal"
                                          Spacing="5">
-                                <Image Source="tine.png"
+                                <Image Source="clocklineicon.png"
                                        WidthRequest="20"
-                                       HeightRequest="20"/>
+                                       HeightRequest="20"
+                                       VerticalOptions="Center"
+                                       Scale="1"
+                                       >
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="{StaticResource TextColor}" />
+                                    </Image.Behaviors>
+                                </Image>
                                 <Label Text="{Binding Total_time, StringFormat='{0} minutes'}"
                                        FontSize="Medium"
                                        TextColor="{DynamicResource TextColor}"
-                                       VerticalOptions="Center"/>
+                                       VerticalOptions="Center"
+                                       FontFamily="Poppins"/>
                             </StackLayout>
 
                             <StackLayout Grid.Row="2"
@@ -89,10 +99,14 @@
                                          Spacing="5">
                                 <Image Source="person.png"
                                        WidthRequest="20"
-                                       HeightRequest="20"/>
+                                       HeightRequest="20">
+                                    <Image.Behaviors>
+                                        <toolkit:IconTintColorBehavior TintColor="{StaticResource TextColor}" />
+                                    </Image.Behaviors>
+                                </Image>
                                 <Label Text="{Binding Num_people_served, StringFormat='{0}'}"
                                        FontSize="Medium"
-                                       
+                                       FontFamily="Poppins"
                                        TextColor="{DynamicResource TextColor}"
                                        VerticalOptions="Center"/>
                             </StackLayout>

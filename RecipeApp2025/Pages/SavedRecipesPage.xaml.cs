@@ -23,10 +23,10 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
         InitializeComponent();
         //Recipes = new ObservableCollection<Recipe>(App.SavedRecipes);
         
-        /* temporary hard coded data */
         
         BindingContext = this;
         //SavedFeed.ItemsSource = Recipes;
+        SavedFeed.ItemsSource = App.SavedRecipes;
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
     }
 
@@ -55,6 +55,7 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     {
         //var customEventArgs = new CustomEventArgs(r);
         //OnRecipesItemClicked(this, customEventArgs);
+        Debug.WriteLine("========================INSIDE GOTORECIPEDETAILPAGE COMMAND+================================================== ");
         App.ChangeCurrentRecipe(r);
 
         await Shell.Current.GoToAsync("/DetailPage");

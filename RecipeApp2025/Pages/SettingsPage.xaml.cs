@@ -20,24 +20,12 @@ public partial class SettingsPage : ContentPage
 
         if (selectedIndex != -1)
         {
-            switch (selectedIndex)
-            {
-                case 0:
-                    if (App.DarkModeIsOn)
-                    {
-                        App.SwitchTheme(false);
-                    }
-                    break;
-                case 1:
-                    if (!App.DarkModeIsOn)
-                    {
-                        App.SwitchTheme(true);
-                    }
-                    break;
-                default:
-                    break;
+
+            App.SwitchTheme(selectedIndex);
+            App.ThemeIndicator = selectedIndex;
+
             
-            }
+           
         }
     }
 

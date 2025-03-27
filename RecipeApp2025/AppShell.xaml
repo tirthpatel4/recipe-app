@@ -10,8 +10,13 @@
     Shell.BackgroundColor="{DynamicResource PrimaryColor}"
     Shell.ForegroundColor="{DynamicResource TextColor}"
     Shell.TitleColor="{DynamicResource TextColor}"
-    Title="">
+    
+    Title=""
+    Shell.NavBarIsVisible="True"
+    Shell.NavBarHasShadow="False"
+    >
 
+    
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions="*,Auto" 
@@ -30,20 +35,24 @@
                     </Border.StrokeShape>
                     <Label Text="{Binding Title}"
                        TextColor="{DynamicResource TextColor}"
-                       FontSize="16"
+                       FontSize="20"
                        HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center"
+                       FontFamily="Poppins"/>
                 </Border>
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
 
 
-    <FlyoutItem Title="Home">
+    <FlyoutItem Title="Home"
+               >
         <ShellContent
-            Title="Recipe App Name"
+            Title="MainPage"
+            
             ContentTemplate="{DataTemplate pages:MainPage}"
-            Route="MainPage"/>
+            Route="MainPage"
+            />
     </FlyoutItem>
 
     <FlyoutItem Title="Settings">
@@ -59,11 +68,5 @@
             ContentTemplate="{DataTemplate pages:AccountPage}"
             Route="AccountPage"/>
     </FlyoutItem>
-
-    <Shell.FlyoutFooter>
-        <Grid Padding="15">
-            <Label Text="No Theme Control" HorizontalOptions="Center" VerticalOptions="Center" />
-        </Grid>
-    </Shell.FlyoutFooter>
 
 </Shell>

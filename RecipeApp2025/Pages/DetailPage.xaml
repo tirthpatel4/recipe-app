@@ -5,7 +5,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RecipeApp2025.Pages.DetailPage"
              Padding="0"
-             BackgroundColor="{DynamicResource BackgroundColor}">
+             BackgroundColor="{DynamicResource BackgroundColor}"
+             x:Name="detailPage">
     <ScrollView Padding="0">
         <VerticalStackLayout
             Spacing="10"
@@ -27,9 +28,10 @@
                        HorizontalOptions="Center"
                        FontSize="Title"
                        FontAttributes="Bold"
-                       Padding="0, 30, 0, 0"
+                       Padding="5, 30, 5, 0"
                        TextColor="{DynamicResource TextColor}"
                        HorizontalTextAlignment="Center"
+                       FontFamily="Poppins"
                        />
                     <Grid 
                             Grid.Row="1"
@@ -40,14 +42,16 @@
                                    FontSize="Default"
                                    HorizontalOptions="Center"
                                    TextColor="{DynamicResource TextColor}"
-                                   VerticalOptions="Center"/>
+                                   VerticalOptions="Center"
+                                   FontFamily="Poppins"/>
 
                         <Label  Grid.Column="1"
                                 Text="{Binding Num_people_served, StringFormat='Serves {0}'}"
                                 TextColor="{DynamicResource TextColor}"
                                 FontSize="Default"
                                 HorizontalOptions="Center"
-                                VerticalOptions="Center"/>
+                                VerticalOptions="Center"
+                                FontFamily="Poppins"/>
                         <Button 
                                     x:Name="ToggleButton"
                                     Text="Save"
@@ -56,7 +60,8 @@
                                     BackgroundColor="{DynamicResource AccentColor}"
                                     TextColor="{DynamicResource TextColor}"
                                     HorizontalOptions="Center"
-                                    VerticalOptions="Center"/>
+                                    VerticalOptions="Center"
+                            FontFamily="Poppins"/>
 
                     </Grid>
                     <Grid.Background>
@@ -77,21 +82,26 @@
 
             <Grid
                 ColumnDefinitions=".5*, .5*"
-                x:Name="PrepCookTimeGrid">
+                x:Name="PrepCookTimeGrid"
+                HorizontalOptions="Center">
                 <Label
                        Padding="10,0,10,0"
                        Text="{Binding Prep_time, StringFormat='Prep Time {0}m'}"
-                       FontSize="Subtitle"
+                       FontSize="Default"
                     TextColor="{DynamicResource TextColor}"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    
+                    FontFamily="Poppins"
+                    />
 
                 <Label
                        Padding="10,0,10,0"
                        Text="{Binding Cook_time, StringFormat='Cook Time {0}m'}"
-                       FontSize="Subtitle"
+                       FontSize="Default"
                     TextColor="{DynamicResource TextColor}"
                     Grid.Column="1"
-                    HorizontalOptions="Center"/>
+                    HorizontalOptions="Center"
+                    FontFamily="Poppins"/>
             </Grid>
            <!-- <BoxView HeightRequest="2" Color="grey"/>-->
 
@@ -106,7 +116,8 @@
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="40,40,40,40" />
                     </Border.StrokeShape>
-                    <toolkit:Expander MaximumWidthRequest="350"
+                    <toolkit:Expander
+                                        WidthRequest="350"
                                       x:Name="ingExpander"
                                       HorizontalOptions="Start">
                         <toolkit:Expander.Header>
@@ -115,10 +126,11 @@
                                 <Label Text="Ingredients"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
-                                   Padding="30, 20, 10, 20"
+                                   Padding="30, 20, 180, 20"
                                    TextColor="{DynamicResource TextColor}"
                                    VerticalTextAlignment="Center"
                                    HorizontalOptions="Start"
+                                    FontFamily="Poppins"
                                    />
                                 
                             </Border>
@@ -140,7 +152,8 @@
                                                        TextColor="{DynamicResource TextColor}"
                                                     LineBreakMode="WordWrap" 
                                                     FontSize="16" 
-                                                    VerticalOptions="CenterAndExpand" />   
+                                                    VerticalOptions="CenterAndExpand" 
+                                                       FontFamily="Poppins"/>   
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -165,7 +178,8 @@
                                            LineBreakMode="WordWrap" 
                                            FontSize="16" 
                                            TextColor="{DynamicResource TextColor}"
-                                           VerticalOptions="CenterAndExpand" />
+                                           VerticalOptions="CenterAndExpand" 
+                                           FontFamily="Poppins"/>
 
 
                                 </StackLayout>

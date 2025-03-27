@@ -15,7 +15,7 @@
 
 
     <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource BackgroundColor}" />
+        <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
         <Setter Property="TextColor" Value="{StaticResource TextColor}" />
     </Style>
 

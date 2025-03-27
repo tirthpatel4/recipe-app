@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace RecipeApp2025.Pages
 {
@@ -13,6 +14,12 @@ namespace RecipeApp2025.Pages
             this.SizeChanged += OnSizeChanged;
             _keyword = string.Empty;
             //AdjustSizing();
+
+            if (App.CurrentUser == "")
+            {
+                Debug.WriteLine("not logged in");
+                SavedRecipesButton.IsEnabled = false;
+            }
            
         }
         protected override void OnAppearing()

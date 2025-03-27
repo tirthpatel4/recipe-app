@@ -30,7 +30,7 @@ public partial class DetailPage : ContentPage
         Debug.WriteLine("LOOP DONE !!");
         IngredientsList.ItemsSource = Ingredients_Text_List;
         StepsList.ItemsSource = App.CurrentRecipe.Steps_List;
-
+        SetExpanderProperties();
         /* Set width of Steps/Ingredients grids based on width of screen */
         
         /*behavior for rotating */
@@ -139,9 +139,13 @@ public partial class DetailPage : ContentPage
             /*THIS MIGHT NEED TO BE CHANGED: WIILL ALWAYS CLOSE INGREDIENTS WHEN FLIPPING TO VERTICAL*/
             ingExpander.IsExpanded = false;
             ingExpander.IsEnabled = true;
+            ingExpander.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density; ;
+            Debug.WriteLine("Width from package: " + DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density);
+
         }
         else
         {
+            ingExpander.WidthRequest = 350;
             ingExpander.IsExpanded = true;
             ingExpander.IsEnabled = false;
         }
