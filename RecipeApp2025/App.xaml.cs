@@ -8,6 +8,8 @@ using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
 using RecipeApp2025.Resources.Styles;
+using banditoth.MAUI.DeviceId;
+using banditoth.MAUI.DeviceId.Interfaces;
 namespace RecipeApp2025
   
 
@@ -20,15 +22,48 @@ namespace RecipeApp2025
         public static string CurrentUser { get; set; }
         //light=0, dark = 1, system theme = 2
         public static int ThemeIndicator { get; set;  }
+        public static IDeviceIdProvider DeviceIdProvider { get; set; }
+        public static string DeviceId { get; set; }
+        public static FirebaseService firebase {  get; set; }
         public App()
         {
             InitializeComponent();
-            CurrentUser = String.Empty;
+            CurrentUser = PersistentDataHelper.GetLogin();
             LoadData();
+            /*
+            DeviceIdProvider = new DeviceIdProvider();
 
-            if(CurrentUser != "")
+            DeviceId = DeviceIdProvider.GetDeviceId();
+            if( DeviceId == null)
             {
-                // code to set according to existing preferences
+                DeviceId = DeviceIdProvider.GetInstallationId();
+            }
+            Debug.WriteLine("++++++++++++" + DeviceId);
+            
+
+            if (DeviceIdProvider.GetDeviceId() == null)
+            {
+                Debug.WriteLine("NULL");
+            }
+            */
+            
+
+
+            if (CurrentUser != "")
+            {
+                int theme = PersistentDataHelper.GetTheme();
+                if(theme >= 0)
+                {
+                    SwitchTheme(theme);
+                    ThemeIndicator = theme;
+                }
+                else
+                {
+                    ThemeIndicator = 0;
+                    SwitchTheme(0);
+                    PersistentDataHelper.SetTheme(0);
+                }
+
             }
             else
             {
@@ -45,8 +80,8 @@ namespace RecipeApp2025
                 {
                     SwitchTheme(2);
                 }
-                
             };
+
         }
 
         async void LoadData()

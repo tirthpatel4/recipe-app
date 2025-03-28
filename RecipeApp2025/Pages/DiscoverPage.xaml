@@ -37,7 +37,7 @@
                               ColumnSpacing="15"
                               RowSpacing="10"
                               RowDefinitions="Auto, Auto, Auto"
-                              ColumnDefinitions="3*, 7*">
+                              ColumnDefinitions="3  *, 7*">
 
                             <Border Grid.RowSpan="3"
                                    Grid.Column="0"

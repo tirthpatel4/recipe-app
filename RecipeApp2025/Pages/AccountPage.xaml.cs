@@ -45,6 +45,7 @@ public partial class AccountPage : ContentPage
                     Password = _password
               
                 };
+                PersistentDataHelper.SetLogin(_username);
                 await _firebaseService.AddUser(user);
                 await DisplayAlert("Success", "User registered successfully!", "OK");
             }
@@ -61,6 +62,7 @@ public partial class AccountPage : ContentPage
             {
                 App.CurrentUser = user.Username;
                 await DisplayAlert("Success", "Login successful!", "OK");
+                PersistentDataHelper.SetLogin(user.Username);
             }
             else
             {

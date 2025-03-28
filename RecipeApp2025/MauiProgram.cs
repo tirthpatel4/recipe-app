@@ -2,6 +2,7 @@
 using Firebase.Database;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
+using banditoth.MAUI.DeviceId;
 
 namespace RecipeApp2025
 {
@@ -20,7 +21,8 @@ namespace RecipeApp2025
                     fonts.AddFont("SegoeUI-Semibold.ttf", "SegoeSemibold");
                     fonts.AddFont("FluentSystemIcons-Regular.ttf", Fonts.FluentUI.FontFamily);
                     fonts.AddFont("Poppins-Regular.ttf", "Poppins");
-                });
+                })
+                .ConfigureDeviceIdProvider();
 
 #if DEBUG
     		builder.Logging.AddDebug();
