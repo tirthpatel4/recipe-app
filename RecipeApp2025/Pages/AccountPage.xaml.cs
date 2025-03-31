@@ -52,6 +52,7 @@ public partial class AccountPage : ContentPage
               
                 };
                 PersistentDataHelper.SetLogin(_username);
+                PersistentDataHelper.SetTheme(App.ThemeIndicator);
                 await _firebaseService.AddUser(user);
                 await DisplayAlert("Success", "User registered successfully!", "OK");
                 signinButton.IsEnabled = false;
@@ -72,6 +73,7 @@ public partial class AccountPage : ContentPage
                 App.CurrentUser = user.Username;
                 await DisplayAlert("Success", "Login successful!", "OK");
                 PersistentDataHelper.SetLogin(user.Username);
+                PersistentDataHelper.SetTheme(App.ThemeIndicator);
                 signinButton.IsEnabled = false;
                 registerButton.IsEnabled = false;
                 signoutButton.IsEnabled = true;

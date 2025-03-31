@@ -57,8 +57,6 @@
                                     Text="Save"
                                     Clicked="OnToggleButtonClicked"
                                     Grid.Column="2"
-                                    BackgroundColor="{DynamicResource AccentColor}"
-                                    TextColor="{DynamicResource TextColor}"
                                     HorizontalOptions="Center"
                                     VerticalOptions="Center"
                             FontFamily="Poppins"/>

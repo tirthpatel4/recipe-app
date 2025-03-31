@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using RecipeApp2025.Resources.Classes;
 
 namespace RecipeApp2025.Pages;
 
@@ -23,9 +24,9 @@ public partial class SettingsPage : ContentPage
 
             App.SwitchTheme(selectedIndex);
             App.ThemeIndicator = selectedIndex;
+            PersistentDataHelper.SetTheme(selectedIndex);
 
-            
-           
+
         }
     }
 
