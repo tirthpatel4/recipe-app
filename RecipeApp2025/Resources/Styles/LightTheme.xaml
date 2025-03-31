@@ -11,11 +11,26 @@
     <Color x:Key="TextColor">#0F4C4A</Color>
 
 
-    <Style x:Key="ButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
-        <Setter Property="TextColor" Value="{StaticResource TextColor}" />
-        <Setter Property="BorderColor" Value="{StaticResource TextColor}"/>
-        <Setter Property="BorderWidth" Value="0"/>
+        <Style TargetType="Button">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+                            <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                            <Setter Property="TextColor" Value="#A3B9B8" />
+                            <Setter Property="BackgroundColor" Value="#CFE4E2" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
     </Style>
 
 </ResourceDictionary>

@@ -30,6 +30,10 @@ namespace RecipeApp2025.Pages
             {
                 LoginWelcome.Text = "Welcome back, " + App.CurrentUser + "!";
             }
+            else
+            {
+                LoginWelcome.Text = "Welcome!";
+            }
             KeywordEntry.TextChanged += OnKeywordChanged;
         }
         private void OnKeywordChanged(object sender, TextChangedEventArgs e)

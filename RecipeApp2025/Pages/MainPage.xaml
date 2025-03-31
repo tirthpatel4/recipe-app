@@ -97,8 +97,6 @@
                     HorizontalOptions="FillAndExpand"/>
 
             <Button x:Name="SavedRecipesButton"
-                    BackgroundColor="{DynamicResource AccentColor}"
-                    TextColor="{DynamicResource TextColor}"
                     Text="Saved Recipes"
                     FontAttributes="Bold"
                     FontFamily="Poppins"

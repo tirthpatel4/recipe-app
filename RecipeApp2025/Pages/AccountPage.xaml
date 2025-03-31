@@ -9,58 +9,66 @@
     <VerticalStackLayout Padding="10"
                          Margin="5, 20, 5, 5"
                          Spacing="0">
+
         <Border StrokeThickness="2"
-        Padding="5"
-        Stroke="Transparent"
-        BackgroundColor="{DynamicResource PrimaryColor}"
+            Padding="5"
+            Stroke="Transparent"
+            BackgroundColor="{DynamicResource PrimaryColor}"
         
-        HorizontalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
                 Margin="0, 0, 0, 10">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="40" />
-            </Border.StrokeShape>
-            <Entry x:Name="UsernameEntry"
-               Placeholder="Username"
-               Keyboard="Email"
-               TextColor="{DynamicResource TextColor}"
-               PlaceholderColor="{DynamicResource TextColor}"
-               
-               BackgroundColor="Transparent"
-               Text="{Binding Username}"
-               Margin="10,0,10,0" />
-        </Border>
-        <Border StrokeThickness="2"
-        Padding="5"
-        Margin="0, 0, 0, 10"
-        Stroke="Transparent"
-        BackgroundColor="{DynamicResource PrimaryColor}"
-        HorizontalOptions="FillAndExpand">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="40" />
-            </Border.StrokeShape>
-            <Entry x:Name="PasswordEntry"
-               Placeholder="Password"
-               IsPassword="True"
-               TextColor="{DynamicResource TextColor}"
-               BackgroundColor="Transparent"
-               Text="{Binding Password}"
-               PlaceholderColor="{DynamicResource TextColor}"
-               Margin="10,0,10,0" />
-        </Border>
-        <Label Padding="1"/>
-        <Button Text="Sign In"
-                BackgroundColor="{DynamicResource AccentColor}"
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40" />
+                </Border.StrokeShape>
+                <Entry x:Name="UsernameEntry"
+                
+                Placeholder="Username"
+                Keyboard="Email"
                 TextColor="{DynamicResource TextColor}"
+                PlaceholderColor="{DynamicResource TextColor}"
+               
+                BackgroundColor="Transparent"
+                Text="{Binding Username}"
+                Margin="10,0,10,0" />
+            </Border>
+        <Border StrokeThickness="2"
+            Padding="5"
+            Margin="0, 0, 0, 10"
+            Stroke="Transparent"
+            BackgroundColor="{DynamicResource PrimaryColor}"
+            HorizontalOptions="FillAndExpand">
+            <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40" />
+                </Border.StrokeShape>
+                <Entry x:Name="PasswordEntry"
+                Placeholder="Password"
+                IsPassword="True"
+                TextColor="{DynamicResource TextColor}"
+                BackgroundColor="Transparent"
+                Text="{Binding Password}"
+                PlaceholderColor="{DynamicResource TextColor}"
+                Margin="10,0,10,0" />
+            </Border>
+            <Label Padding="1"/>
+            <Button x:Name="signinButton"
+                Text="Sign In"
                 Clicked="OnLoginClicked"
+                
                 WidthRequest="300"
                 Margin="0,0,0,10" 
                 CornerRadius="5"/>
 
-        <Button Text="Register"
-                BackgroundColor="{DynamicResource AccentColor}"
-                TextColor="{DynamicResource TextColor}"
+        <Button x:Name="registerButton"
+                Text="Register"
                 Clicked="OnRegisterClicked"
                 WidthRequest="300"
+                Margin="0,0,0,10" 
                 CornerRadius="5"/>
+        <Button 
+            x:Name="signoutButton"
+            Text="Sign Out"
+            Clicked="OnSignOutClicked"
+            WidthRequest="300"
+            CornerRadius="5"/>
     </VerticalStackLayout>
 </ContentPage>
