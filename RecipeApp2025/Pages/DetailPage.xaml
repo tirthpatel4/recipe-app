@@ -53,12 +53,12 @@
                                 VerticalOptions="Center"
                                 FontFamily="Poppins"/>
                         <Button 
-                                    x:Name="ToggleButton"
-                                    Text="Save"
-                                    Clicked="OnToggleButtonClicked"
-                                    Grid.Column="2"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"
+                            x:Name="ToggleButton"
+                            Text="Save"
+                            Clicked="OnToggleButtonClicked"
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
                             FontFamily="Poppins"/>
 
                     </Grid>
@@ -93,9 +93,9 @@
                     />
 
                 <Label
-                       Padding="10,0,10,0"
-                       Text="{Binding Cook_time, StringFormat='Cook Time {0}m'}"
-                       FontSize="Default"
+                    Padding="10,0,10,0"
+                    Text="{Binding Cook_time, StringFormat='Cook Time {0}m'}"
+                    FontSize="Default"
                     TextColor="{DynamicResource TextColor}"
                     Grid.Column="1"
                     HorizontalOptions="Center"
@@ -108,8 +108,7 @@
                 Margin="10">
                 <Border Padding="0"
                         Margin="0"
-                        BackgroundColor="{DynamicResource PrimaryColor}"
-                        
+                        BackgroundColor="{DynamicResource PrimaryColor}"    
                         >
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="40,40,40,40" />

@@ -25,13 +25,16 @@ namespace RecipeApp2025
                 .ConfigureDeviceIdProvider();
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton(new FirebaseClient("https://recipeapp2025-default-rtdb.firebaseio.com/"));
+
+
 
             return builder.Build();
 
             
         }
     }
+
 }

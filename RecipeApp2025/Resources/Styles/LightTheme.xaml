@@ -10,8 +10,9 @@
     <Color x:Key="AccentColor">#4DC9C0</Color>
     <Color x:Key="TextColor">#0F4C4A</Color>
 
-
-        <Style TargetType="Button">
+    
+    
+    <Style TargetType="Button">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">

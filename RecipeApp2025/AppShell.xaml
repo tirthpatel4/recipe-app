@@ -5,18 +5,25 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
     xmlns:pages="clr-namespace:RecipeApp2025.Pages"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackground="{DynamicResource BackgroundColor}"
     Shell.BackgroundColor="{DynamicResource PrimaryColor}"
     Shell.ForegroundColor="{DynamicResource TextColor}"
     Shell.TitleColor="{DynamicResource TextColor}"
     
-    Title=""
     Shell.NavBarIsVisible="True"
     Shell.NavBarHasShadow="False"
-    >
 
-    
+    >
+   
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior  StatusBarColor="#D0E0D0" StatusBarStyle="DarkContent" />
+    </Shell.Behaviors>
+
     <Shell.ItemTemplate>
         <DataTemplate>
             <Grid ColumnDefinitions="*,Auto" 

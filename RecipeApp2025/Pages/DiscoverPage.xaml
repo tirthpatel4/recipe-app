@@ -22,7 +22,8 @@
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Stroke="Transparent"
                             StrokeThickness="1"
-                            Margin="5, 10">
+                            Margin="5, 10"
+                            >
                         <Border.GestureRecognizers>
                             <TapGestureRecognizer
                                     Command="{Binding BindingContext.GoToRecipeDetailPageCommand, Source={x:Reference DiscoverFeed}}"

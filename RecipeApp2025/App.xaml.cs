@@ -10,6 +10,8 @@ using System.ComponentModel;
 using RecipeApp2025.Resources.Styles;
 using banditoth.MAUI.DeviceId;
 using banditoth.MAUI.DeviceId.Interfaces;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using CommunityToolkit.Maui.Core;
 namespace RecipeApp2025
   
 
@@ -28,6 +30,18 @@ namespace RecipeApp2025
         public App()
         {
             InitializeComponent();
+
+            // Ensure colors exist before replacing dictionaries
+            if (!Application.Current.Resources.ContainsKey("LightPrimary"))
+            {
+                Application.Current.Resources.Add("LightPrimary", Color.FromArgb("#D0E0D0"));
+            }
+            if (!Application.Current.Resources.ContainsKey("DarkPrimary"))
+            {
+                Application.Current.Resources.Add("DarkPrimary", Color.FromArgb("#4E5E4E"));
+            }
+
+
             CurrentUser = PersistentDataHelper.GetLogin();
             LoadData();
             /*
@@ -49,29 +63,21 @@ namespace RecipeApp2025
             
 
 
-            if (CurrentUser != "")
+           
+            int theme = PersistentDataHelper.GetTheme();
+            if(theme >= 0)
             {
-                int theme = PersistentDataHelper.GetTheme();
-                if(theme >= 0)
-                {
-                    SwitchTheme(theme);
-                    ThemeIndicator = theme;
-                }
-                else
-                {
-                    ThemeIndicator = 0;
-                    SwitchTheme(0);
-                    PersistentDataHelper.SetTheme(0);
-                }
-
+                SwitchTheme(theme);
+                ThemeIndicator = theme;
             }
             else
             {
-                Debug.WriteLine("hello");
-                SwitchTheme(0);
                 ThemeIndicator = 0;
+                SwitchTheme(0);
+                PersistentDataHelper.SetTheme(0);
             }
 
+           
             /* set response to device theme change */
             Application.Current.RequestedThemeChanged += (s, a) =>
             {
@@ -113,6 +119,7 @@ namespace RecipeApp2025
             {
                 mergedDictionaries.Clear();
                 mergedDictionaries.Add(theme);
+                
             }
             
         }

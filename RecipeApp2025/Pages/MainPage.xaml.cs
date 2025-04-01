@@ -20,7 +20,9 @@ namespace RecipeApp2025.Pages
                 Debug.WriteLine("not logged in");
                 SavedRecipesButton.IsEnabled = false;
             }
-           
+
+             setImgProperties();
+
         }
         protected override void OnAppearing()
         {
@@ -35,6 +37,8 @@ namespace RecipeApp2025.Pages
                 LoginWelcome.Text = "Welcome!";
             }
             KeywordEntry.TextChanged += OnKeywordChanged;
+            setImgProperties();
+
         }
         private void OnKeywordChanged(object sender, TextChangedEventArgs e)
         {
@@ -44,9 +48,17 @@ namespace RecipeApp2025.Pages
         private void OnSizeChanged(object sender, EventArgs e)
         {
             SetStackLayoutOrientation();
+            setImgProperties();
+
             //AdjustSizing();
         }
 
+        private void setImgProperties()
+        {
+           //MainGrid.HeightRequest = .95*DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density;
+           // foodimg.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width/DeviceDisplay.Current.MainDisplayInfo.Density;
+
+        }
         private void AdjustSizing()
         {
             if (App.IsInPortrait())

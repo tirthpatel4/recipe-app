@@ -6,7 +6,11 @@
     <Application.Resources>
        
         <ResourceDictionary>
-            
+
+            <ResourceDictionary>
+                <Color x:Key="LightPrimary">#D0E0D0</Color>
+                <Color x:Key="DarkPrimary">#4E5E4E</Color>
+            </ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 
             </ResourceDictionary.MergedDictionaries>
