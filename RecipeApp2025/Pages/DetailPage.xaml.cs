@@ -30,9 +30,9 @@ public partial class DetailPage : ContentPage
         Debug.WriteLine("LOOP DONE !!");
         IngredientsList.ItemsSource = Ingredients_Text_List;
         StepsList.ItemsSource = App.CurrentRecipe.Steps_List;
-        SetExpanderProperties();
+     
         /* Set width of Steps/Ingredients grids based on width of screen */
-        
+
         /*behavior for rotating */
         this.SizeChanged += OnSizeChanged;
 
@@ -64,13 +64,17 @@ public partial class DetailPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        SetExpanderProperties();
+
         Debug.WriteLine(App.CurrentRecipe.Name);
+
         if (App.CurrentUser.Length > 0)
         {
             FirebaseService fs = new FirebaseService();
             Task<User> u = fs.GetUser(App.CurrentUser);
             ToggleButton.IsEnabled = true;
             isSaved = App.CurrentRecipe.isSaved;
+
             if (App.CurrentRecipe.isSaved)
             {
                 ToggleButton.Text = "Unsave";
@@ -84,50 +88,13 @@ public partial class DetailPage : ContentPage
         {
             ToggleButton.IsEnabled = false;
         }
+
     }
 
-    /*
-    private String GenerateIngredientText(Ingredient ing)
-    {
-        string result = "";
-        string a = "";
-        string n = "";
-        string u = "";
-
-        // if whole number
-        if (((double)((int)ing.Amount)) == ing.Amount)
-        {
-            a = ((double)((int)ing.Amount)).ToString();
-        }
-        else
-        {
-            a = ing.Amount.ToString();
-        }
-
-
-        result += a;
-        n = ing.Name;
-        if (ing.Amount > 1.0)
-        {
-            n += "s";
-        }
-        //if no units ie "15 apples" 
-        if(ing.Unit != null && ing.Unit.Length > 0){
-            result = result + " " + n;
-        }
-        else
-        {
-            //units ie "3 tbs of sugar"
-            result = result + " " + u + " of " + n;
-        }
-
-        return result;
-
-
-    } */
     private void OnSizeChanged(object sender, EventArgs e)
     {
         App.SetStackLayoutOrientation(StepsIngredientsSL);
+        Debug.WriteLine("+++++++++++IN size changed");
         SetExpanderProperties();
         
     }
@@ -138,10 +105,13 @@ public partial class DetailPage : ContentPage
         {
             /*THIS MIGHT NEED TO BE CHANGED: WIILL ALWAYS CLOSE INGREDIENTS WHEN FLIPPING TO VERTICAL*/
             ingExpander.IsExpanded = false;
+            ingExpander.IsExpanded = true;
+            ingExpander.IsExpanded = false;
+
             ingExpander.IsEnabled = true;
             ingExpander.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density; 
             Debug.WriteLine("Width from package: " + DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density);
-
+            Debug.WriteLine("++++++++ ING list expanded: " + ingExpander.IsExpanded);
         }
         else
         {

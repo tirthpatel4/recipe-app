@@ -88,7 +88,6 @@
                        FontSize="Default"
                     TextColor="{DynamicResource TextColor}"
                     HorizontalOptions="Center"
-                    
                     FontFamily="Poppins"
                     />
 
@@ -114,12 +113,13 @@
                         <RoundRectangle CornerRadius="40,40,40,40" />
                     </Border.StrokeShape>
                     <toolkit:Expander
-                                        WidthRequest="350"
+                                      WidthRequest="350"
                                       x:Name="ingExpander"
                                       HorizontalOptions="Start">
                         <toolkit:Expander.Header>
                             <Border
-                                StrokeThickness="0">
+                                StrokeThickness="0"
+                               >
                                 <Label Text="Ingredients"
                                    FontAttributes="Bold"
                                    FontSize="Medium"
@@ -147,9 +147,9 @@
                                             <StackLayout Padding="10">
                                                 <Label Text="{Binding}" 
                                                        TextColor="{DynamicResource TextColor}"
-                                                    LineBreakMode="WordWrap" 
-                                                    FontSize="16" 
-                                                    VerticalOptions="CenterAndExpand" 
+                                                       LineBreakMode="WordWrap" 
+                                                       FontSize="16" 
+                                                       VerticalOptions="CenterAndExpand" 
                                                        FontFamily="Poppins"/>   
                                             </StackLayout>
                                         </ViewCell>
