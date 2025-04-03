@@ -5,79 +5,79 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RecipeApp2025.Pages.SavedRecipesPage"
              Padding="0, 0, 0, 0">
-    
+
     <ScrollView>
         <VerticalStackLayout>
             <Label Text="Your Saved Recipes"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Start"
                FontSize="Title"
-               Padding="0, 0, 0, 30"/>    
+               Padding="0, 0, 0, 30"/>
             <ListView x:Name="SavedFeed"
                   SeparatorColor="Transparent"
                   HasUnevenRows="True"
                   SelectionMode="None">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Border Padding="10">
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Border Padding="10">
+                                <Border.GestureRecognizers>
+                                    <TapGestureRecognizer
                                     Command="{Binding BindingContext.GoToRecipeDetailPageCommand, Source={x:Reference SavedFeed}}"
                                     CommandParameter="{Binding .}"/>
 
-                            </Border.GestureRecognizers>
-                            <Grid Padding="5"
+                                </Border.GestureRecognizers>
+                                <Grid Padding="5"
                                   ColumnSpacing="15"
                                   RowSpacing="10"
                                   RowDefinitions=".7*, .3*"
                                   ColumnDefinitions=".3*, .1*, .2*, .1*,.2*, .2*">
 
-                                <Image Grid.RowSpan="2"
+                                    <Image Grid.RowSpan="2"
                                        Grid.Column="0"
                                        Source="{Binding Img_url}"
                                        HeightRequest="90"/>
 
-                                <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Name}"
                                        Grid.Column="1"
                                        Grid.ColumnSpan="5"
                                        FontSize="Title"
                                        LineBreakMode="TailTruncation"
                                        />
 
-                                <Image Source="tine.png"
+                                    <Image Source="tine.png"
                                        Grid.Row="1"
                                        Grid.Column="1"
                                        WidthRequest="30"
                                        HeightRequest="30"/>
 
 
-                                <Label Text="{Binding Total_time, StringFormat='{0}m'}"
+                                    <Label Text="{Binding Total_time, StringFormat='{0}m'}"
                                         FontSize="Medium"
                                         Grid.Row="1"
                                         Grid.Column="2"/>
 
 
-                                <Image Source="person.png"
+                                    <Image Source="person.png"
                                        Grid.Row="1"
                                        Grid.Column="3"
                                        WidthRequest="30"
                                        HeightRequest="30"/>
 
-                                <Label Text="{Binding Num_people_served, StringFormat='{0}'}"
+                                    <Label Text="{Binding Num_people_served, StringFormat='{0}'}"
                                        FontSize="Medium"
                                        Grid.Row="1"
                                        Grid.Column="4"/>
 
 
 
-                            </Grid>
-                        </Border>
-                    </ViewCell>
+                                </Grid>
+                            </Border>
+                        </ViewCell>
 
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

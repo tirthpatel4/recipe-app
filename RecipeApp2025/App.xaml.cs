@@ -54,12 +54,18 @@ namespace RecipeApp2025
 
         public static async void AddSavedRecipe(Recipe r)
         {
-            SavedRecipes.Add(r);
+            if (SavedRecipes is not null)
+            {
+                SavedRecipes.Add(r);
+            }
         }
 
         public static async void RemoveSavedRecipe(Recipe r)
         {
-            SavedRecipes.Remove(r);
+            if (SavedRecipes is not null)
+            {
+                SavedRecipes.Remove(r);
+            }
         }
 
         public static Boolean IsInPortrait()

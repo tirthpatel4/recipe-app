@@ -64,21 +64,9 @@ public partial class DetailPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        Debug.WriteLine(App.CurrentRecipe.Name);
         if (App.CurrentUser.Length > 0)
         {
-            FirebaseService fs = new FirebaseService();
-            Task<User> u = fs.GetUser(App.CurrentUser);
-            ToggleButton.IsEnabled = true;
-            isSaved = App.CurrentRecipe.isSaved;
-            if (App.CurrentRecipe.isSaved)
-            {
-                ToggleButton.Text = "Unsave";
-            }
-            else
-            {
-                ToggleButton.Text = "Save";
-            }
+            checkDuplicate();
         }
         else
         {
@@ -86,45 +74,24 @@ public partial class DetailPage : ContentPage
         }
     }
 
-    /*
-    private String GenerateIngredientText(Ingredient ing)
+    private async void checkDuplicate()
     {
-        string result = "";
-        string a = "";
-        string n = "";
-        string u = "";
+        FirebaseService fs = new FirebaseService();
+        List<Recipe> r = await fs.ReturnUserSavedRecipes(App.CurrentUser);
+        ToggleButton.IsEnabled = true;
 
-        // if whole number
-        if (((double)((int)ing.Amount)) == ing.Amount)
+        if (r is not null) isSaved = r.Any(recipe => recipe.Id == App.CurrentRecipe.Id);
+        else isSaved = false;
+
+        if (isSaved)
         {
-            a = ((double)((int)ing.Amount)).ToString();
+            ToggleButton.Text = "Unsave";
         }
         else
         {
-            a = ing.Amount.ToString();
+            ToggleButton.Text = "Save";
         }
-
-
-        result += a;
-        n = ing.Name;
-        if (ing.Amount > 1.0)
-        {
-            n += "s";
-        }
-        //if no units ie "15 apples" 
-        if(ing.Unit != null && ing.Unit.Length > 0){
-            result = result + " " + n;
-        }
-        else
-        {
-            //units ie "3 tbs of sugar"
-            result = result + " " + u + " of " + n;
-        }
-
-        return result;
-
-
-    } */
+    }
     private void OnSizeChanged(object sender, EventArgs e)
     {
         App.SetStackLayoutOrientation(StepsIngredientsSL);
@@ -166,18 +133,20 @@ public partial class DetailPage : ContentPage
 
     private void OnToggleButtonClicked(object sender, EventArgs e)
     {
+        FirebaseService fs = new FirebaseService();
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";
-        if (isSaved) {
-            App.AddSavedRecipe(App.CurrentRecipe);
+        if (isSaved)
+        {
+            Debug.WriteLine("Adding Recipe");
+            fs.AddSavedRecipe(App.CurrentRecipe, App.CurrentUser);
         }
         else
         {
-            App.RemoveSavedRecipe(App.CurrentRecipe);
+            Debug.WriteLine("Removing Recipe");
+            fs.RemoveRecipe(App.CurrentRecipe, App.CurrentUser);
         }
-
-
-        App.CurrentRecipe.isSaved = isSaved;    
+        App.CurrentRecipe.isSaved = isSaved;
     }
 
     private void IngredientsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

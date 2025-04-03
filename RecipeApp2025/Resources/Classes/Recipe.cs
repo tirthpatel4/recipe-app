@@ -32,6 +32,7 @@ namespace RecipeApp2025.Resources.Classes
         public Recipe()
         {
             Name = "No Name";
+            Id = -1;
             Img_url = "https://img.spoonacular.com/recipes/716429-90x90.jpg";
             Large_img_url = "https://img.spoonacular.com/recipes/1697885-556x370.jpg";
             Num_people_served = 2;
@@ -45,6 +46,7 @@ namespace RecipeApp2025.Resources.Classes
         {
             /*For testing. These fields will later be popluated with actual data*/
             Name = name;
+            Id = -1;
             Img_url = "https://img.spoonacular.com/recipes/716429-90x90.jpg";
             /*ALL recipes have images in these two sizes. */
             Large_img_url = "https://img.spoonacular.com/recipes/1697885-556x370.jpg";

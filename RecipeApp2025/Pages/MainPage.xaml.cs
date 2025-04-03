@@ -58,6 +58,10 @@ namespace RecipeApp2025.Pages
         {
             await Shell.Current.GoToAsync("/SavedRecipesPage");
         }
+        private async void OnFilterButtonClicked(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync("/FilterPage");
+        }
 
         private Boolean IsInPortrait()
         {
