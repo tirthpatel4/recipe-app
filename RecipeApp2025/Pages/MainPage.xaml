@@ -69,7 +69,15 @@
                         HeightRequest="40"/>
 
                 </Border>
-
+                <Button Text="FLR"
+        BackgroundColor="{DynamicResource AccentColor}"
+TextColor="{DynamicResource TextColor}"
+        FontFamily="Poppins"
+        CornerRadius="10"
+        Clicked="OnFilterButtonClicked"
+        HorizontalOptions="End"
+        HeightRequest="60"
+        WidthRequest="80"/>
                 <Button Text="Go"
                      BackgroundColor="{DynamicResource AccentColor}"
                      TextColor="{DynamicResource TextColor}"
