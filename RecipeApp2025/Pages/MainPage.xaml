@@ -4,110 +4,133 @@
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RecipeApp2025.Pages.MainPage"
-             Title=""
-             BackgroundColor="#0bdc84">
+             Title="Home"
+             
+             BackgroundColor="{DynamicResource BackgroundColor}"
+            >
 
-    <Grid RowDefinitions="*, auto, auto, auto"
-          ColumnDefinitions="7*, 1*"
-          Padding="21"
-          RowSpacing="40"
-          ColumnSpacing="10">
-        <Label Text="Your recipes await!" 
-               HorizontalTextAlignment="Center"
-               Grid.Row="0"
-               Grid.Column="0"
-               FontSize="60"
-               TextColor="White"
-               FontFamily="Poppins"
-               FontAttributes="Bold"
-               />
-        <Label x:Name="LoginWelcome"
-            Text="" 
-       HorizontalTextAlignment="Center"
-       Grid.Row="1"
-       Grid.Column="0"
-       FontSize="30"
-       TextColor="White"
-       FontFamily="Poppins"
-       FontAttributes="Italic"
-       />
-        <StackLayout Grid.Row="3"
-                     Grid.ColumnSpan="2"
-                     HorizontalOptions="FillAndExpand"
-                     VerticalOptions="Start"
-                     Margin="10"
-                     Spacing="20">
-            <Button Text="Discover"
-        FontSize="30"
-        BackgroundColor="White"
-                    TextColor="#88b2b8"
-                    FontFamily="Poppins"
-        FontAttributes="Bold"
-        HeightRequest="80"
-        CornerRadius="20"
-        Clicked="OnDiscoverButtonClicked"
-        HorizontalOptions="FillAndExpand"/>
-            <Button x:Name="SavedRecipesButton"
-                    Text="Saved Recipes"
-                    FontAttributes="Bold"
-                    FontFamily="Poppins"
-                    BackgroundColor="White"
-                    TextColor="#88b2b8"
-                    CornerRadius="20"
-                    HeightRequest="80"
-                    FontSize="30"
-                    Clicked="OnSavedRecipesButtonClicked"
-                    IsEnabled="False"
-                    HorizontalOptions="FillAndExpand"/>
 
-            
-        </StackLayout>
+    <AbsoluteLayout>
+        <Grid 
+              RowDefinitions="auto,auto,auto,auto"
+              ColumnDefinitions="7*, 3*"
+              Padding="0"
+              RowSpacing="30"
+              ColumnSpacing="10"
+              Margin="17, 17, 17, 17"
+              x:Name="MainGrid"
+              VerticalOptions="FillAndExpand"
+            AbsoluteLayout.LayoutBounds="0,0,1,1"
+               AbsoluteLayout.LayoutFlags="All"
+            ZIndex="1"
+                 >
 
-        <StackLayout Grid.Row="2"
-                     Grid.ColumnSpan="2"
-                     HorizontalOptions="FillAndExpand"
-                     VerticalOptions="End"
-                     Spacing="10"
-                     Orientation="Horizontal">
-            <Border StrokeThickness="2"
+            <Label x:Name="LoginWelcome"
+                   TextColor="{DynamicResource TextColor}"
+                   Text="Welcome!" 
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   FontSize="30"
+                   LineBreakMode="WordWrap"
+                   FontFamily="Poppins"
+                   FontAttributes="Bold"
+                   />
+
+            <StackLayout Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  HorizontalOptions="FillAndExpand"
+                  VerticalOptions="End"
+                  Spacing="10"
+                  Orientation="Horizontal">
+
+                <Border StrokeThickness="2"
                     Padding="5"
-                    Stroke="White"
-                    BackgroundColor="White"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
                     HorizontalOptions="FillAndExpand">
-                <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="40" />
-                </Border.StrokeShape>
 
-                <Entry x:Name="KeywordEntry"
-                       Placeholder="Search for Recipes"
-                       PlaceholderColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray500}}"
-                       FontAttributes="Italic"
-                       Text="{Binding Keyword}"
-                       ClearButtonVisibility="WhileEditing"
-                       BackgroundColor="White"
-                       IsTextPredictionEnabled="False"
-                       HorizontalOptions="FillAndExpand"
-                       HeightRequest="40"/>
-            </Border>
-            <Button Text="FLR"
-        TextColor="#88b2b8"
-        BackgroundColor="White"
-        FontFamily="Poppins"
-        CornerRadius="10"
-        Clicked="OnFilterButtonClicked"
-        HorizontalOptions="End"
-        HeightRequest="40"
-        WidthRequest="50"/>
-            <Button Text="Go"
-                    TextColor="#88b2b8"
-                    BackgroundColor="White"
-                    FontFamily="Poppins"
-                    CornerRadius="10"
-                    Clicked="OnSearchButtonClicked"
-                    HorizontalOptions="End"
-                    HeightRequest="40"
-                    WidthRequest="50"/>
-        </StackLayout>
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10" />
+                    </Border.StrokeShape>
 
-    </Grid>
+                    <Entry x:Name="KeywordEntry"
+                        Placeholder="Search for Recipes"
+                        BackgroundColor="Transparent"
+                       
+                        FontAttributes="Italic"
+                        Text="{Binding Keyword}"
+                        TextColor="{DynamicResource TextColor}"
+                        ClearButtonVisibility="WhileEditing"
+                        IsTextPredictionEnabled="False"
+                        FontFamily="Poppins"
+                        HorizontalOptions="FillAndExpand"
+                        HeightRequest="40"/>
+
+                </Border>
+
+                <Button Text="Go"
+                     BackgroundColor="{DynamicResource AccentColor}"
+                     TextColor="{DynamicResource TextColor}"
+                     FontFamily="Poppins"
+                     CornerRadius="10"
+                     Clicked="OnSearchButtonClicked"
+                     HorizontalOptions="End"
+                 
+                     HeightRequest="60"
+                     WidthRequest="80"/>
+            </StackLayout>
+
+            <StackLayout Grid.Row="2"
+                         Grid.ColumnSpan="2"
+                         HorizontalOptions="FillAndExpand"
+                         VerticalOptions="Start"
+                         Margin="0"
+                         Spacing="30"
+                         x:Name="ButtonStackLayout"
+                         ZIndex="1">
+
+                <Button x:Name="DiscoverButton"
+                        BackgroundColor="{DynamicResource AccentColor}"
+                        TextColor="{DynamicResource TextColor}"
+                        Text="Discover"
+                        FontSize="30"
+                        FontFamily="Poppins"
+                        FontAttributes="Bold"
+                        HeightRequest="130"
+                        CornerRadius="20"
+                        Clicked="OnDiscoverButtonClicked"
+                        HorizontalOptions="FillAndExpand"/>
+
+                <Button x:Name="SavedRecipesButton"
+                        Text="Saved Recipes"
+                        FontAttributes="Bold"
+                        FontFamily="Poppins"
+                        CornerRadius="20"
+                        HeightRequest="130"
+                        FontSize="30"
+                        Clicked="OnSavedRecipesButtonClicked"
+                        IsEnabled="False"
+                        HorizontalOptions="FillAndExpand"
+                        />
+
+            </StackLayout>
+    
+            
+
+        </Grid>
+        <Image 
+                IsVisible="True"
+                x:Name="foodimg"
+                Margin="0"
+                Source="mainpagegraphicc.png"
+                HorizontalOptions="Center"
+                Scale="1.12" 
+                Aspect="AspectFill"
+                AbsoluteLayout.LayoutBounds="0.5,1.8,1.2,0.63"
+                AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional, HeightProportional"
+                ZIndex="0" 
+                />  
+    </AbsoluteLayout>
 </ContentPage>

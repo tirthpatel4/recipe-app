@@ -7,6 +7,11 @@ using RecipeApp2025.Services;
 using System.Diagnostics;
 using System.Threading;
 using System.ComponentModel;
+using RecipeApp2025.Resources.Styles;
+using banditoth.MAUI.DeviceId;
+using banditoth.MAUI.DeviceId.Interfaces;
+using Microsoft.Maui.Controls.PlatformConfiguration;
+using CommunityToolkit.Maui.Core;
 namespace RecipeApp2025
   
 
@@ -17,19 +22,106 @@ namespace RecipeApp2025
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
         public static string CurrentUser { get; set; }
-
+        //light=0, dark = 1, system theme = 2
+        public static int ThemeIndicator { get; set;  }
+        public static IDeviceIdProvider DeviceIdProvider { get; set; }
+        public static string DeviceId { get; set; }
+        public static FirebaseService firebase {  get; set; }
         public App()
         {
             InitializeComponent();
-            CurrentUser = String.Empty;
-            LoadData();
 
+            // Ensure colors exist before replacing dictionaries
+            if (!Application.Current.Resources.ContainsKey("LightPrimary"))
+            {
+                Application.Current.Resources.Add("LightPrimary", Color.FromArgb("#D0E0D0"));
+            }
+            if (!Application.Current.Resources.ContainsKey("DarkPrimary"))
+            {
+                Application.Current.Resources.Add("DarkPrimary", Color.FromArgb("#4E5E4E"));
+            }
+
+
+            CurrentUser = PersistentDataHelper.GetLogin();
+            LoadData();
+            /*
+            DeviceIdProvider = new DeviceIdProvider();
+
+            DeviceId = DeviceIdProvider.GetDeviceId();
+            if( DeviceId == null)
+            {
+                DeviceId = DeviceIdProvider.GetInstallationId();
+            }
+            Debug.WriteLine("++++++++++++" + DeviceId);
+            
+
+            if (DeviceIdProvider.GetDeviceId() == null)
+            {
+                Debug.WriteLine("NULL");
+            }
+            */
+            
+
+
+           
+            int theme = PersistentDataHelper.GetTheme();
+            if(theme >= 0)
+            {
+                SwitchTheme(theme);
+                ThemeIndicator = theme;
+            }
+            else
+            {
+                ThemeIndicator = 0;
+                SwitchTheme(0);
+                PersistentDataHelper.SetTheme(0);
+            }
+
+           
+            /* set response to device theme change */
+            Application.Current.RequestedThemeChanged += (s, a) =>
+            {
+                /* if set to use device settings, switch theme */
+                if (ThemeIndicator == 2)
+                {
+                    SwitchTheme(2);
+                }
+            };
 
         }
 
         async void LoadData()
         {
             //SavedRecipes = await db.GetObjectsAsync();
+        }
+        public static void SwitchTheme(int i)
+        {
+            var theme = (ResourceDictionary)(new LightTheme());
+            if (i == 1)
+            {
+                theme = (ResourceDictionary)(new DarkTheme());
+            }else if (i == 2)
+            {
+                AppTheme currentTheme = Application.Current.RequestedTheme;
+                Debug.WriteLine(currentTheme);
+                if(currentTheme == AppTheme.Light)
+                {
+                    SwitchTheme(0);
+                    return;
+                }else if(currentTheme == AppTheme.Dark)
+                {
+                    SwitchTheme(1);
+                    return;
+                }
+            }
+            ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+            if(mergedDictionaries != null)
+            {
+                mergedDictionaries.Clear();
+                mergedDictionaries.Add(theme);
+                
+            }
+            
         }
 
         public static async Task<Boolean> ChangeCurrentRecipe(Recipe r)

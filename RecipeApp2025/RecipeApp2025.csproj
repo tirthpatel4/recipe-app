@@ -70,6 +70,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="banditoth.MAUI.DeviceId" Version="1.0.2" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="10.0.0" />
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
 		<PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
@@ -96,6 +97,12 @@
 	  <Compile Update="Pages\SavedRecipesPage.xaml.cs">
 	    <DependentUpon>SavedRecipesPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Resources\Styles\DarkTheme.xaml.cs">
+	    <DependentUpon>DarkTheme.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Resources\Styles\LightTheme.xaml.cs">
+	    <DependentUpon>LightTheme.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -115,6 +122,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SavedRecipesPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\DarkTheme.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\LightTheme.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

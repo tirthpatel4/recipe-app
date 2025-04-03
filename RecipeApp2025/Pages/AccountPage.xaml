@@ -4,50 +4,73 @@
              xmlns:pullToRefresh="clr-namespace:Syncfusion.Maui.Toolkit.PullToRefresh;assembly=Syncfusion.Maui.Toolkit"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RecipeApp2025.Pages.AccountPage"
-             BackgroundColor="#0bdc84">
+             BackgroundColor="{DynamicResource BackgroundColor}">
 
-    <VerticalStackLayout Padding="10">
+    <VerticalStackLayout Padding="10"
+                         Margin="5, 20, 5, 5"
+                         Spacing="0">
+
         <Border StrokeThickness="2"
-        Padding="5"
-        Stroke="White"
-        BackgroundColor="White"
-        HorizontalOptions="FillAndExpand">
-            <Border.StrokeShape>
-                <RoundRectangle CornerRadius="40" />
-            </Border.StrokeShape>
-            <Entry x:Name="UsernameEntry"
-               Placeholder="Username"
-               Keyboard="Email"
-               BackgroundColor="White"
-               Text="{Binding Username}"
-               Margin="0,0,0,0" />
-        </Border>
-        <Label Padding="1"/>
+            Padding="5"
+            Stroke="Transparent"
+            BackgroundColor="{DynamicResource PrimaryColor}"
+        
+            HorizontalOptions="FillAndExpand"
+                Margin="0, 0, 0, 10">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="40" />
+                </Border.StrokeShape>
+                <Entry x:Name="UsernameEntry"
+                
+                Placeholder="Username"
+                Keyboard="Email"
+                TextColor="{DynamicResource TextColor}"
+                PlaceholderColor="{DynamicResource TextColor}"
+                ClearButtonVisibility="WhileEditing"
+                BackgroundColor="Transparent"
+                Text="{Binding Username}"
+                Margin="10,0,10,0" />
+            </Border>
         <Border StrokeThickness="2"
-        Padding="5"
-        Stroke="White"
-        BackgroundColor="White"
-        HorizontalOptions="FillAndExpand">
+            Padding="5"
+            Margin="0, 0, 0, 10"
+            Stroke="Transparent"
+            BackgroundColor="{DynamicResource PrimaryColor}"
+            HorizontalOptions="FillAndExpand">
             <Border.StrokeShape>
-                <RoundRectangle CornerRadius="40" />
-            </Border.StrokeShape>
-            <Entry x:Name="PasswordEntry"
-               Placeholder="Password"
-               IsPassword="True"
-               BackgroundColor="White"
-               Text="{Binding Password}"
-               Margin="0,0,0,0" />
-        </Border>
-        <Label Padding="1"/>
-        <Button Text="Sign In"
-                BackgroundColor="White"
-                TextColor="#88b2b8"
+                    <RoundRectangle CornerRadius="40" />
+                </Border.StrokeShape>
+                <Entry x:Name="PasswordEntry"
+                Placeholder="Password"
+                IsPassword="True"
+                TextColor="{DynamicResource TextColor}"
+                BackgroundColor="Transparent"
+                Text="{Binding Password}"
+                ClearButtonVisibility="WhileEditing"
+                
+                PlaceholderColor="{DynamicResource TextColor}"
+                Margin="10,0,10,0" />
+            </Border>
+            <Label Padding="1"/>
+            <Button x:Name="signinButton"
+                Text="Sign In"
                 Clicked="OnLoginClicked"
-                Margin="0,0,0,10" />
+                
+                WidthRequest="300"
+                Margin="0,0,0,10" 
+                CornerRadius="5"/>
 
-        <Button Text="Register"
-                BackgroundColor="White"
+        <Button x:Name="registerButton"
+                Text="Register"
                 Clicked="OnRegisterClicked"
-                TextColor="#88b2b8" />
+                WidthRequest="300"
+                Margin="0,0,0,10" 
+                CornerRadius="5"/>
+        <Button 
+            x:Name="signoutButton"
+            Text="Sign Out"
+            Clicked="OnSignOutClicked"
+            WidthRequest="300"
+            CornerRadius="5"/>
     </VerticalStackLayout>
 </ContentPage>

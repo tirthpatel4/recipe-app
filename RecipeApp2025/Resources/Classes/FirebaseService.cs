@@ -7,6 +7,7 @@ using RecipeApp2025.Resources.Classes;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System.Diagnostics;
+//using GoogleGson.Annotations;
 
 public class FirebaseService
 {
@@ -35,7 +36,6 @@ public class FirebaseService
         {
             await _firebaseClient.Child("users").Child(verify.Id.ToString()).Child("savedrecipes").PostAsync(r);
         }
-        
     }
 
     public async Task<List<Recipe>> ReturnUserSavedRecipes(string username)
@@ -68,6 +68,7 @@ public class FirebaseService
             await _firebaseClient.Child("recipes").PostAsync(recipe);
         }
     }
+
     public async Task<List<Recipe>> GetRecipes()
     {
         return (await _firebaseClient.Child("recipes")
@@ -81,6 +82,23 @@ public class FirebaseService
         .Child("users")
         .OrderBy("Username")
         .EqualTo(username)
+        .OnceAsync<User>();
+
+        return users.FirstOrDefault()?.Object;
+    }
+
+    public async Task<String> GetUserIdFromDeviceId(String device_id)
+    {
+        var u = await _firebaseClient.Child("devices").OrderBy("device_id").EqualTo(device_id).OnceAsync<String>();
+        return u.FirstOrDefault()?.Object;
+    }
+
+    public async Task<User> GetUserById(string id)
+    {
+        var users = await _firebaseClient
+        .Child("users")
+        .OrderBy("Id")
+        .EqualTo(id)
         .OnceAsync<User>();
 
         return users.FirstOrDefault()?.Object;
@@ -105,4 +123,5 @@ public class FirebaseService
             }
         }
     }
+
 }

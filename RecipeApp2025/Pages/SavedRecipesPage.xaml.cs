@@ -15,18 +15,18 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     private readonly HttpClient _httpClient = new HttpClient();
     private const string ApiKey = "DM QUINTON";
     private const string BaseUrl = "https://api.spoonacular.com/";
-
+   
     public ObservableCollection<Recipe> Recipes { get; set; }
     public ICommand GoToRecipeDetailPageCommand { get; }
     public SavedRecipesPage()
     {
         InitializeComponent();
         //Recipes = new ObservableCollection<Recipe>(App.SavedRecipes);
-
-        /* temporary hard coded data */
-
+        
+        
         BindingContext = this;
         //SavedFeed.ItemsSource = Recipes;
+        SavedFeed.ItemsSource = App.SavedRecipes;
         GoToRecipeDetailPageCommand = new Command<Recipe>(GoToRecipeDetailPage);
     }
 
@@ -55,6 +55,7 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     {
         //var customEventArgs = new CustomEventArgs(r);
         //OnRecipesItemClicked(this, customEventArgs);
+        Debug.WriteLine("========================INSIDE GOTORECIPEDETAILPAGE COMMAND+================================================== ");
         App.ChangeCurrentRecipe(r);
 
         await Shell.Current.GoToAsync("/DetailPage");
@@ -67,8 +68,8 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
         if (response.IsSuccessStatusCode)
         {
             var content = await response.Content.ReadAsStringAsync();
-            var json = JObject.Parse(content);
-            var titles = json["results"].Select(r => r["title"].ToString()).ToList();
+                var json = JObject.Parse(content);
+                var titles = json["results"].Select(r => r["title"].ToString()).ToList();
 
             // DEBUG ONLY!
             //foreach (string t in titles)
@@ -85,4 +86,8 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
             return null;
         }
     }
+
+    
+
+
 }

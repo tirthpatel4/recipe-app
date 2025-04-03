@@ -16,6 +16,12 @@ public partial class AccountPage : ContentPage
         _username = String.Empty;
         _password = String.Empty;
         _firebaseService = new FirebaseService();
+        
+        signinButton.IsEnabled = App.CurrentUser == "" || App.CurrentUser == null;
+        Debug.WriteLine(signinButton.IsEnabled);
+        registerButton.IsEnabled = signinButton.IsEnabled; 
+        signoutButton.IsEnabled = !signinButton.IsEnabled;  
+
 	}
     protected override void OnAppearing()
     {
@@ -43,9 +49,15 @@ public partial class AccountPage : ContentPage
                 {
                     Username = _username,
                     Password = _password
+              
                 };
+                PersistentDataHelper.SetLogin(_username);
+                PersistentDataHelper.SetTheme(App.ThemeIndicator);
                 await _firebaseService.AddUser(user);
                 await DisplayAlert("Success", "User registered successfully!", "OK");
+                signinButton.IsEnabled = false;
+                registerButton.IsEnabled = false;
+                signoutButton.IsEnabled = true; 
             }
             else await DisplayAlert("Error", "A user with that name has already been registered. Please enter a different username", "OK");
         }
@@ -60,6 +72,11 @@ public partial class AccountPage : ContentPage
             {
                 App.CurrentUser = user.Username;
                 await DisplayAlert("Success", "Login successful!", "OK");
+                PersistentDataHelper.SetLogin(user.Username);
+                PersistentDataHelper.SetTheme(App.ThemeIndicator);
+                signinButton.IsEnabled = false;
+                registerButton.IsEnabled = false;
+                signoutButton.IsEnabled = true;
             }
             else
             {
@@ -67,5 +84,15 @@ public partial class AccountPage : ContentPage
             }
         }
         else await DisplayAlert("Error", "Neither field can be empty!", "OK");
+    }
+
+    private async void OnSignOutClicked(object sender, EventArgs e)
+    {
+        App.CurrentUser = "";
+        PersistentDataHelper.SetLogin("");
+        signinButton.IsEnabled = true;
+        registerButton.IsEnabled = true;
+        signoutButton.IsEnabled = false;
+        await DisplayAlert("Success", "Logged out!", "OK");
     }
 }

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xaml-comp compile="true" ?>
+
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="RecipeApp2025.Resources.Styles.LightTheme">
+
+    <Color x:Key="BackgroundColor">#F1FAF0</Color>
+    <Color x:Key="PrimaryColor">#D0E0D0</Color>
+    <Color x:Key="AccentColor">#4DC9C0</Color>
+    <Color x:Key="TextColor">#0F4C4A</Color>
+
+    
+    
+    <Style TargetType="Button">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource AccentColor}" />
+                            <Setter Property="TextColor" Value="{StaticResource TextColor}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                            <VisualState.Setters>
+                            <Setter Property="TextColor" Value="#A3B9B8" />
+                            <Setter Property="BackgroundColor" Value="#CFE4E2" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="PointerOver" />
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+    </Style>
+
+</ResourceDictionary>
+    

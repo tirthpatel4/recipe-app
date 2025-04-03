@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Diagnostics;
+using System.Runtime.CompilerServices;
 
 namespace RecipeApp2025.Pages
 {
@@ -12,6 +13,16 @@ namespace RecipeApp2025.Pages
             BindingContext = this;
             this.SizeChanged += OnSizeChanged;
             _keyword = string.Empty;
+            //AdjustSizing();
+
+            if (App.CurrentUser == "")
+            {
+                Debug.WriteLine("not logged in");
+                SavedRecipesButton.IsEnabled = false;
+            }
+
+             setImgProperties();
+
         }
         protected override void OnAppearing()
         {
@@ -21,7 +32,13 @@ namespace RecipeApp2025.Pages
             {
                 LoginWelcome.Text = "Welcome back, " + App.CurrentUser + "!";
             }
+            else
+            {
+                LoginWelcome.Text = "Welcome!";
+            }
             KeywordEntry.TextChanged += OnKeywordChanged;
+            setImgProperties();
+
         }
         private void OnKeywordChanged(object sender, TextChangedEventArgs e)
         {
@@ -31,17 +48,43 @@ namespace RecipeApp2025.Pages
         private void OnSizeChanged(object sender, EventArgs e)
         {
             SetStackLayoutOrientation();
+            setImgProperties();
+
+            //AdjustSizing();
         }
 
+        private void setImgProperties()
+        {
+            //MainGrid.HeightRequest = .95*DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density;
+            foodimg.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density;
+            //foodimg.HeightRequest = .2*DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density;
+           
+        }
+        private void AdjustSizing()
+        {
+            if (App.IsInPortrait())
+            {
+                MainGrid.RowSpacing = 40;
+                DiscoverButton.HeightRequest = 120;
+                SavedRecipesButton.HeightRequest = 120;
+
+            }
+            else
+            {
+                MainGrid.RowSpacing = 30;
+                DiscoverButton.HeightRequest = 100;
+                SavedRecipesButton.HeightRequest = 100;
+            }
+        }
         private void SetStackLayoutOrientation()
         {
             if (IsInPortrait())
             {
-                //ButtonStackLayout.Orientation = StackOrientation.Vertical;
+                ButtonStackLayout.Orientation = StackOrientation.Vertical;
             }
-            else
-            {
-                //ButtonStackLayout.Orientation = StackOrientation.Horizontal;
+            else { 
+           
+               ButtonStackLayout.Orientation = StackOrientation.Horizontal;
             }
 
         }

@@ -30,16 +30,16 @@ public partial class DetailPage : ContentPage
         Debug.WriteLine("LOOP DONE !!");
         IngredientsList.ItemsSource = Ingredients_Text_List;
         StepsList.ItemsSource = App.CurrentRecipe.Steps_List;
-
+     
         /* Set width of Steps/Ingredients grids based on width of screen */
-        
+
         /*behavior for rotating */
         this.SizeChanged += OnSizeChanged;
 
 
         //!!!!!! THIS NEEDS TO CHANGE !!!!! HACKY AF
         //IngredientsList.HeightRequest = 50 * App.CurrentRecipe.ingredients.Count;
-        StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.Steps_List.Count;
+        //StepsIngredientsSL.HeightRequest = 50 * App.CurrentRecipe.Ingredients_List.Count + 150 * App.CurrentRecipe.Steps_List.Count;
 
 
 
@@ -64,37 +64,37 @@ public partial class DetailPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
+        SetExpanderProperties();
+
+        Debug.WriteLine(App.CurrentRecipe.Name);
+
         if (App.CurrentUser.Length > 0)
         {
-            checkDuplicate();
+            FirebaseService fs = new FirebaseService();
+            Task<User> u = fs.GetUser(App.CurrentUser);
+            ToggleButton.IsEnabled = true;
+            isSaved = App.CurrentRecipe.isSaved;
+
+            if (App.CurrentRecipe.isSaved)
+            {
+                ToggleButton.Text = "Unsave";
+            }
+            else
+            {
+                ToggleButton.Text = "Save";
+            }
         }
         else
         {
             ToggleButton.IsEnabled = false;
         }
+
     }
 
-    private async void checkDuplicate()
-    {
-        FirebaseService fs = new FirebaseService();
-        List<Recipe> r = await fs.ReturnUserSavedRecipes(App.CurrentUser);
-        ToggleButton.IsEnabled = true;
-
-        if (r is not null) isSaved = r.Any(recipe => recipe.Id == App.CurrentRecipe.Id);
-        else isSaved = false;
-
-        if (isSaved)
-        {
-            ToggleButton.Text = "Unsave";
-        }
-        else
-        {
-            ToggleButton.Text = "Save";
-        }
-    }
     private void OnSizeChanged(object sender, EventArgs e)
     {
         App.SetStackLayoutOrientation(StepsIngredientsSL);
+        Debug.WriteLine("+++++++++++IN size changed");
         SetExpanderProperties();
         
     }
@@ -105,10 +105,17 @@ public partial class DetailPage : ContentPage
         {
             /*THIS MIGHT NEED TO BE CHANGED: WIILL ALWAYS CLOSE INGREDIENTS WHEN FLIPPING TO VERTICAL*/
             ingExpander.IsExpanded = false;
+            ingExpander.IsExpanded = true;
+            ingExpander.IsExpanded = false;
+
             ingExpander.IsEnabled = true;
+            ingExpander.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density; 
+            Debug.WriteLine("Width from package: " + DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density);
+            Debug.WriteLine("++++++++ ING list expanded: " + ingExpander.IsExpanded);
         }
         else
         {
+            ingExpander.WidthRequest = 350;
             ingExpander.IsExpanded = true;
             ingExpander.IsEnabled = false;
         }
@@ -133,20 +140,18 @@ public partial class DetailPage : ContentPage
 
     private void OnToggleButtonClicked(object sender, EventArgs e)
     {
-        FirebaseService fs = new FirebaseService();
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";
-        if (isSaved)
-        {
-            Debug.WriteLine("Adding Recipe");
-            fs.AddSavedRecipe(App.CurrentRecipe, App.CurrentUser);
+        if (isSaved) {
+            App.AddSavedRecipe(App.CurrentRecipe);
         }
         else
         {
-            Debug.WriteLine("Removing Recipe");
-            fs.RemoveRecipe(App.CurrentRecipe, App.CurrentUser);
+            App.RemoveSavedRecipe(App.CurrentRecipe);
         }
-        App.CurrentRecipe.isSaved = isSaved;
+
+
+        App.CurrentRecipe.isSaved = isSaved;    
     }
 
     private void IngredientsList_ItemSelected(object sender, SelectedItemChangedEventArgs e)

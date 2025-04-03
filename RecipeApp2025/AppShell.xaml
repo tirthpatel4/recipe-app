@@ -5,38 +5,61 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:sf="clr-namespace:Syncfusion.Maui.Toolkit.SegmentedControl;assembly=Syncfusion.Maui.Toolkit"
     xmlns:pages="clr-namespace:RecipeApp2025.Pages"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:mct="clr-namespace:CommunityToolkit.Maui.Behaviors;assembly=CommunityToolkit.Maui"
+
+    xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
     Shell.FlyoutBehavior="Flyout"
-    FlyoutBackground="White"
-    Title="">
+    FlyoutBackground="{DynamicResource BackgroundColor}"
+    Shell.BackgroundColor="{DynamicResource PrimaryColor}"
+    Shell.ForegroundColor="{DynamicResource TextColor}"
+    Shell.TitleColor="{DynamicResource TextColor}"
+    
+    Shell.NavBarIsVisible="True"
+    Shell.NavBarHasShadow="False"
+
+    >
+   
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior  StatusBarColor="#D0E0D0" StatusBarStyle="DarkContent" />
+    </Shell.Behaviors>
 
     <Shell.ItemTemplate>
         <DataTemplate>
-            <Grid ColumnDefinitions="*,Auto" Padding="10">
-                <Border Stroke="White"
+            <Grid ColumnDefinitions="*,Auto" 
+                  
+                  Padding="15"
+                  >
+                <Border 
                     StrokeThickness="2"
-                    Background="White"
+                    Background="{DynamicResource BackgroundColor}"
                     Padding="16,8"
+                    HeightRequest="50"
                     HorizontalOptions="FillAndExpand"
                     WidthRequest="250">
                     <Border.StrokeShape>
                         <RoundRectangle CornerRadius="10" />
                     </Border.StrokeShape>
                     <Label Text="{Binding Title}"
-                       TextColor="#88b2b8"
-                       FontSize="16"
+                       TextColor="{DynamicResource TextColor}"
+                       FontSize="20"
                        HorizontalOptions="Center"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center"
+                       FontFamily="Poppins"/>
                 </Border>
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
 
 
-    <FlyoutItem Title="Home">
+    <FlyoutItem Title="Home"
+               >
         <ShellContent
-            Title="Recipe App Name"
+            Title="MainPage"
+            
             ContentTemplate="{DataTemplate pages:MainPage}"
-            Route="MainPage"/>
+            Route="MainPage"
+            />
     </FlyoutItem>
 
     <FlyoutItem Title="Settings">
@@ -52,11 +75,5 @@
             ContentTemplate="{DataTemplate pages:AccountPage}"
             Route="AccountPage"/>
     </FlyoutItem>
-
-    <Shell.FlyoutFooter>
-        <Grid Padding="15">
-            <Label Text="No Theme Control" HorizontalOptions="Center" VerticalOptions="Center" />
-        </Grid>
-    </Shell.FlyoutFooter>
 
 </Shell>
