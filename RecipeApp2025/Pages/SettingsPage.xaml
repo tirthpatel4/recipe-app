@@ -22,6 +22,7 @@
                     BackgroundColor="{DynamicResource PrimaryColor}"
                     Grid.Row="1"
                     Title="Theme"
+                    
                     TitleColor="{DynamicResource TextColor}"
                     TextColor="{DynamicResource TextColor}"
                     SelectedIndexChanged="OnThemePickerSelectedIndexChanged">

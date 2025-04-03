@@ -12,6 +12,12 @@ public partial class SettingsPage : ContentPage
         BindingContext = this;
 	}
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        lightdarkpicker.SelectedIndex = App.ThemeIndicator;
+
+    }
     void OnThemePickerSelectedIndexChanged(object sender, EventArgs e)
     {
         

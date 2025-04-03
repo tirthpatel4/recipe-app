@@ -69,15 +69,15 @@
                         HeightRequest="40"/>
 
                 </Border>
-                <Button Text="FLR"
-        BackgroundColor="{DynamicResource AccentColor}"
-TextColor="{DynamicResource TextColor}"
-        FontFamily="Poppins"
-        CornerRadius="10"
-        Clicked="OnFilterButtonClicked"
-        HorizontalOptions="End"
-        HeightRequest="60"
-        WidthRequest="80"/>
+                <Button Text="Filter"
+                    BackgroundColor="{DynamicResource AccentColor}"
+                    TextColor="{DynamicResource TextColor}"
+                    FontFamily="Poppins"
+                    CornerRadius="10"
+                    Clicked="OnFilterButtonClicked"
+                    HorizontalOptions="End"
+                    HeightRequest="60"
+                    WidthRequest="70"/>
                 <Button Text="Go"
                      BackgroundColor="{DynamicResource AccentColor}"
                      TextColor="{DynamicResource TextColor}"
@@ -87,7 +87,7 @@ TextColor="{DynamicResource TextColor}"
                      HorizontalOptions="End"
                  
                      HeightRequest="60"
-                     WidthRequest="80"/>
+                     WidthRequest="60"/>
             </StackLayout>
 
             <StackLayout Grid.Row="2"
@@ -129,7 +129,7 @@ TextColor="{DynamicResource TextColor}"
 
         </Grid>
         <Image 
-                IsVisible="True"
+                IsVisible="False"
                 x:Name="foodimg"
                 Margin="0"
                 Source="mainpagegraphicc.png"

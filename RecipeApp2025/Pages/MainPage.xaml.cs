@@ -56,7 +56,7 @@ namespace RecipeApp2025.Pages
         private void setImgProperties()
         {
             //MainGrid.HeightRequest = .95*DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density;
-            foodimg.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density;
+            //foodimg.WidthRequest = DeviceDisplay.Current.MainDisplayInfo.Width / DeviceDisplay.Current.MainDisplayInfo.Density;
             //foodimg.HeightRequest = .2*DeviceDisplay.Current.MainDisplayInfo.Height / DeviceDisplay.Current.MainDisplayInfo.Density;
            
         }

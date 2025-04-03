@@ -51,6 +51,7 @@ public partial class AccountPage : ContentPage
                     Password = _password
               
                 };
+                App.CurrentUser = user.Username;
                 PersistentDataHelper.SetLogin(_username);
                 PersistentDataHelper.SetTheme(App.ThemeIndicator);
                 await _firebaseService.AddUser(user);
