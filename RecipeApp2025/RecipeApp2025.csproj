@@ -21,10 +21,10 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>RecipeApp2025</ApplicationTitle>
+		<ApplicationTitle>SpiceFever</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.recipeapp2025</ApplicationId>
+		<ApplicationId>com.companyname.spicefever</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
@@ -43,10 +43,12 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+		<MauiSplashScreen Include="Resources\Splash\appiconfg.svg" Color="#c8fa6b" >
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</MauiSplashScreen>
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
