@@ -12,47 +12,54 @@
             FontFamily="Poppins"/>
         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
             <CheckBox VerticalOptions="CenterAndExpand"
-                      HorizontalOptions="CenterAndExpand"/>
+                      HorizontalOptions="CenterAndExpand"
+                      CheckedChanged="OnCheckboxChanged"
+                      x:Name="cb1"
+                      AutomationId="1"/>
             <Label Text="Minimum serving count "
                    VerticalOptions="Center"
                    HorizontalOptions="CenterAndExpand"
                    FontFamily="Poppins"/>
             <Entry Keyboard="Numeric"
                    VerticalOptions="Center"
-                   HorizontalOptions="CenterAndExpand"/>
+                   HorizontalOptions="CenterAndExpand"
+                   AutomationId="1"
+                   TextChanged="OnEntryChanged"
+                   x:Name="e1"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
             <CheckBox VerticalOptions="CenterAndExpand"
-          HorizontalOptions="CenterAndExpand"/>
+          HorizontalOptions="CenterAndExpand"
+                      CheckedChanged="OnCheckboxChanged"
+AutomationId="2"
+                      x:Name="cb2"/>
             <Label Text="Maximum serving count "
            VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"
            FontFamily="Poppins"/>
             <Entry Keyboard="Numeric"
            VerticalOptions="Center"
-           HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <CheckBox VerticalOptions="CenterAndExpand"
-              HorizontalOptions="CenterAndExpand"/>
-            <Label Text="Minimum preparation time "
-           VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"
-           FontFamily="Poppins"/>
-            <Entry Keyboard="Numeric"
-           VerticalOptions="Center"
-           HorizontalOptions="CenterAndExpand"/>
+                   AutomationId="2"
+                   TextChanged="OnEntryChanged"
+                   x:Name="e2"/>
         </StackLayout>
         <StackLayout Orientation="Horizontal" VerticalOptions="Center">
             <CheckBox VerticalOptions="CenterAndExpand"
-  HorizontalOptions="CenterAndExpand"/>
+  HorizontalOptions="CenterAndExpand"
+                                            CheckedChanged="OnCheckboxChanged"
+AutomationId="3"
+                      x:Name="cb3"/>
             <Label Text="Maximum preparation time "
    VerticalOptions="Center"
    HorizontalOptions="CenterAndExpand"
    FontFamily="Poppins"/>
             <Entry Keyboard="Numeric"
    VerticalOptions="Center"
-   HorizontalOptions="CenterAndExpand"/>
+   HorizontalOptions="CenterAndExpand"
+                   AutomationId="3"
+                   TextChanged="OnEntryChanged"
+                   x:Name="e3"/>
         </StackLayout>
         <Label Padding="10"/>
         <Label 
@@ -67,12 +74,16 @@
          HorizontalOptions="CenterAndExpand"
          FontFamily="Poppins"/>
             <Picker VerticalOptions="Center"
-                    HorizontalOptions="CenterAndExpand">
+                    HorizontalOptions="CenterAndExpand"
+                    SelectedIndex="0"
+                    SelectedIndexChanged="OnPickerChanged"
+                    AutomationId="1"
+                    x:Name="p1">
                 <Picker.Items>
+                    <x:String>None</x:String>
                     <x:String>Chicken</x:String>
                     <x:String>Beef</x:String>
                     <x:String>Pork</x:String>
-                    <x:String>None</x:String>
                 </Picker.Items>
             </Picker>
         </StackLayout>
@@ -82,12 +93,15 @@
  HorizontalOptions="CenterAndExpand"
  FontFamily="Poppins"/>
             <Picker VerticalOptions="Center"
-        HorizontalOptions="CenterAndExpand">
+        HorizontalOptions="CenterAndExpand"
+                    SelectedIndex="0"
+                    AutomationId="2"
+x:Name="p2">
                 <Picker.Items>
+                    <x:String>None</x:String>
                     <x:String>Carrot</x:String>
                     <x:String>Potato</x:String>
                     <x:String>Kale</x:String>
-                    <x:String>None</x:String>
                 </Picker.Items>
             </Picker>
         </StackLayout>
