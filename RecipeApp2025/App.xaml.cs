@@ -12,6 +12,7 @@ using banditoth.MAUI.DeviceId;
 using banditoth.MAUI.DeviceId.Interfaces;
 using Microsoft.Maui.Controls.PlatformConfiguration;
 using CommunityToolkit.Maui.Core;
+using Firebase.Auth;
 namespace RecipeApp2025
   
 
@@ -22,6 +23,7 @@ namespace RecipeApp2025
         public static Recipe CurrentRecipe { get; set; }
         public static List<Recipe> SavedRecipes { get; set; }
         public static string CurrentUser { get; set; }
+        public static UserCredential CurrentUserCredential { get; set; }
         public static Filter CurrentFilter { get; set; } 
         //light=0, dark = 1, system theme = 2
         public static int ThemeIndicator { get; set;  }

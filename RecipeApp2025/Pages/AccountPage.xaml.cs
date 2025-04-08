@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
+using Firebase.Auth;
 using RecipeApp2025.Resources.Classes;
 
 namespace RecipeApp2025.Pages;
@@ -9,13 +10,11 @@ public partial class AccountPage : ContentPage
 {
 	private string _username;
 	private string _password;
-    private readonly FirebaseService _firebaseService;
     public AccountPage()
 	{
 		InitializeComponent();
         _username = String.Empty;
         _password = String.Empty;
-        _firebaseService = new FirebaseService();
         
         signinButton.IsEnabled = App.CurrentUser == "" || App.CurrentUser == null;
         Debug.WriteLine(signinButton.IsEnabled);
@@ -40,47 +39,71 @@ public partial class AccountPage : ContentPage
     }
     private async void OnRegisterClicked(object sender, EventArgs e)
     {
-        if (_username != String.Empty && _password != String.Empty)
+        if (!string.IsNullOrEmpty(_username) && !string.IsNullOrEmpty(_password))
         {
-            var verify = await _firebaseService.GetUser(_username);
-            if (verify is null)
+            try
             {
-                var user = new User
+                FirebaseAuthService authService = FirebaseAuthService.Instance;
+                UserCredential uc = await authService.RegisterUser(_username, _password);
+
+                var user = new Resources.Classes.User
                 {
+                    Id = uc.User.Uid,
                     Username = _username,
-                    Password = _password
-              
+                    Email = _username,
+                    UserRecipes = new List<Recipe>()
                 };
-                PersistentDataHelper.SetLogin(_username);
-                PersistentDataHelper.SetTheme(App.ThemeIndicator);
+
+                var _firebaseService = new FirebaseService(uc);
                 await _firebaseService.AddUser(user);
+                PersistentDataHelper.SetLogin(_username);
+
                 await DisplayAlert("Success", "User registered successfully!", "OK");
-                signinButton.IsEnabled = false;
-                registerButton.IsEnabled = false;
-                signoutButton.IsEnabled = true; 
-            }
-            else await DisplayAlert("Error", "A user with that name has already been registered. Please enter a different username", "OK");
-        }
-        else await DisplayAlert("Error", "Neither field can be empty!", "OK");
-    }
-    private async void OnLoginClicked(object sender, EventArgs e)
-    {
-        if (_username != String.Empty && _password != String.Empty)
-        {
-            var user = await _firebaseService.GetUser(_username);
-            if (user != null && user.Password == _password)
-            {
-                App.CurrentUser = user.Username;
-                await DisplayAlert("Success", "Login successful!", "OK");
-                PersistentDataHelper.SetLogin(user.Username);
-                PersistentDataHelper.SetTheme(App.ThemeIndicator);
+
                 signinButton.IsEnabled = false;
                 registerButton.IsEnabled = false;
                 signoutButton.IsEnabled = true;
             }
-            else
+            catch (Exception ex)
             {
-                await DisplayAlert("Error", "Login failed. Username or password is incorrect.", "OK");
+                await DisplayAlert("Error", $"Registration failed: {ex.Message}", "OK");
+            }
+        }
+        else
+        {
+            await DisplayAlert("Error", "Neither field can be empty!", "OK");
+        }
+    }
+
+    private async void OnLoginClicked(object sender, EventArgs e)
+    {
+        if (_username != String.Empty && _password != String.Empty)
+        {
+            try
+            {
+                FirebaseAuthService authService = FirebaseAuthService.Instance;
+                UserCredential uc = await authService.LoginUser(_username, _password);
+
+                await DisplayAlert("Success", "User signed in!", "OK");
+
+                signinButton.IsEnabled = false;
+                registerButton.IsEnabled = false;
+                signoutButton.IsEnabled = true;
+                var _firebaseService = new FirebaseService(uc);
+                var user = await _firebaseService.GetUser(_username);
+                if (user != null)
+                {
+                    Debug.WriteLine("This succeeeded!");
+                    App.CurrentUser = user.Username;
+                    App.CurrentUserCredential = uc;
+                    PersistentDataHelper.SetLogin(user.Username);
+                    PersistentDataHelper.SetTheme(App.ThemeIndicator);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Login failed: {ex.Message}", "OK");
             }
         }
         else await DisplayAlert("Error", "Neither field can be empty!", "OK");
@@ -89,6 +112,7 @@ public partial class AccountPage : ContentPage
     private async void OnSignOutClicked(object sender, EventArgs e)
     {
         App.CurrentUser = "";
+        App.CurrentUserCredential = null;
         PersistentDataHelper.SetLogin("");
         signinButton.IsEnabled = true;
         registerButton.IsEnabled = true;

@@ -3,6 +3,8 @@ using Firebase.Database;
 using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
 using banditoth.MAUI.DeviceId;
+using Firebase.Auth;
+using Firebase.Auth.Providers;
 
 namespace RecipeApp2025
 {
@@ -28,7 +30,6 @@ namespace RecipeApp2025
             builder.Logging.AddDebug();
 #endif
             builder.Services.AddSingleton(new FirebaseClient("https://recipeapp2025-default-rtdb.firebaseio.com/"));
-
 
 
             return builder.Build();
