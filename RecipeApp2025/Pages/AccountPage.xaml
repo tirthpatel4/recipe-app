@@ -5,20 +5,40 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="RecipeApp2025.Pages.AccountPage"
              BackgroundColor="{DynamicResource BackgroundColor}">
+             
+             <ContentPage.Background>
+    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#cbf5e0" Offset="0.1" />
+        <GradientStop Color="#F0F8FF" Offset="0.9" />
+    </LinearGradientBrush>
+    </ContentPage.Background>
 
-    <VerticalStackLayout Padding="10"
-                         Margin="5, 20, 5, 5"
-                         Spacing="0">
+    <Grid RowDefinitions="*" ColumnDefinitions="*">
+        <VerticalStackLayout Grid.Row="0" Grid.Column="0"
+                             HorizontalOptions="Center" VerticalOptions="Center"
+                             Spacing="15" Padding="20"
+                             BackgroundColor="White" WidthRequest="300">
 
-        <Border StrokeThickness="2"
-            Padding="5"
-            Stroke="Transparent"
-            BackgroundColor="{DynamicResource PrimaryColor}"
-        
-            HorizontalOptions="FillAndExpand"
-                Margin="0, 0, 0, 10">
+
+            <Label Text="Welcome"
+                   FontSize="Large"
+                   FontAttributes="Bold"
+                   TextColor="{DynamicResource TextColor}"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,5"/>
+
+            <Label Text="to the Receipe App"
+                   FontSize="Medium"
+                   TextColor="{DynamicResource TextColor}"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,15"/>
+
+            <Border StrokeThickness="1" Padding="10" Margin="0, 0, 0, 10"
+                    Stroke="#D3D3D3"
+                    BackgroundColor="White"
+                    HorizontalOptions= "FillAndExpand">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="40" />
+                    <RoundRectangle CornerRadius="5" />
                 </Border.StrokeShape>
                 <Entry x:Name="UsernameEntry"
                 
@@ -31,13 +51,13 @@
                 Text="{Binding Username}"
                 Margin="10,0,10,0" />
             </Border>
-        <Border StrokeThickness="2"
+            <Border StrokeThickness="2"
             Padding="5"
             Margin="0, 0, 0, 10"
             Stroke="Transparent"
-            BackgroundColor="{DynamicResource PrimaryColor}"
+            BackgroundColor="White"
             HorizontalOptions="FillAndExpand">
-            <Border.StrokeShape>
+                <Border.StrokeShape>
                     <RoundRectangle CornerRadius="40" />
                 </Border.StrokeShape>
                 <Entry x:Name="PasswordEntry"
@@ -56,21 +76,28 @@
                 Text="Sign In"
                 Clicked="OnLoginClicked"
                 
-                WidthRequest="300"
+                WidthRequest="200"
                 Margin="0,0,0,10" 
-                CornerRadius="5"/>
+                CornerRadius="25"
+                BackgroundColor="{DynamicResource AccentColor}"
+                TextColor="White"/>
 
-        <Button x:Name="registerButton"
+            <Button x:Name="registerButton"
                 Text="Register"
                 Clicked="OnRegisterClicked"
-                WidthRequest="300"
+                WidthRequest="200"
                 Margin="0,0,0,10" 
-                CornerRadius="5"/>
-        <Button 
+                CornerRadius="25"
+               BackgroundColor="{DynamicResource SecondaryColor}"
+               TextColor="White"/>
+            <Button 
             x:Name="signoutButton"
             Text="Sign Out"
             Clicked="OnSignOutClicked"
-            WidthRequest="300"
-            CornerRadius="5"/>
-    </VerticalStackLayout>
+            WidthRequest="200"
+            CornerRadius="25"
+            BackgroundColor="{DynamicResource TertiaryColor}"
+            TextColor="White"/>
+        </VerticalStackLayout>
+    </Grid>
 </ContentPage>

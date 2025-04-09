@@ -3,93 +3,143 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="RecipeApp2025.Pages.FilterPage"
              Title="">
-    <VerticalStackLayout>
-        <Label 
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            
+            
+            <Frame Padding="15" Margin="15" BorderColor="#c2b288" CornerRadius="10" HasShadow="True">
+                
+                <VerticalStackLayout>
+                    <Label 
             Text="Preparation"
             VerticalOptions="Center" 
             HorizontalOptions="Center"
             FontAttributes="Bold"
             FontFamily="Poppins"/>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <CheckBox VerticalOptions="CenterAndExpand"
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <CheckBox VerticalOptions="CenterAndExpand"
                       HorizontalOptions="CenterAndExpand"/>
-            <Label Text="Minimum serving count "
+                        <Label Text="Minimum serving count "
                    VerticalOptions="Center"
                    HorizontalOptions="CenterAndExpand"
                    FontFamily="Poppins"/>
-            <Entry Keyboard="Numeric"
+                        <Entry Keyboard="Numeric"
                    VerticalOptions="Center"
                    HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <CheckBox VerticalOptions="CenterAndExpand"
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <CheckBox VerticalOptions="CenterAndExpand"
           HorizontalOptions="CenterAndExpand"/>
-            <Label Text="Maximum serving count "
+                        <Label Text="Maximum serving count "
            VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"
            FontFamily="Poppins"/>
-            <Entry Keyboard="Numeric"
+                        <Entry Keyboard="Numeric"
            VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <CheckBox VerticalOptions="CenterAndExpand"
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <CheckBox VerticalOptions="CenterAndExpand"
               HorizontalOptions="CenterAndExpand"/>
-            <Label Text="Minimum preparation time "
+                        <Label Text="Minimum preparation time "
            VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"
            FontFamily="Poppins"/>
-            <Entry Keyboard="Numeric"
+                        <Entry Keyboard="Numeric"
            VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <CheckBox VerticalOptions="CenterAndExpand"
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <CheckBox VerticalOptions="CenterAndExpand"
   HorizontalOptions="CenterAndExpand"/>
-            <Label Text="Maximum preparation time "
+                        <Label Text="Maximum preparation time "
    VerticalOptions="Center"
    HorizontalOptions="CenterAndExpand"
    FontFamily="Poppins"/>
-            <Entry Keyboard="Numeric"
+                        <Entry Keyboard="Numeric"
    VerticalOptions="Center"
    HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
-        <Label Padding="10"/>
-        <Label 
+                    </StackLayout>
+                    
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Padding="15" Margin="15" BorderColor="#c2b288" CornerRadius="10" HasShadow="True">
+                <VerticalStackLayout>
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                    <Label Text="Popular recipes "
+                       VerticalOptions="Center"
+                       HorizontalOptions="CenterAndExpand"
+                       FontFamily="Poppins" />
+                    <Picker VerticalOptions="Center"
+                        HorizontalOptions="CenterAndExpand">
+                        <Picker.Items>
+                            <x:String>Most Popular</x:String>
+                            <x:String>Least Popular</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+        </VerticalStackLayout>
+    </Frame>
+
+            <Frame Padding="15" Margin="15" BorderColor="#c2b288" CornerRadius="10" HasShadow="True">
+                <VerticalStackLayout>
+                    <Label 
     Text="Ingredients"
     VerticalOptions="Center" 
     HorizontalOptions="Center"
     FontAttributes="Bold"
     FontFamily="Poppins"/>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <Label Text="Protein "
+                    
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Label Text="Protein "
          VerticalOptions="Center"
          HorizontalOptions="CenterAndExpand"
          FontFamily="Poppins"/>
-            <Picker VerticalOptions="Center"
+                        <Picker VerticalOptions="Center"
                     HorizontalOptions="CenterAndExpand">
-                <Picker.Items>
-                    <x:String>Chicken</x:String>
-                    <x:String>Beef</x:String>
-                    <x:String>Pork</x:String>
-                    <x:String>None</x:String>
-                </Picker.Items>
-            </Picker>
-        </StackLayout>
-        <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-            <Label Text="Vegetable "
- VerticalOptions="Center"
- HorizontalOptions="CenterAndExpand"
- FontFamily="Poppins"/>
-            <Picker VerticalOptions="Center"
-        HorizontalOptions="CenterAndExpand">
-                <Picker.Items>
-                    <x:String>Carrot</x:String>
-                    <x:String>Potato</x:String>
-                    <x:String>Kale</x:String>
-                    <x:String>None</x:String>
-                </Picker.Items>
-            </Picker>
-        </StackLayout>
-    </VerticalStackLayout>
+                            <Picker.Items>
+                                <x:String>Chicken</x:String>
+                                <x:String>Beef</x:String>
+                                <x:String>Pork</x:String>
+                                <x:String>None</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
+                        <Label Text="Vegetable "
+        VerticalOptions="Center"
+        HorizontalOptions="CenterAndExpand"
+        FontFamily="Poppins"/>
+                        <Picker VerticalOptions="Center"
+                    HorizontalOptions="CenterAndExpand">
+                            <Picker.Items>
+                                <x:String>Carrot</x:String>
+                                <x:String>Potato</x:String>
+                                <x:String>Kale</x:String>
+                                <x:String>None</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </StackLayout>
+
+                </VerticalStackLayout>
+            </Frame>
+
+        <Button
+            Text="Apply"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            FontFamily="Poppins"
+            BackgroundColor="#6fd16f"
+            TextColor="White"
+            FontAttributes="Bold" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
