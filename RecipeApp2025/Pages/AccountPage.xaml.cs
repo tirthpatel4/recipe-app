@@ -54,7 +54,7 @@ public partial class AccountPage : ContentPage
                     UserRecipes = new List<Recipe>()
                 };
 
-                var _firebaseService = new FirebaseService(uc);
+                var _firebaseService = new FirebaseService(uc.User.Credential.IdToken);
                 await _firebaseService.AddUser(user);
                 PersistentDataHelper.SetLogin(_username);
 
@@ -89,7 +89,7 @@ public partial class AccountPage : ContentPage
                 signinButton.IsEnabled = false;
                 registerButton.IsEnabled = false;
                 signoutButton.IsEnabled = true;
-                var _firebaseService = new FirebaseService(uc);
+                var _firebaseService = new FirebaseService(uc.User.Credential.IdToken);
                 var user = await _firebaseService.GetUser(_username);
                 if (user != null)
                 {

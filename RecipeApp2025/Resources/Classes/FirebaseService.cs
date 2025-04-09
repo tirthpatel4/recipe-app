@@ -14,12 +14,12 @@ public class FirebaseService
 {
     private readonly FirebaseClient _firebaseClient;
 
-    public FirebaseService(UserCredential uc)
+    public FirebaseService(string token)
     {
         _firebaseClient = new FirebaseClient("https://recipeapp2025-default-rtdb.firebaseio.com/",
             new FirebaseOptions
             {
-                AuthTokenAsyncFactory = () => Task.FromResult(uc.User.Credential.IdToken)
+                AuthTokenAsyncFactory = () => Task.FromResult(token)
             }
 );
     }
