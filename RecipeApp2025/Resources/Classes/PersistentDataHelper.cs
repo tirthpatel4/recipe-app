@@ -5,7 +5,8 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Diagnostics;
-
+using Firebase.Auth;
+using Firebase.Auth.Providers; 
 namespace RecipeApp2025.Resources.Classes
 {
     public class PersistentDataHelper
@@ -13,7 +14,7 @@ namespace RecipeApp2025.Resources.Classes
         private static string mainDir = FileSystem.Current.AppDataDirectory;
         private static string login_filepath = mainDir+"/login.txt";
         private static string theme_filepath = mainDir+"/theme.txt";
-
+        private static string auth_filepath = mainDir + "/auth.txt";
         public static string GetLogin()
         {
             string s = string.Empty;
@@ -74,6 +75,34 @@ namespace RecipeApp2025.Resources.Classes
             System.IO.File.WriteAllText(theme_filepath, theme.ToString());
         }
 
-        
+        public static string GetAuth()
+        {
+            string s = string.Empty;
+            if (!File.Exists(auth_filepath))
+            {
+                using (var fs = File.Create(auth_filepath))
+                {
+                    // Close the stream immediately after creating the file
+                }
+            }
+
+            using (StreamReader sr = File.OpenText(auth_filepath))
+            {
+
+                s = sr.ReadLine();
+                if (s == null)
+                {
+                    s = string.Empty;
+                }
+                Debug.WriteLine(s.Length);
+            }
+            return s;
+        }
+
+        public static void SetAuth(UserCredential uc)
+        {
+            System.IO.File.WriteAllText(auth_filepath, uc.User.Credential.IdToken);
+        }
+
     }
 }

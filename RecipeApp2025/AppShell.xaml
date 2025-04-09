@@ -17,7 +17,6 @@
     
     Shell.NavBarIsVisible="True"
     Shell.NavBarHasShadow="False"
-
     >
    
     <Shell.Behaviors>
