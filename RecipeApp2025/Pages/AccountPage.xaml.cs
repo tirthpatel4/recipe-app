@@ -93,7 +93,6 @@ public partial class AccountPage : ContentPage
                 var user = await _firebaseService.GetUser(_username);
                 if (user != null)
                 {
-                    Debug.WriteLine("This succeeeded!");
                     App.CurrentUser = user.Username;
                     App.CurrentUserCredential = uc;
                     PersistentDataHelper.SetLogin(user.Username);
