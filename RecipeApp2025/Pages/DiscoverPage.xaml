@@ -6,41 +6,52 @@
              x:Class="RecipeApp2025.Pages.DiscoverPage"
              BackgroundColor="{DynamicResource BackgroundColor}"
              >
-
+    <Grid>
+    <ActivityIndicator 
+            x:Name="LoadingIndicator"
+            IsRunning="{Binding BindingContext.IsLoading, Source={x:Reference DiscoverFeed}}"
+            IsVisible="{Binding BindingContext.IsLoading, Source={x:Reference DiscoverFeed}}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            HeightRequest="100"
+            WidthRequest="100"
+            Color="{DynamicResource TextColor}"
+            ZIndex="1"/>
     <ListView x:Name="DiscoverFeed"
                   SeparatorColor="Transparent"
                   HasUnevenRows="True"
                   SelectionMode="None"
                   ItemAppearing="OnItemAppearing"
                   Margin="10"
-              
+ 
                   >
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <ViewCell>
-                    <Border Padding="10"
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Border Padding="10"
                             BackgroundColor="{DynamicResource PrimaryColor}"
                             Stroke="Transparent"
                             StrokeThickness="1"
                             Margin="5, 10"
                             >
-                        <Border.GestureRecognizers>
-                            <TapGestureRecognizer
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
                                     Command="{Binding BindingContext.GoToRecipeDetailPageCommand, Source={x:Reference DiscoverFeed}}"
                                     CommandParameter="{Binding .}"
                                     />
-                        </Border.GestureRecognizers>
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="20" />
-                        </Border.StrokeShape>
-                        
-                        <Grid Padding="1"
+                            </Border.GestureRecognizers>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="20" />
+                            </Border.StrokeShape>
+
+                            <Grid Padding="1"
                               ColumnSpacing="15"
                               RowSpacing="10"
                               RowDefinitions="Auto, Auto, Auto"
                               ColumnDefinitions="3  *, 7*">
 
-                            <Border Grid.RowSpan="3"
+
+                                <Border Grid.RowSpan="3"
                                    Grid.Column="0"
                                    HeightRequest="143"
                                    
@@ -48,76 +59,77 @@
                                    Padding="0"
                                     HorizontalOptions="Fill"
                                    VerticalOptions="Center">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="20" />
-                                </Border.StrokeShape>
-                                <Image Source="{Binding Img_url}"
+                                    <Border.StrokeShape>
+                                        <RoundRectangle CornerRadius="20" />
+                                    </Border.StrokeShape>
+                                    <Image Source="{Binding Img_url}"
                                        Aspect="AspectFill"/>
-                            </Border>
-
-                            <StackLayout Grid.Row="0"
+                                </Border>
+            
+                                <StackLayout Grid.Row="0"
                                          Grid.Column="1"
                                          HorizontalOptions="Start"
                                          VerticalOptions="Start"
                                          Spacing="5">
-                                <Label Text="{Binding Name}"
+                                    <Label Text="{Binding Name}"
                                        TextColor="{DynamicResource TextColor}"
                                        FontSize="Title"
                                        FontFamily="Poppins"
                                        LineBreakMode="TailTruncation"
                                        MaxLines="2"
                                        HorizontalOptions="FillAndExpand"/>
-                            </StackLayout>
+                                </StackLayout>
 
-                            <StackLayout Grid.Row="1"
+                                <StackLayout Grid.Row="1"
                                          Grid.Column="1"
                                          HorizontalOptions="Start"
                                          VerticalOptions="Center"
                                          Orientation="Horizontal"
                                          Spacing="5">
-                                <Image Source="clocklineicon.png"
+                                    <Image Source="clocklineicon.png"
                                        WidthRequest="20"
                                        HeightRequest="20"
                                        VerticalOptions="Center"
                                        Scale="1"
                                        >
-                                    <Image.Behaviors>
-                                        <toolkit:IconTintColorBehavior TintColor="{StaticResource TextColor}" />
-                                    </Image.Behaviors>
-                                </Image>
-                                <Label Text="{Binding Total_time, StringFormat='{0} minutes'}"
+                                        <Image.Behaviors>
+                                            <toolkit:IconTintColorBehavior TintColor="{StaticResource TextColor}" />
+                                        </Image.Behaviors>
+                                    </Image>
+                                    <Label Text="{Binding Total_time, StringFormat='{0} minutes'}"
                                        FontSize="Medium"
                                        TextColor="{DynamicResource TextColor}"
                                        VerticalOptions="Center"
                                        FontFamily="Poppins"/>
-                            </StackLayout>
+                                </StackLayout>
 
-                            <StackLayout Grid.Row="2"
+                                <StackLayout Grid.Row="2"
                                          Grid.Column="1"
                                          HorizontalOptions="Start"
                                          VerticalOptions="Center"
                                          Orientation="Horizontal"
                                          Spacing="5">
-                                <Image Source="person.png"
+                                    <Image Source="person.png"
                                        WidthRequest="20"
                                        HeightRequest="20">
-                                    <Image.Behaviors>
-                                        <toolkit:IconTintColorBehavior TintColor="{StaticResource TextColor}" />
-                                    </Image.Behaviors>
-                                </Image>
-                                <Label Text="{Binding Num_people_served, StringFormat='{0}'}"
+                                        <Image.Behaviors>
+                                            <toolkit:IconTintColorBehavior TintColor="{StaticResource TextColor}" />
+                                        </Image.Behaviors>
+                                    </Image>
+                                    <Label Text="{Binding Num_people_served, StringFormat='{0}'}"
                                        FontSize="Medium"
                                        FontFamily="Poppins"
                                        TextColor="{DynamicResource TextColor}"
                                        VerticalOptions="Center"/>
-                            </StackLayout>
-                        </Grid>
 
-                    </Border>
+                                </StackLayout>
+                            </Grid>
 
-                </ViewCell>
-            </DataTemplate>
-        </ListView.ItemTemplate>
+                        </Border>
 
-    </ListView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>

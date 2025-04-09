@@ -8,6 +8,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using RecipeApp2025;
 using System.Windows.Input;
 using RecipeApp2025.Services;
+using Microsoft.Maui.Layouts;
 namespace RecipeApp2025.Pages;
 
 [QueryProperty(nameof(Keyword), "keyword")]
@@ -43,16 +44,22 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
+        
         // Reset the page number and load the first page
         pageNumber = 1;
         ids.Clear();
+        
         await LoadRecipesAsync();
+        
     }
     public async void GoToRecipeDetailPage(Recipe r)
     {
+        LoadingIndicator.IsVisible = true;
+        LoadingIndicator.IsRunning = true;
         await App.ChangeCurrentRecipe(r);
         await Shell.Current.GoToAsync("/DetailPage");
+       LoadingIndicator.IsVisible = false;
+         LoadingIndicator.IsRunning = false;
     }
     private void UpdateRecipes()
     {
@@ -72,7 +79,8 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
     {
         if (IsLoading) return;
         IsLoading = true;
-
+        LoadingIndicator.IsVisible = true;
+        LoadingIndicator.IsRunning = true;
         try
         {
             var recipes = await recipeService.GetRecipesAsync(_keyword);
@@ -105,6 +113,8 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         finally
         {
             IsLoading = false;
+            LoadingIndicator.IsVisible = false;
+            LoadingIndicator.IsRunning = false;
         }
     }
     private async void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
@@ -121,6 +131,8 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
     {
         if (IsLoading) return;
         IsLoading = true;
+        LoadingIndicator.IsVisible = true;
+       LoadingIndicator.IsRunning = true;
 
         try
         {
@@ -144,6 +156,8 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         finally
         {
             IsLoading = false;
+            LoadingIndicator.IsVisible = false;
+            LoadingIndicator.IsRunning = false;
         }
     }
 
