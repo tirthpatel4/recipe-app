@@ -24,6 +24,7 @@ namespace RecipeApp2025
         public static List<Recipe> SavedRecipes { get; set; }
         public static string CurrentUser { get; set; }
         public static UserCredential CurrentUserCredential { get; set; }
+        public static bool needsReshuffle { get; set; }
         public static Filter CurrentFilter { get; set; } 
         //light=0, dark = 1, system theme = 2
         public static int ThemeIndicator { get; set;  }
@@ -47,6 +48,7 @@ namespace RecipeApp2025
 
             CurrentUser = PersistentDataHelper.GetLogin();
             CurrentFilter = new Filter();
+            needsReshuffle = true;
             LoadData();
             /*
             DeviceIdProvider = new DeviceIdProvider();

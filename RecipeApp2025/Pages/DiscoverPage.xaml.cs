@@ -44,9 +44,13 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        
+
         // Reset the page number and load the first page
-        pageNumber = 0;
+        if (App.needsReshuffle)
+        {
+            pageNumber = 0;
+            App.needsReshuffle = false;
+        }
         ids.Clear();
         
         await LoadRecipesAsync();

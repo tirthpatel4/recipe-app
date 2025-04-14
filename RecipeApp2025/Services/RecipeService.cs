@@ -24,7 +24,7 @@ namespace RecipeApp2025.Services
 
         public async Task<List<Recipe>> GetRecipesAsync(string keyword, int pageNumber)
         {
-            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=popularity&offset={10 * pageNumber}";
+            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=random&offset={10 * pageNumber}";
             if (keyword != String.Empty)
             {
                 Debug.WriteLine("keyword; no filter");
