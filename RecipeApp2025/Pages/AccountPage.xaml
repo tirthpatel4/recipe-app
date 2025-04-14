@@ -13,11 +13,13 @@
     </LinearGradientBrush>
     </ContentPage.Background>
 
-    <Grid RowDefinitions="*" ColumnDefinitions="*">
-        <VerticalStackLayout Grid.Row="0" Grid.Column="0"
-                             HorizontalOptions="Center" VerticalOptions="Center"
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*" Padding="20">
+        <VerticalStackLayout Grid.Row="1" Grid.Column="0"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
                              Spacing="15" Padding="20"
-                             BackgroundColor="White" WidthRequest="300">
+                             BackgroundColor="White" 
+                             WidthRequest="500">
 
 
             <Label Text="Welcome"
@@ -27,7 +29,7 @@
                    HorizontalOptions="Center"
                    Margin="0,0,0,5"/>
 
-            <Label Text="to the Receipe App"
+            <Label Text="to the Recipe App"
                    FontSize="Medium"
                    TextColor="{DynamicResource TextColor}"
                    HorizontalOptions="Center"
@@ -36,12 +38,12 @@
             <Border StrokeThickness="1" Padding="10" Margin="0, 0, 0, 10"
                     Stroke="#D3D3D3"
                     BackgroundColor="White"
-                    HorizontalOptions= "FillAndExpand">
+                    HorizontalOptions= "CenterAndExpand">
                 <Border.StrokeShape>
                     <RoundRectangle CornerRadius="5" />
                 </Border.StrokeShape>
-                <Entry x:Name="UsernameEntry"
                 
+                <Entry x:Name="UsernameEntry"
                 Placeholder="Username"
                 Keyboard="Email"
                 TextColor="{DynamicResource TextColor}"
@@ -51,14 +53,15 @@
                 Text="{Binding Username}"
                 Margin="10,0,10,0" />
             </Border>
-            <Border StrokeThickness="2"
-            Padding="5"
+            
+            <Border StrokeThickness="1"
+            Padding="10"
             Margin="0, 0, 0, 10"
-            Stroke="Transparent"
+            Stroke="#D3D3D3"
             BackgroundColor="White"
-            HorizontalOptions="FillAndExpand">
+            HorizontalOptions="CenterAndExpand">
                 <Border.StrokeShape>
-                    <RoundRectangle CornerRadius="40" />
+                    <RoundRectangle CornerRadius="5" />
                 </Border.StrokeShape>
                 <Entry x:Name="PasswordEntry"
                 Placeholder="Password"
@@ -71,6 +74,7 @@
                 PlaceholderColor="{DynamicResource TextColor}"
                 Margin="10,0,10,0" />
             </Border>
+            
             <Label Padding="1"/>
             <Button x:Name="signinButton"
                 Text="Sign In"
