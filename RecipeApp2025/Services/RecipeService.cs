@@ -29,6 +29,17 @@ namespace RecipeApp2025.Services
             {
                 url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity";
             }
+            Debug.WriteLine($"serving:{App.CurrentFilter.MinServing}");
+            if (App.CurrentFilter.MinServing != -1 ||  App.CurrentFilter.MaxServing != -1 || App.CurrentFilter.MaxPrep != -1 || App.CurrentFilter.Ingredients.Count > 0)
+            {
+                Console.WriteLine("searching serving");
+                string inquiry = App.CurrentFilter.GetSearchInquiry();
+                if (keyword != String.Empty)
+                {
+                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity" + inquiry;
+                }
+                else url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=popularity" + inquiry;
+            }
             var response = await client.GetAsync(url);
 
             if (response.IsSuccessStatusCode)

@@ -7,15 +7,21 @@ using RecipeApp2025.Resources.Classes;
 using Firebase.Database;
 using Firebase.Database.Query;
 using System.Diagnostics;
+using Firebase.Auth;
 //using GoogleGson.Annotations;
 
 public class FirebaseService
 {
     private readonly FirebaseClient _firebaseClient;
 
-    public FirebaseService()
+    public FirebaseService(string token)
     {
-        _firebaseClient = new FirebaseClient("https://recipeapp2025-default-rtdb.firebaseio.com/");
+        _firebaseClient = new FirebaseClient("https://recipeapp2025-default-rtdb.firebaseio.com/",
+            new FirebaseOptions
+            {
+                AuthTokenAsyncFactory = () => Task.FromResult(token)
+            }
+);
     }
 
     public async Task AddRecipe(Recipe recipe)
@@ -23,7 +29,7 @@ public class FirebaseService
         await _firebaseClient.Child("recipes").PostAsync(recipe);
     }
 
-    public async Task AddUser(User u)
+    public async Task AddUser(RecipeApp2025.Resources.Classes.User u)
     {
         u.Id = Guid.NewGuid().ToString();
 
@@ -76,13 +82,13 @@ public class FirebaseService
             .Select(item => item.Object)
             .ToList();
     }
-    public async Task<User> GetUser(string username)
+    public async Task<RecipeApp2025.Resources.Classes.User> GetUser(string username)
     {
         var users = await _firebaseClient
         .Child("users")
         .OrderBy("Username")
         .EqualTo(username)
-        .OnceAsync<User>();
+        .OnceAsync<RecipeApp2025.Resources.Classes.User>();
 
         return users.FirstOrDefault()?.Object;
     }
@@ -93,13 +99,13 @@ public class FirebaseService
         return u.FirstOrDefault()?.Object;
     }
 
-    public async Task<User> GetUserById(string id)
+    public async Task<RecipeApp2025.Resources.Classes.User> GetUserById(string id)
     {
         var users = await _firebaseClient
         .Child("users")
         .OrderBy("Id")
         .EqualTo(id)
-        .OnceAsync<User>();
+        .OnceAsync<RecipeApp2025.Resources.Classes.User>();
 
         return users.FirstOrDefault()?.Object;
     }

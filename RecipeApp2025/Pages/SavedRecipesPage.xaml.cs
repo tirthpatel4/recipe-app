@@ -41,7 +41,7 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     }
     public async void SetSavedRecipes()
     {
-        FirebaseService fs = new FirebaseService();
+        FirebaseService fs = new FirebaseService(App.CurrentUserCredential.User.Credential.IdToken);
         SavedFeed.ItemsSource = await fs.ReturnUserSavedRecipes(App.CurrentUser);
     }
 

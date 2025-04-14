@@ -136,7 +136,6 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 
         try
         {
-            //Debug.WriteLine(pageNumber);
             var newRecipes = await recipeService.GetRecipesAsync(_keyword);
 
             if (newRecipes.Any())

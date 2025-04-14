@@ -22,7 +22,7 @@
                 </Border.StrokeShape>
                 <Entry x:Name="UsernameEntry"
                 
-                Placeholder="Username"
+                Placeholder="Email"
                 Keyboard="Email"
                 TextColor="{DynamicResource TextColor}"
                 PlaceholderColor="{DynamicResource TextColor}"
