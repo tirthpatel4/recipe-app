@@ -124,8 +124,8 @@
                         />
 
             </StackLayout>
-    
-            
+
+
 
         </Grid>
         <Image 
@@ -139,6 +139,6 @@
                 AbsoluteLayout.LayoutBounds="0.5,1.8,1.2,0.63"
                 AbsoluteLayout.LayoutFlags="PositionProportional, WidthProportional, HeightProportional"
                 ZIndex="0" 
-                />  
+                />
     </AbsoluteLayout>
 </ContentPage>
