@@ -101,7 +101,11 @@ namespace RecipeApp2025.Resources.Classes
 
         public static void SetAuth(UserCredential uc)
         {
-            System.IO.File.WriteAllText(auth_filepath, uc.User.Credential.IdToken);
+            if (uc is not null)
+            {
+                System.IO.File.WriteAllText(auth_filepath, uc.User.Credential.IdToken);
+            }
+            else System.IO.File.WriteAllText(auth_filepath, "");
         }
 
     }

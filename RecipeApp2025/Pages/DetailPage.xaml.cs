@@ -70,7 +70,7 @@ public partial class DetailPage : ContentPage
 
         if (App.CurrentUser.Length > 0)
         {
-            FirebaseService fs = new FirebaseService(App.CurrentUserCredential.User.Credential.IdToken);
+            FirebaseService fs = new FirebaseService(PersistentDataHelper.GetAuth());
             Task<User> u = fs.GetUser(App.CurrentUser);
             ToggleButton.IsEnabled = true;
             isSaved = App.CurrentRecipe.isSaved;
@@ -140,7 +140,7 @@ public partial class DetailPage : ContentPage
 
     private void OnToggleButtonClicked(object sender, EventArgs e)
     {
-        FirebaseService fs = new FirebaseService(App.CurrentUserCredential.User.Credential.IdToken);
+        FirebaseService fs = new FirebaseService(PersistentDataHelper.GetAuth());
         isSaved = !isSaved;
         ToggleButton.Text = isSaved ? "Unsave" : "Save";
         if (isSaved)

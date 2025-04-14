@@ -6,8 +6,7 @@
              x:Class="RecipeApp2025.Pages.MainPage"
              Title="Home"
              
-             BackgroundColor="{DynamicResource BackgroundColor}"
-            >
+             BackgroundColor="{DynamicResource BackgroundColor}">
 
 
     <AbsoluteLayout>

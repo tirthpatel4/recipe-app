@@ -57,6 +57,7 @@ public partial class AccountPage : ContentPage
                 var _firebaseService = new FirebaseService(uc.User.Credential.IdToken);
                 await _firebaseService.AddUser(user);
                 PersistentDataHelper.SetLogin(_username);
+                PersistentDataHelper.SetAuth(uc);
 
                 await DisplayAlert("Success", "User registered successfully!", "OK");
 
@@ -96,6 +97,7 @@ public partial class AccountPage : ContentPage
                     App.CurrentUser = user.Username;
                     App.CurrentUserCredential = uc;
                     PersistentDataHelper.SetLogin(user.Username);
+                    PersistentDataHelper.SetAuth(uc);
                     PersistentDataHelper.SetTheme(App.ThemeIndicator);
                 }
 
@@ -113,6 +115,7 @@ public partial class AccountPage : ContentPage
         App.CurrentUser = "";
         App.CurrentUserCredential = null;
         PersistentDataHelper.SetLogin("");
+        PersistentDataHelper.SetAuth(null);
         signinButton.IsEnabled = true;
         registerButton.IsEnabled = true;
         signoutButton.IsEnabled = false;
