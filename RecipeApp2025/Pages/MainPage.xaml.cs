@@ -90,10 +90,12 @@ namespace RecipeApp2025.Pages
         }
         private async void OnSearchButtonClicked(object sender, EventArgs e)
         {
+            App.needsReshuffle = true;
             await Shell.Current.GoToAsync($"/DiscoverPage?keyword={_keyword}");
         }
         private async void OnDiscoverButtonClicked(object sender, EventArgs e)
         {
+            App.needsReshuffle = true;
             await Shell.Current.GoToAsync("/DiscoverPage");
         }
 
