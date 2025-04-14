@@ -8,8 +8,8 @@ namespace RecipeApp2025.Services
 {
 	public class RecipeService
     {
-        private const string ApiKey = "60bd29f7cfc54795868a9a053cb447a3";
-        //private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
+        //private const string ApiKey = "60bd29f7cfc54795868a9a053cb447a3";
+        private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
 
 
         private const string BaseUrl = "https://api.spoonacular.com/";
@@ -22,23 +22,28 @@ namespace RecipeApp2025.Services
 			client = new HttpClient();
 		}
 
-        public async Task<List<Recipe>> GetRecipesAsync(string keyword)
+        public async Task<List<Recipe>> GetRecipesAsync(string keyword, int pageNumber)
         {
-            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=random";
+            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=popularity&offset={10 * pageNumber}";
             if (keyword != String.Empty)
             {
-                url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity";
+                Debug.WriteLine("keyword; no filter");
+                url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity&offset={10 * pageNumber}";
             }
             Debug.WriteLine($"serving:{App.CurrentFilter.MinServing}");
             if (App.CurrentFilter.MinServing != -1 ||  App.CurrentFilter.MaxServing != -1 || App.CurrentFilter.MaxPrep != -1 || App.CurrentFilter.Ingredients.Count > 0)
             {
-                Console.WriteLine("searching serving");
                 string inquiry = App.CurrentFilter.GetSearchInquiry();
                 if (keyword != String.Empty)
                 {
-                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity" + inquiry;
+                    Debug.WriteLine("keyword; filter added");
+                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity&offset={10 * pageNumber}" + inquiry;
                 }
-                else url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=popularity" + inquiry;
+                else
+                {
+                    Debug.WriteLine("no keyword; filter added");
+                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=popularity&offset={10 * pageNumber}" + inquiry;
+                }
             }
             var response = await client.GetAsync(url);
 
@@ -46,7 +51,7 @@ namespace RecipeApp2025.Services
             {
                 var content = await response.Content.ReadAsStringAsync();
                 var json = JObject.Parse(content);
-                //Debug.WriteLine(json);
+                Debug.WriteLine(json);
                 var recipes = json["results"]?.Select(r => new Recipe
                 {
                     Id = (int)r["id"],

@@ -20,7 +20,7 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
     private bool IsLoading;
     public ICommand GoToRecipeDetailPageCommand { get; }
     private string _keyword = String.Empty;
-    private int pageNumber = 1;
+    private int pageNumber = 0;
     public string Keyword
     {
         get => _keyword;
@@ -46,7 +46,7 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         base.OnAppearing();
         
         // Reset the page number and load the first page
-        pageNumber = 1;
+        pageNumber = 0;
         ids.Clear();
         
         await LoadRecipesAsync();
@@ -83,10 +83,11 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         LoadingIndicator.IsRunning = true;
         try
         {
-            var recipes = await recipeService.GetRecipesAsync(_keyword);
+            var recipes = await recipeService.GetRecipesAsync(_keyword, pageNumber);
+            Debug.WriteLine($"page count: {pageNumber}");
 
             // Clear the list only on the first load
-            if (pageNumber == 1)
+            if (pageNumber == 0)
             {
                 Recipes.Clear();
             }
@@ -99,10 +100,13 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
                         Recipes.Add(recipe);
                         ids.Add(recipe.Id);
                     }
-                    else if (_keyword == String.Empty) Recipes.Add(recipe);
+                    else if (_keyword == String.Empty && !ids.Contains(recipe.Id))
+                    {
+                        ids.Add(recipe.Id);
+                        Recipes.Add(recipe);
+                    }
                 }
             }
-
             pageNumber++;
         }
         catch (Exception ex)
@@ -136,9 +140,9 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 
         try
         {
-            var newRecipes = await recipeService.GetRecipesAsync(_keyword);
-
-            if (newRecipes.Any())
+            var newRecipes = await recipeService.GetRecipesAsync(_keyword, pageNumber);
+            Debug.WriteLine($"Pagenumber: {pageNumber}");
+            if (newRecipes is not null && newRecipes.Any())
             {
                 foreach (var recipe in newRecipes)
                 {
@@ -147,7 +151,11 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
                         ids.Add(recipe.Id);
                         Recipes.Add(recipe); // Use the Recipes property directly
                     }
-                    else if (_keyword == String.Empty) Recipes.Add(recipe);
+                    else if (_keyword == String.Empty && !ids.Contains(recipe.Id))
+                    {
+                        ids.Add(recipe.Id);
+                        Recipes.Add(recipe);
+                    }
                 }
                 pageNumber++;
             }
