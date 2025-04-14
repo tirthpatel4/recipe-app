@@ -9,8 +9,7 @@
     <Grid>
     <ActivityIndicator 
             x:Name="LoadingIndicator"
-            IsRunning="{Binding BindingContext.IsLoading, Source={x:Reference DiscoverFeed}}"
-            IsVisible="{Binding BindingContext.IsLoading, Source={x:Reference DiscoverFeed}}"
+           
             VerticalOptions="Center"
             HorizontalOptions="Center"
             HeightRequest="100"
