@@ -76,7 +76,8 @@
                        VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand"
                        FontFamily="Poppins" />
-                    <Picker VerticalOptions="Center"
+                    <Picker x:Name="PopularityPicker"
+                        VerticalOptions="Center"
                         HorizontalOptions="CenterAndExpand">
                         <Picker.Items>
                             <x:String>Most Popular</x:String>
@@ -138,7 +139,8 @@
             FontFamily="Poppins"
             BackgroundColor="#6fd16f"
             TextColor="White"
-            FontAttributes="Bold" />
+            FontAttributes="Bold" 
+            Clicked="ApplyFilter" />
 
         </VerticalStackLayout>
     </ScrollView>

@@ -11,8 +11,27 @@ using RecipeApp2025.Services;
 namespace RecipeApp2025.Pages;
 
 [QueryProperty(nameof(Keyword), "keyword")]
+[QueryProperty(nameof(Popularity), "popularity")]
 public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
 {
+
+
+    private string _popularity= String.Empty;
+
+    public string Popularity
+    {
+        get => _popularity;
+        set
+        {
+            if (_popularity != value)
+            {
+                _popularity = value;
+                OnPropertyChanged(nameof(Popularity));
+            }
+        }
+    }
+
+
     RecipeService recipeService = new();
     public ObservableCollection<Recipe> Recipes { get; } = new();
     private HashSet<int> ids = new();
@@ -158,3 +177,4 @@ public class CustomEventArgs : EventArgs
     }
 
 }
+
