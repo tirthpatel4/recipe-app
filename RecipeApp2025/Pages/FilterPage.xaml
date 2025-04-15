@@ -6,10 +6,10 @@
 
     <ScrollView>
         <VerticalStackLayout Spacing="10">
-            
-            
+
+
             <Frame Padding="15" Margin="15" BorderColor="#c2b288" CornerRadius="10" HasShadow="True">
-                
+
                 <VerticalStackLayout>
                     <Label 
             Text="Preparation"
@@ -20,68 +20,75 @@
 
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                         <CheckBox VerticalOptions="CenterAndExpand"
-                      HorizontalOptions="CenterAndExpand"/>
+                      HorizontalOptions="CenterAndExpand"
+                      CheckedChanged="OnCheckboxChanged"
+                      x:Name="cb1"
+                      AutomationId="1"/>
                         <Label Text="Minimum serving count "
                    VerticalOptions="Center"
                    HorizontalOptions="CenterAndExpand"
                    FontFamily="Poppins"/>
                         <Entry Keyboard="Numeric"
                    VerticalOptions="Center"
-                   HorizontalOptions="CenterAndExpand"/>
+                   HorizontalOptions="CenterAndExpand"
+                   AutomationId="1"
+                   TextChanged="OnEntryChanged"
+                   x:Name="e1"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                         <CheckBox VerticalOptions="CenterAndExpand"
-          HorizontalOptions="CenterAndExpand"/>
+          HorizontalOptions="CenterAndExpand"
+                      CheckedChanged="OnCheckboxChanged"
+AutomationId="2"
+                      x:Name="cb2"/>
                         <Label Text="Maximum serving count "
            VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"
            FontFamily="Poppins"/>
                         <Entry Keyboard="Numeric"
            VerticalOptions="Center"
-           HorizontalOptions="CenterAndExpand"/>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                        <CheckBox VerticalOptions="CenterAndExpand"
-              HorizontalOptions="CenterAndExpand"/>
-                        <Label Text="Minimum preparation time "
-           VerticalOptions="Center"
            HorizontalOptions="CenterAndExpand"
-           FontFamily="Poppins"/>
-                        <Entry Keyboard="Numeric"
-           VerticalOptions="Center"
-           HorizontalOptions="CenterAndExpand"/>
+                   AutomationId="2"
+                   TextChanged="OnEntryChanged"
+                   x:Name="e2"/>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                         <CheckBox VerticalOptions="CenterAndExpand"
-  HorizontalOptions="CenterAndExpand"/>
+  HorizontalOptions="CenterAndExpand"
+                                            CheckedChanged="OnCheckboxChanged"
+AutomationId="3"
+                      x:Name="cb3"/>
                         <Label Text="Maximum preparation time "
    VerticalOptions="Center"
    HorizontalOptions="CenterAndExpand"
    FontFamily="Poppins"/>
                         <Entry Keyboard="Numeric"
    VerticalOptions="Center"
-   HorizontalOptions="CenterAndExpand"/>
+   HorizontalOptions="CenterAndExpand"
+                   AutomationId="3"
+                   TextChanged="OnEntryChanged"
+                   x:Name="e3"/>
                     </StackLayout>
-                    
                 </VerticalStackLayout>
             </Frame>
-
             <Frame Padding="15" Margin="15" BorderColor="#c2b288" CornerRadius="10" HasShadow="True">
                 <VerticalStackLayout>
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
-                    <Label Text="Popular recipes "
+                    <Label Text="Sort by "
                        VerticalOptions="Center"
                        HorizontalOptions="CenterAndExpand"
                        FontFamily="Poppins" />
-                    <Picker x:Name="PopularityPicker"
+                        <Picker x:Name="p3"
                         VerticalOptions="Center"
-                        HorizontalOptions="CenterAndExpand">
-                        <Picker.Items>
-                            <x:String>Most Popular</x:String>
-                            <x:String>Least Popular</x:String>
+                        HorizontalOptions="CenterAndExpand"
+                            SelectedIndex="0"
+                                AutomationId="3"
+                                SelectedIndexChanged="OnPickerChanged">
+                            <Picker.Items>
+                                <x:String>Random</x:String>
+                                <x:String>Popularity</x:String>
                         </Picker.Items>
                     </Picker>
                 </StackLayout>
@@ -96,35 +103,43 @@
     HorizontalOptions="Center"
     FontAttributes="Bold"
     FontFamily="Poppins"/>
-                    
+
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                         <Label Text="Protein "
          VerticalOptions="Center"
          HorizontalOptions="CenterAndExpand"
          FontFamily="Poppins"/>
                         <Picker VerticalOptions="Center"
-                    HorizontalOptions="CenterAndExpand">
+                    HorizontalOptions="CenterAndExpand"
+                    SelectedIndex="0"
+                    SelectedIndexChanged="OnPickerChanged"
+                    AutomationId="1"
+                    x:Name="p1">
                             <Picker.Items>
+                                <x:String>None</x:String>
                                 <x:String>Chicken</x:String>
                                 <x:String>Beef</x:String>
                                 <x:String>Pork</x:String>
-                                <x:String>None</x:String>
                             </Picker.Items>
                         </Picker>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" VerticalOptions="Center">
                         <Label Text="Vegetable "
-        VerticalOptions="Center"
-        HorizontalOptions="CenterAndExpand"
-        FontFamily="Poppins"/>
+ VerticalOptions="Center"
+ HorizontalOptions="CenterAndExpand"
+ FontFamily="Poppins"/>
                         <Picker VerticalOptions="Center"
-                    HorizontalOptions="CenterAndExpand">
+        HorizontalOptions="CenterAndExpand"
+                    SelectedIndex="0"
+                    AutomationId="2"
+                                SelectedIndexChanged="OnPickerChanged"
+x:Name="p2">
                             <Picker.Items>
+                                <x:String>None</x:String>
                                 <x:String>Carrot</x:String>
                                 <x:String>Potato</x:String>
                                 <x:String>Kale</x:String>
-                                <x:String>None</x:String>
                             </Picker.Items>
                         </Picker>
                     </StackLayout>
@@ -132,7 +147,7 @@
                 </VerticalStackLayout>
             </Frame>
 
-        <Button
+        <!--<Button
             Text="Apply"
             VerticalOptions="Center"
             HorizontalOptions="Center"
@@ -140,7 +155,7 @@
             BackgroundColor="#6fd16f"
             TextColor="White"
             FontAttributes="Bold" 
-            Clicked="ApplyFilter" />
+            Clicked="ApplyFilter" />-->
 
         </VerticalStackLayout>
     </ScrollView>

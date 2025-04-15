@@ -24,11 +24,11 @@ namespace RecipeApp2025.Services
 
         public async Task<List<Recipe>> GetRecipesAsync(string keyword, int pageNumber)
         {
-            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=random&offset={10 * pageNumber}";
+            var url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort={App.CurrentFilter.Sort}&offset={10 * pageNumber}";
             if (keyword != String.Empty)
             {
                 Debug.WriteLine("keyword; no filter");
-                url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity&offset={10 * pageNumber}";
+                url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort={App.CurrentFilter.Sort}&offset={10 * pageNumber}";
             }
             Debug.WriteLine($"serving:{App.CurrentFilter.MinServing}");
             if (App.CurrentFilter.MinServing != -1 ||  App.CurrentFilter.MaxServing != -1 || App.CurrentFilter.MaxPrep != -1 || App.CurrentFilter.Ingredients.Count > 0)
@@ -37,12 +37,12 @@ namespace RecipeApp2025.Services
                 if (keyword != String.Empty)
                 {
                     Debug.WriteLine("keyword; filter added");
-                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort=popularity&offset={10 * pageNumber}" + inquiry;
+                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&titleMatch={keyword}&sort={App.CurrentFilter.Sort}&offset={10 * pageNumber}" + inquiry;
                 }
                 else
                 {
                     Debug.WriteLine("no keyword; filter added");
-                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort=popularity&offset={10 * pageNumber}" + inquiry;
+                    url = $"{BaseUrl}recipes/complexSearch?apiKey={ApiKey}&addRecipeInformation=true&sort={App.CurrentFilter.Sort}&offset={10 * pageNumber}" + inquiry;
                 }
             }
             var response = await client.GetAsync(url);

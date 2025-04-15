@@ -14,7 +14,8 @@ public partial class FilterPage : ContentPage
 		for (int i = 0; i < 2; i++)
 		{
 			App.CurrentFilter.Ingredients.Add("none");
-		}
+            App.CurrentFilter.Ingredients.Add("none");
+        }
 	}
 	protected override void OnAppearing()
 	{
@@ -28,6 +29,7 @@ public partial class FilterPage : ContentPage
 
 		p1.SelectedIndex = Preferences.Get("p1", 0);
         p2.SelectedIndex = Preferences.Get("p2", 0);
+		p3.SelectedIndex = Preferences.Get("p3", 0);
     }
     public async void OnEntryChanged(object sender, TextChangedEventArgs e)
 	{
@@ -112,7 +114,19 @@ public partial class FilterPage : ContentPage
 	{
 		var picker = sender as Picker;
 		int id = int.Parse(picker.AutomationId);
-		App.CurrentFilter.Ingredients[id] = picker.SelectedItem.ToString();
+		if (id != 3)
+		{
+			Debug.WriteLine("ID: " + id);
+            App.CurrentFilter.Ingredients[id] = picker.SelectedItem.ToString();
+        }
+		else
+		{
+			App.CurrentFilter.Sort = picker.SelectedItem.ToString().ToLower();
+		}
 		Preferences.Set($"p{picker.AutomationId}", picker.SelectedIndex);
+	}
+	public async void ApplyFilter(object sender, EventArgs e)
+	{
+
 	}
 }

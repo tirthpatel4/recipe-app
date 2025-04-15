@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace RecipeApp2025.Resources.Classes
         public int MinServing { get; set; }
         public int MaxServing { get; set; }
         public int MaxPrep { get; set; }
+        public string Sort { get; set; }
         public List<string> Ingredients { get; set; }
         public Filter ()
         {
@@ -18,6 +20,7 @@ namespace RecipeApp2025.Resources.Classes
             MaxServing = -1;
             MaxPrep = -1;
             Ingredients = new List<string>();
+            Sort = "random";
 
             if (Preferences.Get("cb1", false))
             {
@@ -50,7 +53,7 @@ namespace RecipeApp2025.Resources.Classes
             if (Ingredients.Count > 0)
             {
                 inquiry += "&includeIngredients=";
-                for (int i = 0; i <  Ingredients.Count; i++)
+                for (int i = 0; i < Ingredients.Count; i++)
                 {
                     if (!Ingredients[i].Equals("none"))
                     {

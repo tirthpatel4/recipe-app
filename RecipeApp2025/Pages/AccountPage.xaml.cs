@@ -15,11 +15,6 @@ public partial class AccountPage : ContentPage
 		InitializeComponent();
         _username = String.Empty;
         _password = String.Empty;
-        
-        signinButton.IsEnabled = App.CurrentUser == "" || App.CurrentUser == null;
-        Debug.WriteLine(signinButton.IsEnabled);
-        registerButton.IsEnabled = signinButton.IsEnabled; 
-        signoutButton.IsEnabled = !signinButton.IsEnabled;  
 
 	}
     protected override void OnAppearing()
@@ -27,6 +22,11 @@ public partial class AccountPage : ContentPage
         base.OnAppearing();
         UsernameEntry.TextChanged += OnUsernameChanged;
         PasswordEntry.TextChanged += OnPasswordChanged;
+        Debug.WriteLine(App.CurrentUser == null);
+        signinButton.IsEnabled = App.CurrentUser is null;
+        Debug.WriteLine(signinButton.IsEnabled);
+        registerButton.IsEnabled = signinButton.IsEnabled;
+        signoutButton.IsEnabled = !signinButton.IsEnabled;
     }
     private void OnUsernameChanged(object sender, TextChangedEventArgs e)
     {
