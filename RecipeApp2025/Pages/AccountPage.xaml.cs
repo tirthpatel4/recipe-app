@@ -23,7 +23,11 @@ public partial class AccountPage : ContentPage
         UsernameEntry.TextChanged += OnUsernameChanged;
         PasswordEntry.TextChanged += OnPasswordChanged;
         Debug.WriteLine(App.CurrentUser == null);
-        signinButton.IsEnabled = App.CurrentUser is null;
+        if (App.CurrentUser != null) {
+            Debug.WriteLine("Current userrr: " + App.CurrentUser);
+            }
+       
+        signinButton.IsEnabled = App.CurrentUser == "";
         Debug.WriteLine(signinButton.IsEnabled);
         registerButton.IsEnabled = signinButton.IsEnabled;
         signoutButton.IsEnabled = !signinButton.IsEnabled;
@@ -92,9 +96,12 @@ public partial class AccountPage : ContentPage
                 signoutButton.IsEnabled = true;
                 var _firebaseService = new FirebaseService(uc.User.Credential.IdToken);
                 var user = await _firebaseService.GetUser(_username);
+                
                 if (user != null)
                 {
+                    Debug.WriteLine("lksglj");
                     App.CurrentUser = user.Username;
+                    Debug.WriteLine(App.CurrentUser);
                     App.CurrentUserCredential = uc;
                     PersistentDataHelper.SetLogin(user.Username);
                     PersistentDataHelper.SetAuth(uc);

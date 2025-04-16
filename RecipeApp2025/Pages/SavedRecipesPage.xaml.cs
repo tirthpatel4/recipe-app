@@ -51,7 +51,7 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
 
     public async void ForceGoToMainPage()
     {
-        await Shell.Current.GoToAsync("/MainPage");
+        await Shell.Current.GoToAsync("////MainPage");
     }
 
 

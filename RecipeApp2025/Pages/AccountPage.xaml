@@ -72,25 +72,20 @@
                 WidthRequest="200"
                 Margin="0,0,0,10" 
                 CornerRadius="25"
-                BackgroundColor="{DynamicResource TertiaryColor}"
-                TextColor="White"/>
+             />
 
             <Button x:Name="registerButton"
                 Text="Register"
                 Clicked="OnRegisterClicked"
                 WidthRequest="200"
                 Margin="0,0,0,10" 
-                CornerRadius="25"
-               BackgroundColor="{DynamicResource SecondaryColor}"
-               TextColor="White"/>
+                CornerRadius="25"/>
             <Button 
             x:Name="signoutButton"
             Text="Sign Out"
             Clicked="OnSignOutClicked"
             WidthRequest="200"
-            CornerRadius="25"
-            BackgroundColor="{DynamicResource TertiaryColor}"
-            TextColor="White"/>
+            CornerRadius="25"/>
         </VerticalStackLayout>
     </Grid>
 </ContentPage>

@@ -31,7 +31,6 @@ namespace RecipeApp2025
             Routing.RegisterRoute(nameof(SavedRecipesPage), typeof(SavedRecipesPage));
             Routing.RegisterRoute(nameof(DetailPage), typeof(DetailPage));
             Routing.RegisterRoute(nameof(FilterPage), typeof(FilterPage));
-            Routing.RegisterRoute(nameof(MainPage), typeof(MainPage));
 
         }
 

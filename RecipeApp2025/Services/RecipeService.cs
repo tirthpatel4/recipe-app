@@ -9,8 +9,8 @@ namespace RecipeApp2025.Services
 {
 	public class RecipeService
     {
-        private const string ApiKey = "60bd29f7cfc54795868a9a053cb447a3";
-        // private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
+        //private const string ApiKey = "60bd29f7cfc54795868a9a053cb447a3";
+         private const string ApiKey = "e9086f66a8184e88a43bac38c112dba0";
         //private string ApiKey = Locksmith.GetKey();
         //private const string ApiKey = "7cb65daeeb2aea85fd00dddc1332ec4edca70ecb";
         //private const string ApiKey = "7cb65daeeb2aea85fd00dddc1332ec4edca70ecb";

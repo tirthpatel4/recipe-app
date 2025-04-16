@@ -27,6 +27,7 @@ namespace RecipeApp2025.Pages
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            Debug.WriteLine("IN MAIN : " + App.CurrentUser);
             SavedRecipesButton.IsEnabled = App.CurrentUser.Length > 0;
             if (App.CurrentUser != String.Empty)
             {
