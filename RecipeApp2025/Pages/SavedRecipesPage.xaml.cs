@@ -41,8 +41,12 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
     }
     public async void SetSavedRecipes()
     {
+        LoadingIndicator.IsVisible = true;
+        LoadingIndicator.IsRunning = true;
         FirebaseService fs = new FirebaseService(PersistentDataHelper.GetAuth());
         SavedFeed.ItemsSource = await fs.ReturnUserSavedRecipes(App.CurrentUser);
+        LoadingIndicator.IsVisible = false;
+        LoadingIndicator.IsRunning = false;
     }
 
     public async void ForceGoToMainPage()
@@ -53,12 +57,16 @@ public partial class SavedRecipesPage : ContentPage, INotifyPropertyChanged
 
     public async void GoToRecipeDetailPage(Recipe r)
     {
+        LoadingIndicator.IsVisible = true;
+        LoadingIndicator.IsRunning = true;
         //var customEventArgs = new CustomEventArgs(r);
         //OnRecipesItemClicked(this, customEventArgs);
         Debug.WriteLine("========================INSIDE GOTORECIPEDETAILPAGE COMMAND+================================================== ");
         App.ChangeCurrentRecipe(r);
 
         await Shell.Current.GoToAsync("/DetailPage");
+        LoadingIndicator.IsVisible = false;
+        LoadingIndicator.IsRunning = false;
 
     }
     private async Task<List<string>> GetRecipesAsync()

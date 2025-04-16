@@ -7,7 +7,16 @@
              Padding="0, 0, 0, 0"
              BackgroundColor="{DynamicResource BackgroundColor}"
              Title="Your Saved Recipes">
+    <Grid>
+    <ActivityIndicator 
+            x:Name="LoadingIndicator"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            HeightRequest="100"
+            WidthRequest="100"
 
+            Color="{DynamicResource TextColor}"
+            ZIndex="1"/>
     <ListView x:Name="SavedFeed"
               SeparatorColor="Transparent"
               HasUnevenRows="True"
@@ -119,4 +128,5 @@
         </ListView.ItemTemplate>
 
     </ListView>
+    </Grid>
 </ContentPage>

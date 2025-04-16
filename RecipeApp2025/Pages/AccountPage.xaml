@@ -7,9 +7,9 @@
              BackgroundColor="{DynamicResource BackgroundColor}">
 
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint=".0,.25">
-            <GradientStop Color="{DynamicResource TextColor}" Offset="0.1" />
-            <GradientStop Color="{DynamicResource BackgroundColor}" Offset="0.9" />
+        <LinearGradientBrush StartPoint="0,1" EndPoint=".0,.65">
+            <GradientStop Color="{DynamicResource AccentColor}" Offset="0.2" />
+            <GradientStop Color="{DynamicResource BackgroundColor}" Offset="0.8" />
         </LinearGradientBrush>
     </ContentPage.Background>
 

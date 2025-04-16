@@ -51,11 +51,9 @@
     </Shell.ItemTemplate>
 
 
-    <FlyoutItem Title="Home"
-               >
+    <FlyoutItem Title="Home">
         <ShellContent
             Title="MainPage"
-            
             ContentTemplate="{DataTemplate pages:MainPage}"
             Route="MainPage"
             />

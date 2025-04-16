@@ -159,7 +159,7 @@ public partial class DiscoverPage : ContentPage, INotifyPropertyChanged
         if (IsLoading) return;
         IsLoading = true;
         LoadingIndicator.IsVisible = true;
-       LoadingIndicator.IsRunning = true;
+        LoadingIndicator.IsRunning = true;
 
         try
         {
