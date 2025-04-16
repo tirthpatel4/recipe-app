@@ -7,33 +7,19 @@
              BackgroundColor="{DynamicResource BackgroundColor}">
 
     <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-            <GradientStop Color="#cbf5e0" Offset="0.1" />
-            <GradientStop Color="#F0F8FF" Offset="0.9" />
+        <LinearGradientBrush StartPoint="0,0" EndPoint=".0,.25">
+            <GradientStop Color="{DynamicResource TextColor}" Offset="0.1" />
+            <GradientStop Color="{DynamicResource BackgroundColor}" Offset="0.9" />
         </LinearGradientBrush>
     </ContentPage.Background>
 
     <Grid RowDefinitions="Auto,*" ColumnDefinitions="*" Padding="20">
         <VerticalStackLayout Grid.Row="1" Grid.Column="0"
-                             HorizontalOptions="Center"
-                             VerticalOptions="Center"
+                             HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="Start"
                              Spacing="15" Padding="20"
-                             BackgroundColor="White" 
                              WidthRequest="500">
 
-
-            <Label Text="Welcome"
-                   FontSize="Large"
-                   FontAttributes="Bold"
-                   TextColor="{DynamicResource TextColor}"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,5"/>
-
-            <Label Text="to the Recipe App"
-                   FontSize="Medium"
-                   TextColor="{DynamicResource TextColor}"
-                   HorizontalOptions="Center"
-                   Margin="0,0,0,15"/>
 
             <Border StrokeThickness="1" Padding="10" Margin="0, 0, 0, 10"
                     Stroke="#D3D3D3"
@@ -50,6 +36,7 @@
                 PlaceholderColor="{DynamicResource TextColor}"
                 ClearButtonVisibility="WhileEditing"
                 BackgroundColor="Transparent"
+                MinimumWidthRequest="200"
                 Text="{Binding Username}"
                 Margin="10,0,10,0" />
             </Border>
@@ -66,6 +53,8 @@
                 <Entry x:Name="PasswordEntry"
                 Placeholder="Password"
                 IsPassword="True"
+            MinimumWidthRequest="200"
+
                 TextColor="{DynamicResource TextColor}"
                 BackgroundColor="Transparent"
                 Text="{Binding Password}"
